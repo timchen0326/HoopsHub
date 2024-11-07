@@ -12,7 +12,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 public class GameApplication {
-
     static final int WIDTH = 800;
     static final int HEIGHT = 400;
 
