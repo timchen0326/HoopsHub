@@ -1,12 +1,10 @@
 package entity;
 
-/**
- * The representation of a password-protected user for our program.
- */
 public class User {
-
     private final String name;
     private final String password;
+    private int win = 0;
+    private int lose = 0;
 
     public User(String name, String password) {
         this.name = name;
@@ -21,4 +19,19 @@ public class User {
         return password;
     }
 
+    public int getWin() {
+        return win;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
+    }
+
+    public int getLose() {
+        return lose;
+    }
+
+    public void setLose(int lose) {
+        this.lose = lose;
+    }
 }
