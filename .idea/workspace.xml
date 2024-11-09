@@ -4,33 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b594619-f842-4ebb-8519-744c943e7476" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/note-application.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/SearchAppBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/note/search/SearchDataAccessInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/note/search/SearchInputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/note/search/SearchInteractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/SearchView.java" afterDir="false" />
+    <list default="true" id="7b594619-f842-4ebb-8519-744c943e7476" name="Changes" comment="Search Bar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainNoteApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/NoteAppBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBNoteDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/SearchResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/ViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NotePresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/DataAccessException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteDataAccessInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteInputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteInteractor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteOutputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/NoteView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,12 +128,36 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1725200606304</updated>
-      <workItem from="1731179906254" duration="4278000" />
+      <workItem from="1731179906254" duration="5394000" />
     </task>
+    <task id="LOCAL-00001" summary="Search Bar">
+      <option name="closed" value="true" />
+      <created>1731185512899</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731185512899</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Search Bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Search Bar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
