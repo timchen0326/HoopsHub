@@ -16,6 +16,7 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
 
     @Override
     public void saveUser(User user) throws Exception {
+        // Step 1: Create user with basic details
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("username", user.getName());
         jsonObject.put("password", user.getPassword());
@@ -33,9 +34,12 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 System.out.println("User " + user.getName() + " created successfully.");
+
+                // Step 2: Initialize user info with additional fields
+                initializeUserInfo(user);  // Call to initialize the user's win, lose, and password in the "info" field
             } else {
-                // Check the response for "user already exists" error
-                if (response.code() == 409) {  // Assuming 409 Conflict is returned if the user already exists
+                // Check if user already exists and handle it by updating instead
+                if (response.code() == 409) {
                     throw new Exception("User already exists");
                 } else {
                     throw new IOException("Unexpected response: " + response);
@@ -44,33 +48,10 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
         }
     }
 
-
-    private void createUser(User user) throws Exception {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("username", user.getName());
-        jsonObject.put("password", user.getPassword());
-
-        RequestBody body = RequestBody.create(
-                jsonObject.toString(),
-                MediaType.parse("application/json; charset=utf-8")
-        );
-
-        Request request = new Request.Builder()
-                .url(CREATE_USER_URL)
-                .post(body)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) {
-                throw new IOException("Unexpected code " + response);
-            }
-            System.out.println("User " + user.getName() + " created successfully with status code: " + response.code());
-        }
-    }
-
     private void initializeUserInfo(User user) throws Exception {
+        // Step 2a: Prepare JSON with username, password, and info fields
         JSONObject infoObject = new JSONObject();
-        infoObject.put("password", user.getPassword());  // Store password in the info field
+        infoObject.put("password", user.getPassword()); // Store password in the info field
         infoObject.put("win", user.getWin());
         infoObject.put("lose", user.getLose());
 
