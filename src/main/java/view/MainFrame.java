@@ -9,20 +9,18 @@ public class MainFrame extends JFrame {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel mainPanel = new JPanel(cardLayout);
 
-    public MainFrame(PlayGameController playGameController) {
+    public MainFrame(PlayGameController controller) {
         setTitle("Game App");
         setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Add different views
         mainPanel.add(new HomePanel(this), "Home");
-        mainPanel.add(new PlayGamePanel(this, playGameController), "Play");
-
+        mainPanel.add(new PlayGamePanel(this, controller), "Play");
         add(mainPanel);
     }
 
-    public void switchTo(String view) {
-        cardLayout.show(mainPanel, view);
+    public void switchTo(String panelName) {
+        cardLayout.show(mainPanel, panelName);
     }
 
     public void start() {
@@ -30,3 +28,4 @@ public class MainFrame extends JFrame {
         switchTo("Home");
     }
 }
+

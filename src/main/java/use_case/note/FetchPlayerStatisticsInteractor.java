@@ -1,23 +1,28 @@
-package use_case.play_game;
+package use_case.note;
 
-import data_access.PlayerStatisticsAPI;
-import entity.PlayerStatistics;
+import java.util.List;
+import interface_adapter.PlayerStatisticsRepository;
 
-public class FetchPlayerStatisticsInteractor implements FetchPlayerStatisticsInputBoundary {
-    private final PlayerStatisticsAPI api;
 
-    public FetchPlayerStatisticsInteractor(PlayerStatisticsAPI api) {
-        this.api = api;
+public class FetchPlayerStatisticsInteractor implements use_case.note.FetchPlayerStatisticsInputBoundary {
+    private final PlayerStatisticsRepository repository;
+
+    public FetchPlayerStatisticsInteractor(PlayerStatisticsRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public String fetchPlayerStatistics(String playerName) {
-        try {
-            String statsData = api.fetchPlayerData(playerName);
-            PlayerStatistics playerStats = new PlayerStatistics(playerName, statsData);
-            return playerStats.getStats();
-        } catch (Exception e) {
-            return "Error fetching stats: " + e.getMessage();
-        }
+        return repository.fetchAllStatisticsForPlayer(playerName);
+    }
+
+    @Override
+    public List<String> getAvailableYears(String playerName) {
+        return repository.fetchAvailableYearsForPlayer(playerName);
+    }
+
+    @Override
+    public String fetchPlayerStatisticsByYear(String playerName, int year) {
+        return repository.fetchStatsForPlayerByYear(playerName, year);
     }
 }

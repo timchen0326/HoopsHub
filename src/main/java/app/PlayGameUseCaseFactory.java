@@ -1,13 +1,15 @@
 package app;
 
-import data_access.PlayerStatisticsAPI;
+import data_access.PlayerStatisticsRepositoryImpl;
 import interface_adapter.PlayGameController;
-import use_case.play_game.FetchPlayerStatisticsInteractor;
+import use_case.note.FetchPlayerStatisticsInteractor;
+import use_case.note.FetchPlayerStatisticsInputBoundary;
 
 public class PlayGameUseCaseFactory {
-    public PlayGameController createController() {
-        PlayerStatisticsAPI api = new PlayerStatisticsAPI();
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(api);
+    public static PlayGameController createController() {
+        PlayerStatisticsRepositoryImpl repository = new PlayerStatisticsRepositoryImpl();
+        FetchPlayerStatisticsInputBoundary interactor = new FetchPlayerStatisticsInteractor(repository);
         return new PlayGameController(interactor);
+
     }
 }
