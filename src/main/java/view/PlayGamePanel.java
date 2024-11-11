@@ -70,7 +70,10 @@ public class PlayGamePanel extends JPanel {
 
         // Back Button
         JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> frame.switchTo("Home"));
+        backButton.addActionListener(e -> {
+            frame.switchTo("Home");
+            reset(); // Reset the panel when the user goes back
+        });
         JPanel backPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         backPanel.add(backButton);
 
@@ -149,5 +152,17 @@ public class PlayGamePanel extends JPanel {
     private double generateRandomOffset(double trueAverage) {
         Random random = new Random();
         return trueAverage + (random.nextDouble() * 3) * (random.nextBoolean() ? 1 : -1);
+    }
+
+    /**
+     * Reset the PlayGamePanel components to their default state.
+     */
+    private void reset() {
+        playerNameField.setText("");
+        yearComboBox.removeAllItems();
+        yearPanel.setVisible(false);
+        statsArea.setText("");
+        guessComboBox.setSelectedIndex(0);
+        randomGuessLabel.setText("Generated Value: --");
     }
 }
