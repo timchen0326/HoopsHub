@@ -14,7 +14,8 @@ public class MainFrame extends JFrame {
         setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        mainPanel.add(new HomePanel(this), "Home");
+        // Add panels to the card layout
+        mainPanel.add(new HomePanel(this), "Home");       // Set HomePanel with the "Home" card name
         mainPanel.add(new PlayGamePanel(this, controller), "Play");
         add(mainPanel);
     }
@@ -25,7 +26,6 @@ public class MainFrame extends JFrame {
 
     public void start() {
         setVisible(true);
-        switchTo("Home");
+        switchTo("Home");  // Start with the Home panel
     }
 }
-
