@@ -1,18 +1,14 @@
 package data_access;
 
 import interface_adapter.PlayerStatisticsRepository;
-
-import java.util.List;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerStatisticsRepositoryImpl implements PlayerStatisticsRepository {
     private final PlayerStatisticsAPI api;
 
-    // Constructor initializes PlayerStatisticsAPI internally
     public PlayerStatisticsRepositoryImpl() {
         this.api = new PlayerStatisticsAPI();
     }
@@ -20,26 +16,9 @@ public class PlayerStatisticsRepositoryImpl implements PlayerStatisticsRepositor
     @Override
     public String fetchAllStatisticsForPlayer(String playerName) {
         try {
-            return api.fetchPlayerData(playerName); // Returns raw JSON as a string
+            return api.fetchPlayerData(playerName); // Fetch all stats
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching player statistics: " + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public List<String> fetchAvailableYearsForPlayer(String playerName) {
-        try {
-            String data = api.fetchPlayerData(playerName);
-            JSONArray jsonArray = new JSONArray(data);
-
-            return IntStream.range(0, jsonArray.length())
-                    .mapToObj(i -> jsonArray.getJSONObject(i).getInt("season"))
-                    .distinct()
-                    .sorted()
-                    .map(String::valueOf)
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            throw new RuntimeException("Error fetching available years: " + e.getMessage(), e);
+            throw new RuntimeException("Error fetching all statistics for player: " + playerName, e);
         }
     }
 
@@ -50,14 +29,31 @@ public class PlayerStatisticsRepositoryImpl implements PlayerStatisticsRepositor
             JSONArray jsonArray = new JSONArray(data);
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject record = jsonArray.getJSONObject(i);
-                if (record.getInt("season") == year) {
-                    return record.toString(); // Return stats for the specific year as JSON string
+                if (jsonArray.getJSONObject(i).getInt("season") == year) {
+                    return jsonArray.getJSONObject(i).toString();
                 }
             }
-            return "No statistics found for year: " + year;
+            return "{}"; // Return empty JSON if not found
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching player statistics for year " + year + ": " + e.getMessage(), e);
+            throw new RuntimeException("Error fetching statistics for player by year: " + playerName + ", year: " + year, e);
+        }
+    }
+
+    @Override
+    public List<Integer> fetchAvailableYearsForPlayer(String playerName) {
+        try {
+            String data = api.fetchPlayerData(playerName);
+            JSONArray jsonArray = new JSONArray(data);
+            List<Integer> years = new ArrayList<>();
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                int season = jsonArray.getJSONObject(i).getInt("season");
+                years.add(season);
+            }
+
+            return years;
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching available years for player: " + playerName, e);
         }
     }
 }
