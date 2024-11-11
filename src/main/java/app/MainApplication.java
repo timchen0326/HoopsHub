@@ -8,6 +8,7 @@ import use_case.account.AccountInteractor;
 import use_case.account.AccountOutputBoundary;
 import view.AccountCreationView;
 import view.LoginView;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,27 +17,27 @@ import java.awt.event.ActionListener;
 public class MainApplication {
 
     public static void main(String[] args) {
-        // Initialize application components
-        AccountDataAccessInterface dataAccess = new AccountDataAccessObject();
-        AccountOutputBoundary presenter = new AccountPresenter();
-        AccountInteractor interactor = new AccountInteractor(dataAccess, presenter);
-        AccountController controller = new AccountController(interactor);
+        // Initialize MainFrame for game UI
+        MainFrame mainFrame = new MainFrame(new PlayGameUseCaseFactory().createController());
+        mainFrame.setVisible(false);  // Hide MainFrame initially
 
-        // Setup main frame
+        // Setup the login frame first, so we can pass it to the presenter
         JFrame frame = new JFrame("User Authentication");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 200);
 
-        // ActionListener to switch to AccountCreationView
-        ActionListener switchToSignUp = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setContentPane(new AccountCreationView(controller));
-                frame.pack();
-            }
+        // Initialize application components
+        AccountDataAccessInterface dataAccess = new AccountDataAccessObject();
+        AccountOutputBoundary presenter = new AccountPresenter(mainFrame, frame);  // Pass frame here
+        AccountInteractor interactor = new AccountInteractor(dataAccess, presenter);
+        AccountController controller = new AccountController(interactor);
+
+        // Setup login view with switch to sign-up functionality
+        ActionListener switchToSignUp = e -> {
+            frame.setContentPane(new AccountCreationView(controller));
+            frame.pack();
         };
 
-        // Set initial view to LoginView with switch to sign up functionality
         frame.setContentPane(new LoginView(controller, switchToSignUp));
         frame.pack();
         frame.setVisible(true);
