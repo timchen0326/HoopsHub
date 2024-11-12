@@ -1,7 +1,8 @@
 package view;
 
 import use_case.note.search.SearchInteractor;
-
+import interface_adapter.PlayGameController;
+import use_case.note.FetchPlayerStatisticsInputBoundary; // Ensure this import is correct
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,15 +10,16 @@ import java.awt.event.ActionListener;
 
 public class SearchPanel {
     private final SearchInteractor interactor;
+    private final JFrame frame;  // Make the frame a class variable for reuse
 
     public SearchPanel(SearchInteractor interactor) {
         this.interactor = interactor;
+        this.frame = new JFrame("User Search Application");
         createAndShowGUI();
     }
 
     private void createAndShowGUI() {
-        // Create the main frame
-        JFrame frame = new JFrame("User Search Application");
+        // Configure the main frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 350);
         frame.setLayout(new BorderLayout());
@@ -52,9 +54,27 @@ public class SearchPanel {
         resultsArea.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(resultsArea);
 
+        // Create "Back" button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            // Switch back to HomePanel
+            frame.dispose(); // Close the current frame
+
+            // Assuming you have a suitable implementation for FetchPlayerStatisticsInputBoundary
+            FetchPlayerStatisticsInputBoundary fetchPlayerStatisticsInteractor = null; // Initialize with the correct object
+
+            // Create PlayGameController with the required parameter
+            PlayGameController playGameController = new PlayGameController(fetchPlayerStatisticsInteractor);
+
+            MainFrame mainFrame = new MainFrame(playGameController);
+            mainFrame.switchTo("Home");
+            mainFrame.setVisible(true);
+        });
+
         // Add components to the frame
         frame.add(inputPanel, BorderLayout.NORTH);
         frame.add(scrollPane, BorderLayout.CENTER);
+        frame.add(backButton, BorderLayout.SOUTH); // Add the back button to the bottom of the frame
 
         // Action listener for searching
         ActionListener searchAction = new ActionListener() {
