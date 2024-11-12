@@ -1,9 +1,13 @@
 package entity;
 
+/**
+ * The representation of a password-protected user for our program.
+ */
 public class User {
+
     private final String name;
     private final String password;
-    private int win = 0;
+    private int win = 0;  // Added fields for win and lose
     private int lose = 0;
 
     public User(String name, String password) {
@@ -19,6 +23,7 @@ public class User {
         return password;
     }
 
+    // Added getter and setter methods for win and lose
     public int getWin() {
         return win;
     }
