@@ -1,31 +1,22 @@
 package view;
 
 import use_case.note.search.SearchInteractor;
-import interface_adapter.PlayGameController;
-import use_case.note.FetchPlayerStatisticsInputBoundary; // Ensure this import is correct
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SearchPanel {
+public class SearchPanel extends JPanel {
     private final SearchInteractor interactor;
-    private final JFrame frame;  // Make the frame a class variable for reuse
 
-    public SearchPanel(SearchInteractor interactor) {
+    public SearchPanel(MainFrame frame, SearchInteractor interactor) {
         this.interactor = interactor;
-        this.frame = new JFrame("User Search Application");
-        createAndShowGUI();
-    }
 
-    private void createAndShowGUI() {
-        // Configure the main frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 350);
-        frame.setLayout(new BorderLayout());
-        frame.setLocationRelativeTo(null); // Center the window on the screen
+        // Set layout for SearchPanel
+        setLayout(new BorderLayout());
 
-        // Create the input panel
+        // Create Input Section
         JPanel inputPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -47,37 +38,22 @@ public class SearchPanel {
         gbc.fill = GridBagConstraints.NONE;
         inputPanel.add(searchButton, gbc);
 
-        // Create the results area
+        // Results Section
         JTextArea resultsArea = new JTextArea(10, 30);
         resultsArea.setEditable(false);
-        resultsArea.setLineWrap(true);
-        resultsArea.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(resultsArea);
 
-        // Create "Back" button
+        // Back Button
         JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> {
-            // Switch back to HomePanel
-            frame.dispose(); // Close the current frame
+        backButton.addActionListener(e -> frame.switchTo("Home")); // Switch back to HomePanel
 
-            // Assuming you have a suitable implementation for FetchPlayerStatisticsInputBoundary
-            FetchPlayerStatisticsInputBoundary fetchPlayerStatisticsInteractor = null; // Initialize with the correct object
+        // Add Components to the Panel
+        add(inputPanel, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
+        add(backButton, BorderLayout.SOUTH);
 
-            // Create PlayGameController with the required parameter
-            PlayGameController playGameController = new PlayGameController(fetchPlayerStatisticsInteractor);
-
-            MainFrame mainFrame = new MainFrame(playGameController);
-            mainFrame.switchTo("Home");
-            mainFrame.setVisible(true);
-        });
-
-        // Add components to the frame
-        frame.add(inputPanel, BorderLayout.NORTH);
-        frame.add(scrollPane, BorderLayout.CENTER);
-        frame.add(backButton, BorderLayout.SOUTH); // Add the back button to the bottom of the frame
-
-        // Action listener for searching
-        ActionListener searchAction = new ActionListener() {
+        // Action Listener for Search
+        searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = textField.getText().trim();
@@ -85,30 +61,20 @@ public class SearchPanel {
                     resultsArea.setText("Please enter a username to search.");
                     return;
                 }
+
+                // Call interactor to fetch results
                 String result = interactor.executeSearch(username);
 
-                // Extract and calculate winrate (assuming the result contains "Wins" and "Losses" lines)
+                // Parse results to extract wins, losses, and calculate win/loss ratio
                 int wins = extractValue(result, "Wins:");
                 int losses = extractValue(result, "Losses:");
-                double winrate = calculateWinrate(wins, losses);
+                double winLossRatio = calculateWinLossRatio(wins, losses);
 
-                // Filter out "UserID" and "Username" lines and append winrate
-                String filteredResult = result.replaceAll("(?m)^Username:.*\\n?", "")
-                        .replaceAll("(?m)^UserID:.*\\n?", "");
-                filteredResult += "\nWinrate: " + String.format("%.2f", winrate) + "%";
-
-                resultsArea.setText(filteredResult);
+                // Display the results
+                resultsArea.setText(String.format("Wins: %d\nLosses: %d\nWin Ratio: %.2f%%",
+                        wins, losses, winLossRatio));
             }
-        };
-
-        // Add action listener for the search button
-        searchButton.addActionListener(searchAction);
-
-        // Add key listener for the Enter key on the text field
-        textField.addActionListener(searchAction);
-
-        // Display the frame
-        frame.setVisible(true);
+        });
     }
 
     private int extractValue(String result, String key) {
@@ -125,10 +91,11 @@ public class SearchPanel {
         return 0;
     }
 
-    private double calculateWinrate(int wins, int losses) {
-        if (wins + losses == 0) {
+    private double calculateWinLossRatio(int wins, int losses) {
+        int totalGames = wins + losses;
+        if (totalGames == 0) {
             return 0.0;
         }
-        return ((double) wins / (wins + losses)) * 100;
+        return ((double) wins / totalGames) * 100;
     }
 }
