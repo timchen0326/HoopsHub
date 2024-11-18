@@ -5,25 +5,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/data_access/GameHistoryDataAccessObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameHistoryOutputBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameHistoryPresenter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/GameHistoryPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/PlayGameUseCaseFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/SearchAppBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/AccountDataAccessObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/PlayerStatisticsAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/PlayerStatisticsRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/GameHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayerStatisticsGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayerStatisticsRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayerStatsFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/account/AccountController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/account/AccountPresenter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountOutputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/FetchPlayerStatisticsInputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/FetchPlayerStatisticsInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/note/GameHistoryInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/search/SearchDataAccessInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/search/SearchInputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/search/SearchInteractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AccountCreationView.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginView.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayGamePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="rjl" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,7 +88,7 @@
     "Application.MainSearchApplication.executor": "Run",
     "JUnit.All in note-application.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "rjl",
+    "git-widget-placeholder": "rjl2",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,7 +145,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1725200606304</updated>
-      <workItem from="1731788321326" duration="6950000" />
+      <workItem from="1731788321326" duration="12522000" />
     </task>
     <task id="LOCAL-00001" summary="add search button and back button">
       <option name="closed" value="true" />
@@ -121,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731396633141</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add search button and back button">
+      <option name="closed" value="true" />
+      <created>1731799552918</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731799552918</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

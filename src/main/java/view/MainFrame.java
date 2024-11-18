@@ -1,7 +1,6 @@
 package view;
 
-import interface_adapter.PlayGameController;
-import use_case.note.search.SearchInteractor;
+import interface_adapter.game_history.GameHistoryController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,15 +9,14 @@ public class MainFrame extends JFrame {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel mainPanel = new JPanel(cardLayout);
 
-    public MainFrame(PlayGameController controller, SearchInteractor searchInteractor) {
+    public MainFrame(GameHistoryController gameHistoryController) {
         setTitle("Game App");
-        setSize(800, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Add panels to the CardLayout
-        mainPanel.add(new HomePanel(this), "Home");       // Home panel
-        mainPanel.add(new PlayGamePanel(this, controller), "Play"); // PlayGame panel
-        mainPanel.add(new SearchPanel(this, searchInteractor), "Search"); // Search panel
+        // Adding panels to MainFrame
+        mainPanel.add(new HomePanel(this), "Home");
+        mainPanel.add(new GameHistoryPanel(this, gameHistoryController), "GameHistory");
 
         add(mainPanel);
     }
@@ -29,6 +27,6 @@ public class MainFrame extends JFrame {
 
     public void start() {
         setVisible(true);
-        switchTo("Home"); // Start with the Home panel
+        switchTo("Home");
     }
 }

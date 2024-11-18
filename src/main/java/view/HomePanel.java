@@ -5,19 +5,12 @@ import java.awt.*;
 
 public class HomePanel extends JPanel {
     public HomePanel(MainFrame frame) {
-        setLayout(new GridLayout(1, 3));
+        setLayout(new GridLayout(1, 2));
 
-        // Play Game Button
-        JButton playButton = new JButton("Play Game");
-        playButton.addActionListener(e -> frame.switchTo("Play")); // Switch to PlayGame panel
-        add(playButton);
+        JButton gameHistoryButton = new JButton("Game History");
+        gameHistoryButton.addActionListener(e -> frame.switchTo("GameHistory"));
+        add(gameHistoryButton);
 
-        // Search Button
-        JButton searchButton = new JButton("Search");
-        searchButton.addActionListener(e -> frame.switchTo("Search")); // Switch to Search panel
-        add(searchButton);
-
-        // Welcome Label
-        add(new JLabel("Welcome to the Game App"));
+        add(new JLabel("Welcome to the Game App!"));
     }
 }
