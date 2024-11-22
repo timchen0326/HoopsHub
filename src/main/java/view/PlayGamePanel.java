@@ -20,11 +20,14 @@ public class PlayGamePanel extends JPanel {
     private final JButton overButton = new JButton("Over");
     private final JButton underButton = new JButton("Under");
     private final JPanel yearPanel = new JPanel();
+    private final ThemeManager themeManager = ThemeManager.getInstance();
 
     private double currentTrueAverage; // Store the true average of the current stat
 
     public PlayGamePanel(MainFrame frame, PlayGameController controller) {
+
         setLayout(new BorderLayout(20, 20));
+        updateTheme();
 
         // Input Panel
         JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
@@ -95,6 +98,20 @@ public class PlayGamePanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
         add(guessPanel, BorderLayout.EAST);
         add(backPanel, BorderLayout.SOUTH);
+    }
+
+    private void updateTheme() {
+        setBackground(themeManager.getBackgroundColor());
+        setForeground(themeManager.getTextColor());
+
+        for (Component comp : getComponents()) {
+            if (comp instanceof JLabel) {
+                comp.setForeground(themeManager.getTextColor());
+            } else if (comp instanceof JTextArea) {
+                comp.setBackground(themeManager.getBackgroundColor());
+                comp.setForeground(themeManager.getTextColor());
+            }
+        }
     }
 
     private void fetchPlayerYears(PlayGameController controller) {
