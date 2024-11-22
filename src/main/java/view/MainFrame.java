@@ -16,6 +16,7 @@ public class MainFrame extends JFrame {
         setTitle("Game App");
         setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        util.MusicManager.getInstance().playMusic("path/to/your/music/file.wav");
 
         // Add panels to the CardLayout
         mainPanel.add(new HomePanel(this), "Home");       // Home panel
