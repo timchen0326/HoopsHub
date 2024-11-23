@@ -20,6 +20,9 @@ import java.awt.event.ActionListener;
 public class MainApplication {
 
     public static void main(String[] args) {
+
+        SessionMonitor monitor = new SessionMonitor();
+        monitor.start();
         // Step 1: Initialize dependencies for SearchInteractor
         DBSearchDataAccessObject searchDataAccess = new DBSearchDataAccessObject();
         SearchViewModel searchViewModel = new SearchViewModel();
