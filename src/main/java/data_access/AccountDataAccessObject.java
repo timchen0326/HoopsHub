@@ -2,6 +2,7 @@ package data_access;
 
 import entity.User;
 import okhttp3.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.account.AccountDataAccessInterface;
 
@@ -49,11 +50,12 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
     }
 
     private void initializeUserInfo(User user) throws Exception {
-        // Step 2a: Prepare JSON with username, password, and info fields
+        // Step 2a: Prepare JSON with username, password, info, and history fields
         JSONObject infoObject = new JSONObject();
-        infoObject.put("password", user.getPassword()); // Store password in the info field
+        infoObject.put("password", user.getPassword());
         infoObject.put("win", user.getWin());
         infoObject.put("lose", user.getLose());
+        infoObject.put("history", new JSONArray());
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("username", user.getName());
@@ -77,6 +79,7 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
             System.out.println("Initialized user info for user " + user.getName());
         }
     }
+
 
     @Override
     public boolean loginUser(String username, String password) throws Exception {
@@ -109,4 +112,40 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
             return userInfo.getString("password");
         }
     }
+    public JSONObject loadUserDetails(String username) throws Exception {
+        String url = String.format(LOAD_USER_INFO_URL, username);
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Failed to load user info: " + response);
+            }
+
+            // Parse and return the JSON response
+            return new JSONObject(response.body().string()).getJSONObject("user");
+        }
+    }
+    public void updateUserInfo(JSONObject userInfo) throws Exception {
+        String url = "http://vm003.teach.cs.toronto.edu:20112/modifyUserInfo";
+
+        RequestBody body = RequestBody.create(
+                userInfo.toString(),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+
+        Request request = new Request.Builder()
+                .url(url)
+                .put(body)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Failed to update user info: " + response);
+            }
+        }
+    }
+
 }
