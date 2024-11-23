@@ -1,12 +1,13 @@
 package view;
 
 import interface_adapter.search.SearchHistoryController;
-import entity.SearchHistoryRecord;
+import app.Session;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.json.JSONObject;
 
 public class SearchHistoryPanel extends JPanel {
     public SearchHistoryPanel(SearchHistoryController controller, MainFrame frame) {
@@ -35,49 +36,54 @@ public class SearchHistoryPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // Load and display history initially
-        updateHistory(controller, historyArea, "All");
+        updateHistory(historyArea, "All");
 
         // Add ActionListener to filter dropdown
         filterDropdown.addActionListener(e -> {
             String selectedFilter = (String) filterDropdown.getSelectedItem();
-            updateHistory(controller, historyArea, selectedFilter);
+            updateHistory(historyArea, selectedFilter);
         });
     }
 
-    private void updateHistory(SearchHistoryController controller, JTextArea historyArea, String filter) {
-        // Fetch search history as List<SearchHistoryRecord>
-        List<SearchHistoryRecord> fullHistoryRecords = controller.getSearchHistory();
+    private void updateHistory(JTextArea historyArea, String filter) {
+        // Fetch data from the Session
+        Session session = Session.getInstance();
+        List<JSONObject> historyList = session.getHistory();
 
-        // Filter the history based on the selected filter
-        List<SearchHistoryRecord> filteredHistory = fullHistoryRecords.stream()
-                .filter(record -> {
-                    String result = record.getResult();
-                    if ("Wins".equals(filter)) {
-                        return "Win".equalsIgnoreCase(result);
-                    } else if ("Losses".equals(filter)) {
-                        return "Lose".equalsIgnoreCase(result);
-                    } else {
-                        return true; // "All" shows all entries
-                    }
-                })
-                .collect(Collectors.toList());
+        StringBuilder displayText = new StringBuilder("Game History:\n\n");
+        int gameNumber = 1;
+
+        for (JSONObject history : historyList) {
+            String player = history.getString("player");
+            String stats = history.getString("stats");
+            String year = history.getString("year");
+            String result = determineResult(stats); // Logic to determine "Win" or "Lose"
+
+            // Apply filter logic
+            if (filter.equals("Wins") && !result.equals("Win")) continue;
+            if (filter.equals("Losses") && !result.equals("Lose")) continue;
+
+            displayText.append(String.format(
+                    "Game %d:\nPlayer: %s | Stats: %s | Year: %s | Result: %s\n\n",
+                    gameNumber++, player, stats, year, result
+            ));
+        }
+
+        // Append win/loss summary
+        displayText.append("\nSummary:\n");
+        displayText.append(String.format("Wins: %d | Losses: %d\n",
+                session.getWin(), session.getLose()));
 
         // Update the history area
-        if (filteredHistory.isEmpty()) {
+        if (displayText.length() == "Game History:\n\n\nSummary:\n".length()) {
             historyArea.setText("No results found for the selected filter.");
         } else {
-            // Generate game numbers and format the display
-            StringBuilder displayText = new StringBuilder();
-            for (int i = 0; i < filteredHistory.size(); i++) {
-                SearchHistoryRecord record = filteredHistory.get(i);
-                displayText.append(String.format(
-                        "Game %d: %s | Time: %s\n",
-                        i + 1, // Game number
-                        record.getResult(), // Win or Lose
-                        record.getTimestamp().toString() // Timestamp
-                ));
-            }
             historyArea.setText(displayText.toString());
         }
+    }
+
+    private String determineResult(String stats) {
+        // Placeholder logic to determine the result based on stats
+        return stats.toLowerCase().contains("win") ? "Win" : "Lose";
     }
 }
