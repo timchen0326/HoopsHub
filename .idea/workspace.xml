@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="Added Settings Panel, light/dark mode button">
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager.java" afterDir="false" />
+    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="Added Music Manager, Mute/unmute &#10; button">
+      <change afterPath="$PROJECT_DIR$/src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MusicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ThemeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +65,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;mohit&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mohitbendale/HoopsHub/src/main/java/music&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -71,7 +74,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.GameApplication">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/music" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="GameApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.GameApplication" />
       <module name="note-application" />
@@ -97,7 +105,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MainApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
       <extension name="coverage">
@@ -164,7 +172,8 @@
       <workItem from="1732160157168" duration="547000" />
       <workItem from="1732197464442" duration="4685000" />
       <workItem from="1732232047209" duration="13450000" />
-      <workItem from="1732308570695" duration="964000" />
+      <workItem from="1732308570695" duration="2726000" />
+      <workItem from="1732311765949" duration="2466000" />
     </task>
     <task id="LOCAL-00001" summary="add search button and back button">
       <option name="closed" value="true" />
@@ -182,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732289850386</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Music Manager, Mute/unmute &#10; button">
+      <option name="closed" value="true" />
+      <created>1732310005372</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732310005372</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +241,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add search button and back button" />
     <MESSAGE value="Added Settings Panel, light/dark mode button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Settings Panel, light/dark mode button" />
+    <MESSAGE value="Added Music Manager, Mute/unmute &#10; button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Music Manager, Mute/unmute &#10; button" />
   </component>
 </project>

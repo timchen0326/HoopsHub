@@ -9,9 +9,7 @@ public class MusicManager {
     private Clip musicClip;
     private boolean isMuted = false;
 
-    private MusicManager() {
-
-    }
+    private MusicManager() {}
 
     public static MusicManager getInstance() {
         if (instance == null) {
@@ -22,15 +20,24 @@ public class MusicManager {
 
     public void playMusic(String filePath) {
         try {
-            if (musicClip != null && musicClip.isRunning()) {
-                return; // Prevent restarting if already playing
+            if (musicClip != null && musicClip.isOpen()) {
+                musicClip.stop(); // Stop any existing playback
+                musicClip.close();
             }
 
             File musicFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
             musicClip = AudioSystem.getClip();
             musicClip.open(audioStream);
-            musicClip.loop(Clip.LOOP_CONTINUOUSLY); // Loop the music
+
+            // Add a listener to restart the music when it finishes
+            musicClip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP && !isMuted) {
+                    musicClip.setFramePosition(0); // Restart from the beginning
+                    musicClip.start();
+                }
+            });
+
             if (!isMuted) {
                 musicClip.start();
             }
@@ -55,6 +62,7 @@ public class MusicManager {
     public void unmuteMusic() {
         isMuted = false;
         if (musicClip != null && !musicClip.isRunning()) {
+            musicClip.setFramePosition(0); // Restart from the beginning
             musicClip.start();
         }
     }

@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
         setTitle("Game App");
         setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        util.MusicManager.getInstance().playMusic("path/to/your/music/file.wav");
+        util.MusicManager.getInstance().playMusic("/Users/mohitbendale/HoopsHub/src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav");
 
         // Add panels to the CardLayout
         mainPanel.add(new HomePanel(this), "Home");       // Home panel

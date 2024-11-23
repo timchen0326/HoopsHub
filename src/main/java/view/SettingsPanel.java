@@ -35,7 +35,8 @@ public class SettingsPanel extends JPanel {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> frame.switchTo("Home"));
 
-        add(toggleButton, BorderLayout.CENTER);
+        add(toggleButton, BorderLayout.NORTH);
+        add(muteButton, BorderLayout.CENTER);
         add(backButton, BorderLayout.SOUTH);
     }
 

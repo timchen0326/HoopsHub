@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class ThemeManager {
     private static ThemeManager instance;
-    private boolean isDarkMode = true;
+    private boolean isDarkMode = false;
 
     private ThemeManager() {
 
