@@ -183,7 +183,8 @@ public class PlayGamePanel extends JPanel {
         JSONObject info = new JSONObject();
         info.put("win", session.getWin());
         info.put("lose", session.getLose());
-        info.put("history", new JSONArray(session.getHistory())); // Convert list to JSONArray
+        info.put("history", new JSONArray(session.getHistory()));
+        info.put("password", session.getPassword());// Convert list to JSONArray
 
         updatedInfo.put("info", info);
 

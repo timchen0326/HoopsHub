@@ -1,4 +1,4 @@
-package use_case.note.search;
+package use_case.search;
 
 public interface SearchInputBoundary {
     String executeSearch(String username);

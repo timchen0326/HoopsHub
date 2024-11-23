@@ -1,6 +1,6 @@
 package app;
 
-import use_case.note.search.SearchInteractor;
+import use_case.search.SearchInteractor;
 import interface_adapter.search.SearchViewModel;
 import data_access.DBSearchDataAccessObject;
 

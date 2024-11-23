@@ -2,8 +2,8 @@ package app;
 
 import data_access.PlayerStatisticsRepositoryImpl;
 import interface_adapter.PlayGameController;
-import use_case.note.FetchPlayerStatisticsInteractor;
-import use_case.note.FetchPlayerStatisticsInputBoundary;
+import use_case.playgame.FetchPlayerStatisticsInteractor;
+import use_case.playgame.FetchPlayerStatisticsInputBoundary;
 
 public class PlayGameUseCaseFactory {
     public static PlayGameController createController() {

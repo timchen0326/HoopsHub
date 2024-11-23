@@ -1,6 +1,6 @@
 package interface_adapter;
 
-import use_case.note.FetchPlayerStatisticsInputBoundary;
+import use_case.playgame.FetchPlayerStatisticsInputBoundary;
 
 import java.util.List;
 import java.util.stream.Collectors;
