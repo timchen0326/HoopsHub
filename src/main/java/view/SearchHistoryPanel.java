@@ -1,6 +1,7 @@
 package view;
 
 import interface_adapter.search.SearchHistoryController;
+import entity.SearchHistoryRecord;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,30 +17,67 @@ public class SearchHistoryPanel extends JPanel {
         historyArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(historyArea);
 
-        add(scrollPane, BorderLayout.CENTER);
+        // Filter Panel
+        JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel filterLabel = new JLabel("Filter by:");
+        String[] filterOptions = {"All", "Wins", "Losses"};
+        JComboBox<String> filterDropdown = new JComboBox<>(filterOptions);
+
+        filterPanel.add(filterLabel);
+        filterPanel.add(filterDropdown);
 
         // Back Button
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> frame.switchTo("Home")); // Switch back to HomePanel
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        buttonPanel.add(backButton);
+        filterPanel.add(backButton);
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        add(filterPanel, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
 
-        // Load existing history for the logged-in user
-        updateHistory(controller, historyArea);
+        // Load and display history initially
+        updateHistory(controller, historyArea, "All");
+
+        // Add ActionListener to filter dropdown
+        filterDropdown.addActionListener(e -> {
+            String selectedFilter = (String) filterDropdown.getSelectedItem();
+            updateHistory(controller, historyArea, selectedFilter);
+        });
     }
 
-    private void updateHistory(SearchHistoryController controller, JTextArea historyArea) {
-        // Fetch and display the search history for the logged-in user
-        List<String> history = controller.getSearchHistory().stream()
-                .map(Object::toString)
+    private void updateHistory(SearchHistoryController controller, JTextArea historyArea, String filter) {
+        // Fetch search history as List<SearchHistoryRecord>
+        List<SearchHistoryRecord> fullHistoryRecords = controller.getSearchHistory();
+
+        // Filter the history based on the selected filter
+        List<SearchHistoryRecord> filteredHistory = fullHistoryRecords.stream()
+                .filter(record -> {
+                    String result = record.getResult();
+                    if ("Wins".equals(filter)) {
+                        return "Win".equalsIgnoreCase(result);
+                    } else if ("Losses".equals(filter)) {
+                        return "Lose".equalsIgnoreCase(result);
+                    } else {
+                        return true; // "All" shows all entries
+                    }
+                })
                 .collect(Collectors.toList());
 
-        if (history.isEmpty()) {
-            historyArea.setText("No search history found for this user.");
+        // Update the history area
+        if (filteredHistory.isEmpty()) {
+            historyArea.setText("No results found for the selected filter.");
         } else {
-            historyArea.setText(String.join("\n", history));
+            // Generate game numbers and format the display
+            StringBuilder displayText = new StringBuilder();
+            for (int i = 0; i < filteredHistory.size(); i++) {
+                SearchHistoryRecord record = filteredHistory.get(i);
+                displayText.append(String.format(
+                        "Game %d: %s | Time: %s\n",
+                        i + 1, // Game number
+                        record.getResult(), // Win or Lose
+                        record.getTimestamp().toString() // Timestamp
+                ));
+            }
+            historyArea.setText(displayText.toString());
         }
     }
 }

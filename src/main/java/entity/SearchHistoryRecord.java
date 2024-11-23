@@ -22,6 +22,20 @@ public class SearchHistoryRecord {
         return timestamp;
     }
 
+    /**
+     * Extracts the result ("Win" or "Lose") based on the query content.
+     * This assumes that the query contains "Win" or "Lose" as a keyword.
+     */
+    public String getResult() {
+        if (query.toLowerCase().contains("win")) {
+            return "Win";
+        } else if (query.toLowerCase().contains("lose")) {
+            return "Lose";
+        } else {
+            return "Unknown"; // Fallback if neither "Win" nor "Lose" is present
+        }
+    }
+
     @Override
     public String toString() {
         return "Search: " + query + " | Time: " + timestamp;
