@@ -28,9 +28,9 @@ public class MainFrame extends JFrame {
         mainPanel.add(new PlayGamePanel(this, controller), "Play");        // PlayGame panel
         mainPanel.add(new SearchPanel(this, searchInteractor), "Search"); // Search panel
 
-        // Add Search History Panel
         SearchHistoryController searchHistoryController = initializeSearchHistoryController();
-        mainPanel.add(new SearchHistoryPanel(searchHistoryController), "SearchHistory"); // New SearchHistory panel
+        mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), "SearchHistory"); // Pass both arguments
+
 
         // Add LoginView
         AccountController accountController = initializeAccountController();
