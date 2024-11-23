@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchHistoryPanel extends JPanel {
-    public SearchHistoryPanel(SearchHistoryController controller) {
+    public SearchHistoryPanel(SearchHistoryController controller, MainFrame frame) {
         setLayout(new BorderLayout());
 
         // Search History Display
@@ -16,39 +16,30 @@ public class SearchHistoryPanel extends JPanel {
         historyArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(historyArea);
 
-        // Input Panel
-        JTextField queryField = new JTextField(20);
-        JButton addButton = new JButton("Add Search Query");
-
-        // ActionListener for adding a search query
-        addButton.addActionListener(e -> {
-            String query = queryField.getText().trim();
-            if (!query.isEmpty()) {
-                controller.addSearchQuery(query);
-                queryField.setText(""); // Clear the input field
-                updateHistory(controller, historyArea);
-            }
-        });
-
-        // Layout setup
-        JPanel inputPanel = new JPanel(new FlowLayout());
-        inputPanel.add(new JLabel("Enter search query:"));
-        inputPanel.add(queryField);
-        inputPanel.add(addButton);
-
-        add(inputPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Load existing history on initialization
+        // Back Button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> frame.switchTo("Home")); // Switch back to HomePanel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        buttonPanel.add(backButton);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        // Load existing history for the logged-in user
         updateHistory(controller, historyArea);
     }
 
     private void updateHistory(SearchHistoryController controller, JTextArea historyArea) {
+        // Fetch and display the search history for the logged-in user
         List<String> history = controller.getSearchHistory().stream()
                 .map(Object::toString)
-                .collect(Collectors.toList()); // Use Collectors.toList() instead of .toList()
+                .collect(Collectors.toList());
 
-        historyArea.setText(String.join("\n", history));
+        if (history.isEmpty()) {
+            historyArea.setText("No search history found for this user.");
+        } else {
+            historyArea.setText(String.join("\n", history));
+        }
     }
-
 }
