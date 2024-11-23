@@ -1,4 +1,4 @@
-package use_case.note.search;
+package use_case.search;
 
 import interface_adapter.search.SearchViewModel;
 import data_access.DBSearchDataAccessObject;
