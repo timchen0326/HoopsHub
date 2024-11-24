@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/SessionMonitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data_access/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/AccountDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/AccountDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PlayGamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/Performance.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/Performance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/Play.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/Play.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/StatementPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../week4git/src/main/java/edu/csc207/fall2024/StatementPrinter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +30,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -80,22 +78,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainSearchApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in note-application.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;model-update&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApplication.executor": "Run",
+    "Application.MainSearchApplication.executor": "Run",
+    "JUnit.All in note-application.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Game-History",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.MainApplication">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
