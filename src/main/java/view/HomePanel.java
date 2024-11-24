@@ -1,13 +1,13 @@
 package view;
 
+import app.Session;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends JPanel {
-    private final ThemeManager themeManager = ThemeManager.getInstance();
-
     public HomePanel(MainFrame frame) {
-        setLayout(new GridLayout(1, 3));
+        setLayout(new GridLayout(1, 4)); // Adjusted layout to fit an extra button
 
         // Play Game Button
         JButton playButton = new JButton("Play Game");
@@ -19,18 +19,18 @@ public class HomePanel extends JPanel {
         searchButton.addActionListener(e -> frame.switchTo("Search")); // Switch to Search panel
         add(searchButton);
 
-        // Settings Button
-        JButton settingsButton = new JButton("Settings");
-        settingsButton.addActionListener(e -> frame.switchTo("Settings"));
-        add(settingsButton);
-
-        updateTheme();
-
         // Welcome Label
         add(new JLabel("Welcome to the Game App"));
-    }
-    private void updateTheme() {
-        setBackground(themeManager.getBackgroundColor());
-        setForeground(themeManager.getTextColor());
+
+        // Logout Button
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> {
+            // Clear session data
+            Session.getInstance().clear();
+
+            // Navigate to LoginView
+            frame.switchTo("Login");
+        });
+        add(logoutButton);
     }
 }

@@ -1,4 +1,4 @@
-package use_case.note.search;
+package use_case.search;
 
 import entity.SearchResult;
 import java.util.List;

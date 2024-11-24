@@ -1,7 +1,11 @@
 package view;
 
+import app.Session;
+import data_access.AccountDataAccessObject;
 import interface_adapter.PlayGameController;
 import interface_adapter.PlayerStatsFormatter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -159,12 +163,58 @@ public class PlayGamePanel extends JPanel {
 
     private void handleOverUnderGuess(boolean isOver) {
         double randomValue = Double.parseDouble(randomGuessLabel.getText().split(": ")[1]);
-        String result = isOver
-                ? (currentTrueAverage > randomValue ? "Correct! It's Over!" : "Incorrect! It's Under!")
-                : (currentTrueAverage < randomValue ? "Correct! It's Under!" : "Incorrect! It's Over!");
+        String result;
+        boolean isCorrect;
+
+        if (isOver) {
+            isCorrect = currentTrueAverage > randomValue;
+            result = isCorrect ? "Correct! It's Over!" : "Incorrect! It's Under!";
+        } else {
+            isCorrect = currentTrueAverage < randomValue;
+            result = isCorrect ? "Correct! It's Under!" : "Incorrect! It's Over!";
+        }
 
         JOptionPane.showMessageDialog(this, result + "\nTrue Average: " + currentTrueAverage + "\nRandom Value: " + randomValue);
+
+        // Update session info
+        Session session = Session.getInstance();
+        if (isCorrect) {
+            session.setWin(session.getWin() + 1);
+        } else {
+            session.setLose(session.getLose() + 1);
+        }
+
+        // Update history
+        JSONObject newHistoryEntry = new JSONObject();
+        newHistoryEntry.put("player", playerNameField.getText());
+        newHistoryEntry.put("stats", (String) guessComboBox.getSelectedItem());
+        newHistoryEntry.put("year", (String) yearComboBox.getSelectedItem());
+
+        session.addHistoryEntry(newHistoryEntry); // Add to session's history
+
+        // Convert updated session info to JSON
+        JSONObject updatedInfo = new JSONObject();
+        updatedInfo.put("username", session.getUsername());
+        updatedInfo.put("password", session.getPassword());
+
+        JSONObject info = new JSONObject();
+        info.put("win", session.getWin());
+        info.put("lose", session.getLose());
+        info.put("history", new JSONArray(session.getHistory()));
+        info.put("password", session.getPassword());// Convert list to JSONArray
+
+        updatedInfo.put("info", info);
+
+        // Push updated info to API
+        try {
+            AccountDataAccessObject accountDataAccess = new AccountDataAccessObject();
+            accountDataAccess.updateUserInfo(updatedInfo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Failed to update user info: " + e.getMessage());
+        }
     }
+
+
 
     private double generateRandomOffset(double trueAverage) {
         Random random = new Random();

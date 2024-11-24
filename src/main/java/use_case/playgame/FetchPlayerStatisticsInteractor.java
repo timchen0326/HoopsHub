@@ -1,4 +1,4 @@
-package use_case.note;
+package use_case.playgame;
 
 import interface_adapter.PlayerStatisticsRepository;
 import org.json.JSONArray;

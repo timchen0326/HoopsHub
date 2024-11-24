@@ -1,6 +1,6 @@
 package view;
 
-import use_case.note.search.SearchInteractor;
+import use_case.search.SearchInteractor;
 import java.util.Scanner;
 
 public class SearchView {

@@ -9,7 +9,7 @@ import interface_adapter.search.SearchViewModel;
 import use_case.account.AccountDataAccessInterface;
 import use_case.account.AccountInteractor;
 import use_case.account.AccountOutputBoundary;
-import use_case.note.search.SearchInteractor;
+import use_case.search.SearchInteractor;
 import view.AccountCreationView;
 import view.LoginView;
 import view.MainFrame;
@@ -20,6 +20,9 @@ import java.awt.event.ActionListener;
 public class MainApplication {
 
     public static void main(String[] args) {
+
+        SessionMonitor monitor = new SessionMonitor();
+        monitor.start();
         // Step 1: Initialize dependencies for SearchInteractor
         DBSearchDataAccessObject searchDataAccess = new DBSearchDataAccessObject();
         SearchViewModel searchViewModel = new SearchViewModel();
