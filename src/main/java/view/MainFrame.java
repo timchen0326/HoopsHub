@@ -1,11 +1,12 @@
 package view;
 
 import data_access.AccountDataAccessObject;
-import interface_adapter.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayGameController;
 import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchInteractor;
+import view.Play.PlayGamePanel;
 
 import javax.swing.*;
 import java.awt.*;

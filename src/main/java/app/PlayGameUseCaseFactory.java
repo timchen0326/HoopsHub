@@ -1,7 +1,7 @@
 package app;
 
 import data_access.PlayerStatisticsRepositoryImpl;
-import interface_adapter.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayGameController;
 import use_case.playgame.FetchPlayerStatisticsInteractor;
 import use_case.playgame.FetchPlayerStatisticsInputBoundary;
 

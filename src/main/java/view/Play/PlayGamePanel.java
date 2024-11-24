@@ -1,11 +1,12 @@
-package view;
+package view.Play;
 
 import app.Session;
 import data_access.AccountDataAccessObject;
-import interface_adapter.PlayGameController;
-import interface_adapter.PlayerStatsFormatter;
+import interface_adapter.PlayGameAspects.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayerStatsFormatter;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,63 +15,15 @@ import java.util.List;
 import java.util.Random;
 
 public class PlayGamePanel extends JPanel {
-    private final JTextField playerNameField = new JTextField(20);
-    private final JComboBox<String> yearComboBox = new JComboBox<>();
-    private final JTextArea statsArea = new JTextArea(12, 40);
-    private final JComboBox<String> guessComboBox = new JComboBox<>(new String[]{"Average Rebounds", "Average Points", "Average Assists"});
-    private final JLabel randomGuessLabel = new JLabel("Generated Value: --");
-    private final JButton fetchButton = new JButton("Fetch Stats");
-    private final JButton fetchYearButton = new JButton("Select Year");
-    private final JButton overButton = new JButton("Over");
-    private final JButton underButton = new JButton("Under");
-    private final JPanel yearPanel = new JPanel();
+    private final InputPanel inputPanel = new InputPanel();
+    private final YearSelectionPanel yearPanel = new YearSelectionPanel();
+    private final StatsAreaPanel statsAreaPanel = new StatsAreaPanel();
+    private final GuessPanel guessPanel = new GuessPanel();
 
     private double currentTrueAverage; // Store the true average of the current stat
 
     public PlayGamePanel(MainFrame frame, PlayGameController controller) {
         setLayout(new BorderLayout(20, 20));
-
-        // Input Panel
-        JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        inputPanel.add(new JLabel("Enter Player Name:"));
-        inputPanel.add(playerNameField);
-        inputPanel.add(fetchButton);
-
-        // Year Selection Panel
-        yearPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        yearPanel.add(new JLabel("Select Year:"));
-        yearPanel.add(yearComboBox);
-        yearPanel.add(fetchYearButton);
-        yearPanel.setVisible(false);
-
-        // Stats Area Panel
-        statsArea.setEditable(false);
-        statsArea.setLineWrap(true);
-        statsArea.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(statsArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBorder(BorderFactory.createTitledBorder("Player Statistics"));
-
-        // Guess Panel
-        JPanel guessPanel = new JPanel(new GridBagLayout());
-        guessPanel.setBorder(BorderFactory.createTitledBorder("Make a Guess"));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        gbc.gridx = 0; gbc.gridy = 0;
-        guessPanel.add(new JLabel("Which one do you want to guess?"), gbc);
-
-        gbc.gridx = 1; gbc.gridy = 0;
-        guessPanel.add(guessComboBox, gbc);
-
-        gbc.gridx = 0; gbc.gridy = 1;
-        guessPanel.add(randomGuessLabel, gbc);
-
-        gbc.gridx = 0; gbc.gridy = 2;
-        guessPanel.add(overButton, gbc);
-
-        gbc.gridx = 1; gbc.gridy = 2;
-        guessPanel.add(underButton, gbc);
 
         // Back Button
         JButton backButton = new JButton("Back");
@@ -82,33 +35,33 @@ public class PlayGamePanel extends JPanel {
         backPanel.add(backButton);
 
         // Add Listeners
-        fetchButton.addActionListener(e -> fetchPlayerYears(controller));
-        fetchYearButton.addActionListener(e -> fetchPlayerStats(controller));
-        guessComboBox.addItemListener(e -> {
+        inputPanel.getFetchButton().addActionListener(e -> fetchPlayerYears(controller));
+        yearPanel.getFetchYearButton().addActionListener(e -> fetchPlayerStats(controller));
+        guessPanel.getGuessComboBox().addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 updateGeneratedValue(controller); // Update the generated value based on the selected stat
             }
         });
 
-        overButton.addActionListener(e -> handleOverUnderGuess(true));
-        underButton.addActionListener(e -> handleOverUnderGuess(false));
+        guessPanel.getOverButton().addActionListener(e -> handleOverUnderGuess(true));
+        guessPanel.getUnderButton().addActionListener(e -> handleOverUnderGuess(false));
 
         // Layout
         add(inputPanel, BorderLayout.NORTH);
         add(yearPanel, BorderLayout.WEST);
-        add(scrollPane, BorderLayout.CENTER);
+        add(statsAreaPanel, BorderLayout.CENTER);
         add(guessPanel, BorderLayout.EAST);
         add(backPanel, BorderLayout.SOUTH);
     }
 
     private void fetchPlayerYears(PlayGameController controller) {
-        String playerName = playerNameField.getText();
+        String playerName = inputPanel.getPlayerNameField().getText();
         List<String> availableYears = controller.getAvailableYears(playerName);
 
         if (!availableYears.isEmpty()) {
-            yearComboBox.removeAllItems();
+            yearPanel.getYearComboBox().removeAllItems();
             for (String year : availableYears) {
-                yearComboBox.addItem(year);
+                yearPanel.getYearComboBox().addItem(year);
             }
             yearPanel.setVisible(true);
         } else {
@@ -117,13 +70,13 @@ public class PlayGamePanel extends JPanel {
     }
 
     private void fetchPlayerStats(PlayGameController controller) {
-        String playerName = playerNameField.getText();
-        String selectedYear = (String) yearComboBox.getSelectedItem();
+        String playerName = inputPanel.getPlayerNameField().getText();
+        String selectedYear = (String) yearPanel.getYearComboBox().getSelectedItem();
 
         if (selectedYear != null) {
             String statsJson = controller.fetchPlayerStatisticsByYear(playerName, selectedYear);
             String formattedStats = PlayerStatsFormatter.formatPlayerStats(statsJson);
-            statsArea.setText(formattedStats);
+            statsAreaPanel.getStatsArea().setText(formattedStats);
 
             // Automatically update generated value
             updateGeneratedValue(controller);
@@ -133,19 +86,19 @@ public class PlayGamePanel extends JPanel {
     }
 
     private void updateGeneratedValue(PlayGameController controller) {
-        String selectedStat = (String) guessComboBox.getSelectedItem();
-        String playerName = playerNameField.getText();
-        String selectedYear = (String) yearComboBox.getSelectedItem();
+        String selectedStat = (String) guessPanel.getGuessComboBox().getSelectedItem();
+        String playerName = inputPanel.getPlayerNameField().getText();
+        String selectedYear = (String) yearPanel.getYearComboBox().getSelectedItem();
 
         if (selectedYear == null || selectedStat == null) return;
 
         currentTrueAverage = controller.getAverageStatistic(selectedStat, playerName, selectedYear);
         double randomValue = generateRandomOffset(currentTrueAverage);
-        randomGuessLabel.setText("Generated Value: " + String.format("%.2f", randomValue));
+        guessPanel.getRandomGuessLabel().setText("Generated Value: " + String.format("%.2f", randomValue));
     }
 
     private void handleOverUnderGuess(boolean isOver) {
-        double randomValue = Double.parseDouble(randomGuessLabel.getText().split(": ")[1]);
+        double randomValue = Double.parseDouble(guessPanel.getRandomGuessLabel().getText().split(": ")[1]);
         String result;
         boolean isCorrect;
 
@@ -169,9 +122,9 @@ public class PlayGamePanel extends JPanel {
 
         // Update history
         JSONObject newHistoryEntry = new JSONObject();
-        newHistoryEntry.put("player", playerNameField.getText());
-        newHistoryEntry.put("stats", (String) guessComboBox.getSelectedItem());
-        newHistoryEntry.put("year", (String) yearComboBox.getSelectedItem());
+        newHistoryEntry.put("player", inputPanel.getPlayerNameField().getText());
+        newHistoryEntry.put("stats", (String) guessPanel.getGuessComboBox().getSelectedItem());
+        newHistoryEntry.put("year", (String) yearPanel.getYearComboBox().getSelectedItem());
 
         session.addHistoryEntry(newHistoryEntry); // Add to session's history
 
@@ -197,8 +150,6 @@ public class PlayGamePanel extends JPanel {
         }
     }
 
-
-
     private double generateRandomOffset(double trueAverage) {
         Random random = new Random();
         return trueAverage + (random.nextDouble() * 3) * (random.nextBoolean() ? 1 : -1);
@@ -208,11 +159,11 @@ public class PlayGamePanel extends JPanel {
      * Reset the PlayGamePanel components to their default state.
      */
     private void reset() {
-        playerNameField.setText("");
-        yearComboBox.removeAllItems();
+        inputPanel.getPlayerNameField().setText("");
+        yearPanel.getYearComboBox().removeAllItems();
         yearPanel.setVisible(false);
-        statsArea.setText("");
-        guessComboBox.setSelectedIndex(0);
-        randomGuessLabel.setText("Generated Value: --");
+        statsAreaPanel.getStatsArea().setText("");
+        guessPanel.getGuessComboBox().setSelectedIndex(0);
+        guessPanel.getRandomGuessLabel().setText("Generated Value: --");
     }
 }

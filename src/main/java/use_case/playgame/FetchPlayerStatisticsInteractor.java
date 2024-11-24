@@ -1,6 +1,6 @@
 package use_case.playgame;
 
-import interface_adapter.PlayerStatisticsRepository;
+import interface_adapter.PlayGameAspects.PlayerStatisticsRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
