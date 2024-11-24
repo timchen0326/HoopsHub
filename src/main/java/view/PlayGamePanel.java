@@ -170,7 +170,7 @@ public class PlayGamePanel extends JPanel {
         // Update history
         JSONObject newHistoryEntry = new JSONObject();
         newHistoryEntry.put("player", playerNameField.getText());
-        newHistoryEntry.put("stat", guessComboBox.getSelectedItem());
+        newHistoryEntry.put("stats", guessComboBox.getSelectedItem());
         newHistoryEntry.put("year", yearComboBox.getSelectedItem());
         newHistoryEntry.put("result", isCorrect ? "Win" : "Lose");
 
