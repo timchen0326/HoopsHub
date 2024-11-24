@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class PlayerStatisticsAPI {
-    private static final String BASE_URL = "http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataTotals/name/";
+    private static final String BASE_URL = "https://samplejson.onrender.com/api/PlayerDataTotals/name/";
 
     public String fetchPlayerData(String playerName) throws Exception {
         String encodedName = URLEncoder.encode(playerName, "UTF-8").replace("+", "%20");
