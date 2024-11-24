@@ -112,6 +112,7 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
             return userInfo.getString("password");
         }
     }
+
     public JSONObject loadUserDetails(String username) throws Exception {
         String url = String.format(LOAD_USER_INFO_URL, username);
         Request request = new Request.Builder()
@@ -128,6 +129,7 @@ public class AccountDataAccessObject implements AccountDataAccessInterface {
             return new JSONObject(response.body().string()).getJSONObject("user");
         }
     }
+
     public void updateUserInfo(JSONObject userInfo) throws Exception {
         String url = "http://vm003.teach.cs.toronto.edu:20112/modifyUserInfo";
 

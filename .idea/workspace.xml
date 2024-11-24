@@ -4,20 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button">
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/SessionMonitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data_access/Session.java" afterDir="false" />
+    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add more detail">
+      <change afterPath="$PROJECT_DIR$/src/test/java/entity/user/UserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/account/AccountInteractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data_access/AccountDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/AccountDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PlayGamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/playgame/NoteInteractorTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,8 +50,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="model-update" />
-                    <option name="lastUsedInstant" value="1731947528" />
+                    <option name="branchName" value="account-coverage" />
+                    <option name="lastUsedInstant" value="1732476937" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -80,23 +81,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainSearchApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in note-application.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;model-update&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GameApplication.executor": "Run",
+    "Application.MainApplication.executor": "Run",
+    "Application.MainGameSearchApplication.executor": "Run",
+    "Application.MainSearchApplication.executor": "Run",
+    "JUnit.AccountInteractorTest.executor": "Coverage",
+    "JUnit.All in note-application.executor": "Coverage",
+    "JUnit.UserTest.executor": "Coverage",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "account-coverage",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.MainApplication">
+}]]></component>
+  <component name="RunManager" selected="JUnit.All in note-application">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
@@ -110,6 +115,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainGameSearchApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.MainGameSearchApplication" />
+      <module name="note-application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.account.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.account" />
+      <option name="MAIN_CLASS_NAME" value="use_case.account.AccountInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="note-application" />
       <option name="PACKAGE_NAME" value="" />
@@ -118,12 +151,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="entity.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="entity.user" />
+      <option name="MAIN_CLASS_NAME" value="entity.user.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="JUnit.AccountInteractorTest" />
+        <item itemvalue="JUnit.UserTest" />
         <item itemvalue="Application.MainApplication" />
-        <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="Application.MainGameSearchApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -155,7 +204,39 @@
       <option name="project" value="LOCAL" />
       <updated>1731396633141</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add">
+      <option name="closed" value="true" />
+      <created>1732343171767</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732343171767</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add">
+      <option name="closed" value="true" />
+      <created>1732343846902</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732343846902</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add the timestamp, game number, and search filter">
+      <option name="closed" value="true" />
+      <created>1732345616930</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732345616930</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add more detail">
+      <option name="closed" value="true" />
+      <created>1732353102059</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732353102059</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +267,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add search button and back button" />
-    <option name="LAST_COMMIT_MESSAGE" value="add search button and back button" />
+    <MESSAGE value="add" />
+    <MESSAGE value="add the timestamp, game number, and search filter" />
+    <MESSAGE value="add more detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="add more detail" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HoopsHub$UserTest.ic" NAME="UserTest Coverage Results" MODIFIED="1732483388603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>entity.user.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/HoopsHub$AccountInteractorTest.ic" NAME="AccountInteractorTest Coverage Results" MODIFIED="1732483401587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.account.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/HoopsHub$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732483417320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
