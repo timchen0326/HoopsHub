@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button" />
+    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add more detail">
+      <change afterPath="$PROJECT_DIR$/src/test/java/entity/SearchResult/SearchResultTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/search/SearchInteractor/SearchInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/playgame/NoteInteractorTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,8 +84,9 @@
     "Application.MainApplication.executor": "Run",
     "Application.MainSearchApplication.executor": "Run",
     "JUnit.All in note-application.executor": "Run",
+    "JUnit.SearchResultTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "test-coverage-Ian",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -110,9 +118,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SearchResultTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="entity" />
+      <option name="MAIN_CLASS_NAME" value="entity.SearchResultTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApplication" />
+        <item itemvalue="JUnit.SearchResultTest" />
         <item itemvalue="JUnit.All in note-application" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
@@ -147,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731396633141</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add more detail">
+      <option name="closed" value="true" />
+      <created>1732553338581</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732553338581</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,6 +210,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add search button and back button" />
-    <option name="LAST_COMMIT_MESSAGE" value="add search button and back button" />
+    <MESSAGE value="add more detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="add more detail" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732554618789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>entity.*</FILTER>
+    </SUITE>
   </component>
 </project>
