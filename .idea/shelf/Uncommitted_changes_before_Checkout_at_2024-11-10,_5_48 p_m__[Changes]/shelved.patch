@@ -1,0 +1,119 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"6690e3e3-b225-4764-85d3-2b1d370f0141\" name=\"Changes\" comment=\"adding NoteApplication from prof\">\n      <change afterPath=\"$PROJECT_DIR$/.idea/git_toolbox_prj.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/app/MainApplication.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/interface_adapter/account/AccountController.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/interface_adapter/account/AccountPresenter.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/use_case/account/AccountOutputBoundary.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/view/AccountCreationView.java\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/view/LoginView.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/app/MainNoteApplication.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/app/NoteAppBuilder.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/data_access/DBNoteDataAccessObject.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/entity/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/entity/User.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteController.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/interface_adapter/note/NotePresenter.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteState.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteViewModel.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/use_case/note/DataAccessException.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/use_case/note/NoteDataAccessInterface.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/use_case/note/NoteInputBoundary.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/use_case/note/NoteInteractor.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/use_case/note/NoteOutputBoundary.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/view/NoteView.java\" beforeDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\n  \"lastFilter\": {\n    \"state\": \"OPEN\",\n    \"assignee\": \"timchen0326\"\n  }\n}]]></component>\n  <component name=\"GitToolBoxStore\">\n    <option name=\"recentBranches\">\n      <RecentBranches>\n        <option name=\"branchesForRepo\">\n          <list>\n            <RecentBranchesForRepo>\n              <option name=\"branches\">\n                <list>\n                  <RecentBranch>\n                    <option name=\"branchName\" value=\"tim\" />\n                    <option name=\"lastUsedInstant\" value=\"1730738736\" />\n                  </RecentBranch>\n                  <RecentBranch>\n                    <option name=\"branchName\" value=\"main\" />\n                    <option name=\"lastUsedInstant\" value=\"1730738735\" />\n                  </RecentBranch>\n                </list>\n              </option>\n              <option name=\"repositoryRootUrl\" value=\"file://$PROJECT_DIR$\" />\n            </RecentBranchesForRepo>\n          </list>\n        </option>\n      </RecentBranches>\n    </option>\n  </component>\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\n  \"selectedUrlAndAccountId\": {\n    \"url\": \"https://github.com/timchen0326/HoopsHub.git\",\n    \"accountId\": \"e94760cd-9e51-46be-a781-4815c6c0578e\"\n  }\n}]]></component>\n  <component name=\"ProjectColorInfo\"><![CDATA[{\n  \"associatedIndex\": 7\n}]]></component>\n  <component name=\"ProjectId\" id=\"2oOQrpdv6pIPkGX4bF9SiCq9Nkm\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Application.MainApplication.executor\": \"Run\",\n    \"Application.MainNoteApplication.executor\": \"Run\",\n    \"JUnit.All in note-application.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"SONARLINT_PRECOMMIT_ANALYSIS\": \"true\",\n    \"git-widget-placeholder\": \"tim\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"All in note-application\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"note-application\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"TEST_OBJECT\" value=\"package\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"JUnit.All in note-application\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"6690e3e3-b225-4764-85d3-2b1d370f0141\" name=\"Changes\" comment=\"\" />\n      <created>1725200606304</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1725200606304</updated>\n      <workItem from=\"1730738344719\" duration=\"13847000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"adding NoteApplication from prof\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1730738562907</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1730738562907</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"adding NoteApplication from prof\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1730738606270</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1730738606270</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"adding NoteApplication from prof\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"adding NoteApplication from prof\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision a7ccf309e8a251edb592a9cfd9830d43885bf5a4)
++++ b/.idea/workspace.xml	(date 1731278582943)
+@@ -4,33 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="6690e3e3-b225-4764-85d3-2b1d370f0141" name="Changes" comment="adding NoteApplication from prof">
+-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/account/AccountController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/account/AccountPresenter.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountDataAccessInterface.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountInteractor.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/use_case/account/AccountOutputBoundary.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/AccountCreationView.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/LoginView.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainNoteApplication.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/app/NoteAppBuilder.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBNoteDataAccessObject.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteController.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NotePresenter.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteState.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/note/NoteViewModel.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/DataAccessException.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteDataAccessInterface.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteInputBoundary.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteInteractor.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/note/NoteOutputBoundary.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/NoteView.java" beforeDir="false" />
+-    </list>
++    <list default="true" id="6690e3e3-b225-4764-85d3-2b1d370f0141" name="Changes" comment="adding NoteApplication from prof" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -51,12 +25,12 @@
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "timchen0326"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;timchen0326&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="GitToolBoxStore">
+     <option name="recentBranches">
+       <RecentBranches>
+@@ -85,12 +59,12 @@
+   <component name="GithubPullRequestsUISettings"><![CDATA[{
+   "selectedUrlAndAccountId": {
+     "url": "https://github.com/timchen0326/HoopsHub.git",
+-    "accountId": "e94760cd-9e51-46be-a781-4815c6c0578e"
++    "accountId": "c8d4c07f-cac4-4792-ba9a-37ad4ea8b4a9"
+   }
+ }]]></component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 7
+-}]]></component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 7
++}</component>
+   <component name="ProjectId" id="2oOQrpdv6pIPkGX4bF9SiCq9Nkm" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -105,7 +79,7 @@
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+-    "git-widget-placeholder": "tim",
++    "git-widget-placeholder": "main",
+     "kotlin-language-version-configured": "true",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+@@ -121,7 +95,20 @@
+       <recent name="$PROJECT_DIR$" />
+     </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Application.MainApplication">
++    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
++      <module name="note-application" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="app.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <configuration name="All in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="note-application" />
+       <option name="PACKAGE_NAME" value="" />
+@@ -132,6 +119,7 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.MainApplication" />
+         <item itemvalue="JUnit.All in note-application" />
+       </list>
+     </recent_temporary>

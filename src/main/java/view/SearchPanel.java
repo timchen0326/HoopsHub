@@ -9,12 +9,14 @@ import java.awt.event.ActionListener;
 
 public class SearchPanel extends JPanel {
     private final SearchInteractor interactor;
+    private final ThemeManager themeManager = ThemeManager.getInstance();
 
     public SearchPanel(MainFrame frame, SearchInteractor interactor) {
         this.interactor = interactor;
 
         // Set layout for SearchPanel
         setLayout(new BorderLayout());
+        updateTheme();
 
         // Create Input Section
         JPanel inputPanel = new JPanel(new GridBagLayout());
@@ -75,6 +77,20 @@ public class SearchPanel extends JPanel {
                         wins, losses, winLossRatio));
             }
         });
+    }
+
+    private void updateTheme() {
+        setBackground(themeManager.getBackgroundColor());
+        setForeground(themeManager.getTextColor());
+
+        for (Component comp : getComponents()) {
+            if (comp instanceof JLabel) {
+                comp.setForeground(themeManager.getTextColor());
+            } else if (comp instanceof JTextArea) {
+                comp.setBackground(themeManager.getBackgroundColor());
+                comp.setForeground(themeManager.getTextColor());
+            }
+        }
     }
 
     private int extractValue(String result, String key) {

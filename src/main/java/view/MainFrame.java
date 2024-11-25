@@ -2,13 +2,14 @@ package view;
 
 import data_access.AccountDataAccessObject;
 import data_access.SearchHistoryDataAccessObject;
-import interface_adapter.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayGameController;
 import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
 import interface_adapter.search.SearchHistoryController;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchInteractor;
 import use_case.search.SearchHistoryInteractor;
+import view.Play.PlayGamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,16 +18,20 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel mainPanel = new JPanel(cardLayout);
+    private final ThemeManager themeManager = ThemeManager.getInstance();
 
     public MainFrame(PlayGameController controller, SearchInteractor searchInteractor) {
         setTitle("Game App");
         setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        util.MusicManager.getInstance().playMusic("/Users/mohitbendale/HoopsHub/src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav");
+
 
         // Add panels to the CardLayout
         mainPanel.add(new HomePanel(this), "Home");                        // Home panel
         mainPanel.add(new PlayGamePanel(this, controller), "Play");        // PlayGame panel
         mainPanel.add(new SearchPanel(this, searchInteractor), "Search"); // Search panel
+        mainPanel.add(new SettingsPanel(this), "Settings");
 
         SearchHistoryController searchHistoryController = initializeSearchHistoryController();
         mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), "SearchHistory"); // Pass both arguments
@@ -46,6 +51,16 @@ public class MainFrame extends JFrame {
      */
     public void switchTo(String panelName) {
         cardLayout.show(mainPanel, panelName);
+        applyTheme();
+    }
+
+    private void applyTheme() {
+        for (Component comp : mainPanel.getComponents()) {
+            if (comp instanceof JPanel) {
+                comp.setBackground(themeManager.getBackgroundColor());
+                comp.setForeground(themeManager.getTextColor());
+            }
+        }
     }
 
     /**

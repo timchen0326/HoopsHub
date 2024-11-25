@@ -4,7 +4,7 @@ import data_access.AccountDataAccessObject;
 import data_access.DBSearchDataAccessObject;
 import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
-import interface_adapter.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayGameController;
 import interface_adapter.search.SearchViewModel;
 import use_case.account.AccountDataAccessInterface;
 import use_case.account.AccountInteractor;
