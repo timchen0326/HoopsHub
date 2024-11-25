@@ -91,7 +91,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MainApplication">
+  <component name="RunManager" selected="JUnit.All in note-application">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
@@ -130,8 +130,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.SearchResultTest" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
