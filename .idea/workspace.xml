@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add more detail">
+    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="improve layout of search panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,8 +78,8 @@
   "keyToString": {
     "Application.MainApplication.executor": "Run",
     "Application.MainSearchApplication.executor": "Run",
-    "JUnit.All in note-application.executor": "Run",
-    "JUnit.SearchResultTest.executor": "Coverage",
+    "JUnit.All in note-application.executor": "Coverage",
+    "JUnit.SearchResultTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "new-branch-name",
     "kotlin-language-version-configured": "true",
@@ -132,8 +131,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApplication" />
-        <item itemvalue="JUnit.SearchResultTest" />
         <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="JUnit.SearchResultTest" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
       </list>
@@ -175,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732553338581</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="improve layout of search panel">
+      <option name="closed" value="true" />
+      <created>1732557138050</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732557138050</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,11 +214,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add search button and back button" />
     <MESSAGE value="add more detail" />
-    <option name="LAST_COMMIT_MESSAGE" value="add more detail" />
+    <MESSAGE value="improve layout of search panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve layout of search panel" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732554618789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732557367130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>entity.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/_10$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732560174739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
