@@ -42,7 +42,12 @@ public class AccountCreationView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 final String username = usernameField.getText();
                 final String password = new String(passwordField.getPassword());
-                controller.createAccount(username, password);
+                try {
+                    controller.createAccount(username, password);
+                }
+                catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

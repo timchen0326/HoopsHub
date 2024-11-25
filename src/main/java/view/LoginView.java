@@ -41,7 +41,11 @@ public class LoginView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
-                controller.loginUser(username, password);
+                try {
+                    controller.loginUser(username, password);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

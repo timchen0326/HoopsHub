@@ -27,8 +27,9 @@ public class AccountController {
      *
      * @param username the username for the new account, must not be null
      * @param password the password for the new account, must not be null
+     * @throws Exception if there is an issue creating the account
      */
-    public void createAccount(String username, String password) {
+    public void createAccount(String username, String password) throws Exception {
         interactor.createAccount(username, password);
     }
 
@@ -37,8 +38,9 @@ public class AccountController {
      *
      * @param username the username for the user, must not be null
      * @param password the password for the user, must not be null
+     * @throws Exception if there is an issue logging in the user
      */
-    public void loginUser(String username, String password) {
+    public void loginUser(String username, String password) throws Exception {
         interactor.loginUser(username, password);
     }
 }
