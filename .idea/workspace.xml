@@ -80,6 +80,7 @@
     "Application.MainApplication.executor": "Run",
     "Application.MainSearchApplication.executor": "Run",
     "JUnit.All in note-application.executor": "Coverage",
+    "JUnit.java in note-application.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "git-widget-placeholder": "main",
@@ -219,5 +220,6 @@
       <FILTER>entity.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/_10$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732560939600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/_10$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732563176423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
