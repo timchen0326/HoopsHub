@@ -1,3 +1,5 @@
+package use_case.search;
+
 import data_access.SearchHistoryDataAccessObject;
 import entity.SearchHistoryRecord;
 import org.junit.jupiter.api.Test;

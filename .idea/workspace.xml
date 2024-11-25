@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button">
-      <change afterPath="$PROJECT_DIR$/src/test/java/entity/SearchHistoryRecord/SearchHistoryRecordTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/search/SearchHistoryInteractor/SearchHistoryInteractorTest.java" afterDir="false" />
+    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="fix game history fonts and add test cases">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchHistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchHistoryPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/playgame/NoteInteractorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/search/SearchHistoryInteractor/SearchHistoryInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/search/SearchHistoryInteractorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,8 +79,9 @@
   "keyToString": {
     "Application.MainApplication.executor": "Run",
     "Application.MainSearchApplication.executor": "Run",
-    "JUnit.All in note-application.executor": "Run",
-    "JUnit.SearchHistoryInteractorTest.executor": "Run",
+    "JUnit.All in note-application.executor": "Coverage",
+    "JUnit.SearchHistoryInteractorTest (1).executor": "Coverage",
+    "JUnit.SearchHistoryInteractorTest.executor": "Coverage",
     "JUnit.SearchHistoryRecordTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Game-History",
@@ -98,7 +94,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in note-application">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
@@ -116,6 +112,21 @@
       <module name="note-application" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchHistoryInteractorTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.search" />
+      <option name="MAIN_CLASS_NAME" value="use_case.search.SearchHistoryInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -140,10 +151,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="JUnit.SearchHistoryInteractorTest (1)" />
         <item itemvalue="JUnit.SearchHistoryInteractorTest" />
         <item itemvalue="JUnit.SearchHistoryRecordTest" />
-        <item itemvalue="JUnit.All in note-application" />
-        <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.MainApplication" />
       </list>
     </recent_temporary>
@@ -176,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731396633141</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix game history fonts and add test cases">
+      <option name="closed" value="true" />
+      <created>1732557144665</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732557144665</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,10 +226,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add search button and back button" />
-    <option name="LAST_COMMIT_MESSAGE" value="add search button and back button" />
+    <MESSAGE value="fix game history fonts and add test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix game history fonts and add test cases" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest.ic" NAME="SearchHistoryInteractorTest Coverage Results" MODIFIED="1732555045080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest.ic" NAME="SearchHistoryInteractorTest Coverage Results" MODIFIED="1732557492905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest__1_.ic" NAME="SearchHistoryInteractorTest (1) Coverage Results" MODIFIED="1732557648400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.search.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/Project$SearchHistoryRecordTest.ic" NAME="SearchHistoryRecordTest Coverage Results" MODIFIED="1732553862414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
