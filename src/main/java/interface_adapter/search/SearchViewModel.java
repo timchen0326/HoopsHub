@@ -14,4 +14,5 @@ public class SearchViewModel {
         }
         return builder.toString();
     }
+
 }

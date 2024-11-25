@@ -1,4 +1,4 @@
-package data_access;
+package interface_adapter.PlayGameAspects;
 
 public interface PlayerStatisticsGateway {
     /**

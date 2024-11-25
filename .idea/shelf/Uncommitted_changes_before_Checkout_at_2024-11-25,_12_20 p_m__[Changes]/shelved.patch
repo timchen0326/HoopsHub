@@ -1,0 +1,41 @@
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"MavenProjectsManager\">\n    <option name=\"originalFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"corretto-17\" project-jdk-type=\"JavaSDK\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 7fa6d112480f9a5d7c40b4a451e4880a2157cae4)
++++ b/.idea/misc.xml	(date 1732555214251)
+@@ -8,5 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/view/MainFrame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport data_access.AccountDataAccessObject;\nimport data_access.SearchHistoryDataAccessObject;\nimport interface_adapter.PlayGameAspects.PlayGameController;\nimport interface_adapter.account.AccountController;\nimport interface_adapter.account.AccountPresenter;\nimport interface_adapter.search.SearchHistoryController;\nimport use_case.account.AccountInteractor;\nimport use_case.search.SearchInteractor;\nimport use_case.search.SearchHistoryInteractor;\nimport view.Play.PlayGamePanel;\n\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionListener;\n\npublic class MainFrame extends JFrame {\n    private final CardLayout cardLayout = new CardLayout();\n    private final JPanel mainPanel = new JPanel(cardLayout);\n\n    public MainFrame(PlayGameController controller, SearchInteractor searchInteractor) {\n        setTitle(\"Game App\");\n        setSize(800, 400);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n\n        // Add panels to the CardLayout\n        mainPanel.add(new HomePanel(this), \"Home\");                        // Home panel\n        mainPanel.add(new PlayGamePanel(this, controller), \"Play\");        // PlayGame panel\n        mainPanel.add(new SearchPanel(this, searchInteractor), \"Search\"); // Search panel\n\n        SearchHistoryController searchHistoryController = initializeSearchHistoryController();\n        mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), \"SearchHistory\"); // Pass both arguments\n\n\n        // Add LoginView\n        AccountController accountController = initializeAccountController();\n        ActionListener switchToSignUp = e -> switchTo(\"SignUp\"); // Stub for switching to sign-up\n        LoginView loginView = new LoginView(accountController, switchToSignUp);\n        mainPanel.add(loginView, \"Login\");\n\n        add(mainPanel);\n    }\n\n    /**\n     * Switch to a specific panel by name.\n     */\n    public void switchTo(String panelName) {\n        cardLayout.show(mainPanel, panelName);\n    }\n\n    /**\n     * Initialize the main frame with the Login panel visible.\n     */\n    public void start() {\n        setVisible(true);\n        switchTo(\"Login\"); // Start with the Login panel\n    }\n\n    /**\n     * Initializes the AccountController for managing login and account creation.\n     */\n    private AccountController initializeAccountController() {\n        AccountDataAccessObject accountDataAccess = new AccountDataAccessObject();\n        AccountPresenter accountPresenter = new AccountPresenter(this, new JFrame(\"Login\")); // Pass MainFrame and login JFrame\n        AccountInteractor accountInteractor = new AccountInteractor(accountDataAccess, accountPresenter);\n        return new AccountController(accountInteractor);\n    }\n\n    /**\n     * Initializes the SearchHistoryController for managing the search history feature.\n     */\n    private SearchHistoryController initializeSearchHistoryController() {\n        SearchHistoryDataAccessObject searchHistoryDataAccess = new SearchHistoryDataAccessObject();\n        SearchHistoryInteractor searchHistoryInteractor = new SearchHistoryInteractor(searchHistoryDataAccess);\n        return new SearchHistoryController(searchHistoryInteractor);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/view/MainFrame.java b/src/main/java/view/MainFrame.java
+--- a/src/main/java/view/MainFrame.java	(revision 7fa6d112480f9a5d7c40b4a451e4880a2157cae4)
++++ b/src/main/java/view/MainFrame.java	(date 1732555221987)
+@@ -49,6 +49,10 @@
+         cardLayout.show(mainPanel, panelName);
+     }
+ 
++
++
++
++
+     /**
+      * Initialize the main frame with the Login panel visible.
+      */

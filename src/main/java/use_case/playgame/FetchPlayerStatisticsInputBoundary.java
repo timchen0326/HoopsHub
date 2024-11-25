@@ -1,10 +1,11 @@
 package use_case.playgame;
 
+import entity.PlayerStatistic;
 import java.util.List;
 
 public interface FetchPlayerStatisticsInputBoundary {
-    String fetchPlayerStatistics(String playerName);
-    String fetchPlayerStatisticsByYear(String playerName, int year);
-    List<String> getAvailableYears(String playerName); // Changed to match the implementation's List<String>
+    List<PlayerStatistic> fetchPlayerStatistics(String playerName);
+    PlayerStatistic fetchPlayerStatisticsByYear(String playerName, int year);
+    List<String> getAvailableYears(String playerName);
     double getAverageStat(String playerName, String year, String statType);
 }

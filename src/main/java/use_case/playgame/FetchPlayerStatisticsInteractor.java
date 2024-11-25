@@ -1,11 +1,10 @@
 package use_case.playgame;
 
-import interface_adapter.PlayerStatisticsRepository;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import entity.PlayerStatistic;
+import interface_adapter.PlayGameAspects.PlayerStatisticsRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FetchPlayerStatisticsInteractor implements FetchPlayerStatisticsInputBoundary {
     private final PlayerStatisticsRepository repository;
@@ -15,43 +14,39 @@ public class FetchPlayerStatisticsInteractor implements FetchPlayerStatisticsInp
     }
 
     @Override
-    public String fetchPlayerStatistics(String playerName) {
+    public List<PlayerStatistic> fetchPlayerStatistics(String playerName) {
         return repository.fetchAllStatisticsForPlayer(playerName);
     }
 
     @Override
-    public String fetchPlayerStatisticsByYear(String playerName, int year) {
+    public PlayerStatistic fetchPlayerStatisticsByYear(String playerName, int year) {
         return repository.fetchStatsForPlayerByYear(playerName, year);
     }
 
     @Override
     public List<String> getAvailableYears(String playerName) {
-        String rawData = repository.fetchAllStatisticsForPlayer(playerName);
-        JSONArray jsonArray = new JSONArray(rawData);
-        List<String> years = new ArrayList<>();
+        List<Integer> years = repository.fetchAvailableYearsForPlayer(playerName);
+        return years.stream().map(String::valueOf).collect(Collectors.toList());
+    }
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            String seasonYear = String.valueOf(jsonArray.getJSONObject(i).getInt("season"));
-            years.add(seasonYear);
+    @Override
+    public double getAverageStat(String playerName, String year, String statType) {
+        PlayerStatistic stat = repository.fetchStatsForPlayerByYear(playerName, Integer.parseInt(year));
+        if (stat == null) {
+            throw new IllegalArgumentException("No data available for year " + year);
         }
 
-        return years;
+        return calculateAverage(stat, statType);
     }
 
-    public double getAverageStat(String playerName, String year, String statType) {
-        String rawData = repository.fetchStatsForPlayerByYear(playerName, Integer.parseInt(year));
-        return calculateAverage(rawData, statType);
-    }
-
-    private double calculateAverage(String rawData, String statType) {
-        JSONObject stats = new JSONObject(rawData);
+    private double calculateAverage(PlayerStatistic stat, String statType) {
         switch (statType) {
             case "Average Rebounds":
-                return stats.getDouble("totalRb") / stats.getDouble("games");
+                return (double) stat.getTotalRebounds() / stat.getGamesPlayed();
             case "Average Points":
-                return stats.getDouble("points") / stats.getDouble("games");
+                return (double) stat.getPoints() / stat.getGamesPlayed();
             case "Average Assists":
-                return stats.getDouble("assists") / stats.getDouble("games");
+                return (double) stat.getAssists() / stat.getGamesPlayed();
             default:
                 throw new IllegalArgumentException("Invalid statistic type.");
         }
