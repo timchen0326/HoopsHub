@@ -4,8 +4,6 @@ import use_case.search.SearchInteractor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SearchPanel extends JPanel {
     private final SearchInteractor interactor;
@@ -14,16 +12,29 @@ public class SearchPanel extends JPanel {
         this.interactor = interactor;
 
         // Set layout for SearchPanel
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(20, 20));
+        setBackground(Color.WHITE);
 
-        // Create Input Section
+        // Title Label
+        JLabel titleLabel = new JLabel("Search User");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
+
+        // Input Section
         JPanel inputPanel = new JPanel(new GridBagLayout());
+        inputPanel.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(10, 10, 10, 10);
 
-        JLabel label = new JLabel("Enter username:");
+        JLabel label = new JLabel("Enter Username:");
+        label.setFont(new Font("Arial", Font.PLAIN, 18));
+
         JTextField textField = new JTextField(20);
+        textField.setFont(new Font("Arial", Font.PLAIN, 18));
+
         JButton searchButton = new JButton("Search");
+        searchButton.setFont(new Font("Arial", Font.PLAIN, 18));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -38,41 +49,105 @@ public class SearchPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE;
         inputPanel.add(searchButton, gbc);
 
+        add(inputPanel, BorderLayout.NORTH);
+
         // Results Section
-        JTextArea resultsArea = new JTextArea(10, 30);
-        resultsArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(resultsArea);
+        JPanel resultsPanel = new JPanel(new GridBagLayout());
+        resultsPanel.setBackground(Color.WHITE);
+        GridBagConstraints resultsGbc = new GridBagConstraints();
+        resultsGbc.insets = new Insets(5, 5, 5, 5);
+        resultsGbc.anchor = GridBagConstraints.WEST;
+
+        JLabel winsLabel = new JLabel("Wins: ");
+        winsLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        resultsGbc.gridx = 0;
+        resultsGbc.gridy = 0;
+        resultsPanel.add(winsLabel, resultsGbc);
+
+        JLabel winsValue = new JLabel("--");
+        winsValue.setFont(new Font("Arial", Font.PLAIN, 18));
+        resultsGbc.gridx = 1;
+        resultsPanel.add(winsValue, resultsGbc);
+
+        JLabel lossesLabel = new JLabel("Losses: ");
+        lossesLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        resultsGbc.gridx = 0;
+        resultsGbc.gridy = 1;
+        resultsPanel.add(lossesLabel, resultsGbc);
+
+        JLabel lossesValue = new JLabel("--");
+        lossesValue.setFont(new Font("Arial", Font.PLAIN, 18));
+        resultsGbc.gridx = 1;
+        resultsPanel.add(lossesValue, resultsGbc);
+
+        JLabel ratioLabel = new JLabel("Win Ratio: ");
+        ratioLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        resultsGbc.gridx = 0;
+        resultsGbc.gridy = 2;
+        resultsPanel.add(ratioLabel, resultsGbc);
+
+        JLabel ratioValue = new JLabel("--");
+        ratioValue.setFont(new Font("Arial", Font.PLAIN, 18));
+        resultsGbc.gridx = 1;
+        resultsPanel.add(ratioValue, resultsGbc);
+
+        add(resultsPanel, BorderLayout.CENTER);
 
         // Back Button
-        JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> frame.switchTo("Home")); // Switch back to HomePanel
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        bottomPanel.setBackground(Color.WHITE);
 
-        // Add Components to the Panel
-        add(inputPanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-        add(backButton, BorderLayout.SOUTH);
+        JButton backButton = new JButton("Back");
+        backButton.setFont(new Font("Arial", Font.PLAIN, 18));
+
+        // Back Button Action Listener
+        backButton.addActionListener(e -> {
+            // Clear the search bar
+            textField.setText("");
+
+            // Reset result values
+            winsValue.setText("--");
+            lossesValue.setText("--");
+            ratioValue.setText("--");
+
+            // Switch back to Home Panel
+            frame.switchTo("Home");
+        });
+
+        bottomPanel.add(backButton);
+        add(bottomPanel, BorderLayout.SOUTH);
 
         // Action Listener for Search
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = textField.getText().trim();
-                if (username.isEmpty()) {
-                    resultsArea.setText("Please enter a username to search.");
-                    return;
-                }
+        searchButton.addActionListener(e -> {
+            String username = textField.getText().trim();
 
-                // Call interactor to fetch results
-                String result = interactor.executeSearch(username);
+            // Check if the username field is empty
+            if (username.isEmpty()) {
+                winsValue.setText("--");
+                lossesValue.setText("--");
+                ratioValue.setText("--");
+                JOptionPane.showMessageDialog(this, "Please enter a username to search.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-                // Parse results to extract wins, losses, and calculate win/loss ratio
+            // Call the interactor to fetch results
+            String result = interactor.executeSearch(username);
+
+            if (result == null || result.isEmpty()) {
+                // Display "no results" message
+                winsValue.setText("--");
+                lossesValue.setText("--");
+                ratioValue.setText("--");
+                JOptionPane.showMessageDialog(this, "No results found for the username: " + username, "No Results", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Extract values and update labels
                 int wins = extractValue(result, "Wins:");
                 int losses = extractValue(result, "Losses:");
-                double winLossRatio = calculateWinLossRatio(wins, losses);
+                double winRatio = calculateWinLossRatio(wins, losses);
 
-                // Display the results
-                resultsArea.setText(String.format("Wins: %d\nLosses: %d\nWin Ratio: %.2f%%",
-                        wins, losses, winLossRatio));
+                winsValue.setText(String.valueOf(wins));
+                lossesValue.setText(String.valueOf(losses));
+                ratioValue.setText(String.format("%.2f%%", winRatio));
             }
         });
     }
