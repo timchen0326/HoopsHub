@@ -187,8 +187,9 @@ public class PlayGamePanel extends JPanel {
         // Update history
         JSONObject newHistoryEntry = new JSONObject();
         newHistoryEntry.put("player", playerNameField.getText());
-        newHistoryEntry.put("stats", (String) guessComboBox.getSelectedItem());
-        newHistoryEntry.put("year", (String) yearComboBox.getSelectedItem());
+        newHistoryEntry.put("stats", guessComboBox.getSelectedItem());
+        newHistoryEntry.put("year", yearComboBox.getSelectedItem());
+        newHistoryEntry.put("result", isCorrect ? "Win" : "Lose");
 
         session.addHistoryEntry(newHistoryEntry); // Add to session's history
 
@@ -200,8 +201,8 @@ public class PlayGamePanel extends JPanel {
         JSONObject info = new JSONObject();
         info.put("win", session.getWin());
         info.put("lose", session.getLose());
-        info.put("history", new JSONArray(session.getHistory()));
-        info.put("password", session.getPassword());// Convert list to JSONArray
+        info.put("history", new JSONArray(session.getHistory())); // Convert list to JSONArray
+        info.put("password", session.getPassword());
 
         updatedInfo.put("info", info);
 
@@ -213,6 +214,7 @@ public class PlayGamePanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Failed to update user info: " + e.getMessage());
         }
     }
+
 
 
 

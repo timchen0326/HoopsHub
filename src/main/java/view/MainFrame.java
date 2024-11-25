@@ -1,11 +1,14 @@
 package view;
 
 import data_access.AccountDataAccessObject;
+import data_access.SearchHistoryDataAccessObject;
 import interface_adapter.PlayGameController;
 import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
+import interface_adapter.search.SearchHistoryController;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchInteractor;
+import use_case.search.SearchHistoryInteractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,10 +27,14 @@ public class MainFrame extends JFrame {
 
 
         // Add panels to the CardLayout
-        mainPanel.add(new HomePanel(this), "Home");        // Home panel
-        mainPanel.add(new PlayGamePanel(this, controller), "Play"); // PlayGame panel
+        mainPanel.add(new HomePanel(this), "Home");                        // Home panel
+        mainPanel.add(new PlayGamePanel(this, controller), "Play");        // PlayGame panel
         mainPanel.add(new SearchPanel(this, searchInteractor), "Search"); // Search panel
         mainPanel.add(new SettingsPanel(this), "Settings");
+
+        SearchHistoryController searchHistoryController = initializeSearchHistoryController();
+        mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), "SearchHistory"); // Pass both arguments
+
 
         // Add LoginView
         AccountController accountController = initializeAccountController();
@@ -73,4 +80,12 @@ public class MainFrame extends JFrame {
         return new AccountController(accountInteractor);
     }
 
+    /**
+     * Initializes the SearchHistoryController for managing the search history feature.
+     */
+    private SearchHistoryController initializeSearchHistoryController() {
+        SearchHistoryDataAccessObject searchHistoryDataAccess = new SearchHistoryDataAccessObject();
+        SearchHistoryInteractor searchHistoryInteractor = new SearchHistoryInteractor(searchHistoryDataAccess);
+        return new SearchHistoryController(searchHistoryInteractor);
+    }
 }

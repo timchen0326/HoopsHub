@@ -9,7 +9,7 @@ public class HomePanel extends JPanel {
     private final ThemeManager themeManager = ThemeManager.getInstance();
 
     public HomePanel(MainFrame frame) {
-        setLayout(new GridLayout(1, 4)); // Adjusted layout to fit an extra button
+        setLayout(new GridLayout(1, 5)); // Adjusted layout to fit the new Search History button
 
         // Play Game Button
         JButton playButton = new JButton("Play Game");
@@ -20,6 +20,11 @@ public class HomePanel extends JPanel {
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(e -> frame.switchTo("Search")); // Switch to Search panel
         add(searchButton);
+
+        // Search History Button (New Feature)
+        JButton searchHistoryButton = new JButton("Search History");
+        searchHistoryButton.addActionListener(e -> frame.switchTo("SearchHistory")); // Switch to SearchHistory panel
+        add(searchHistoryButton);
 
         // Welcome Label
         add(new JLabel("Welcome to the Game App"));
