@@ -1,7 +1,7 @@
 package app;
 
 import data_access.DBSearchDataAccessObject;
-import interface_adapter.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayGameController;
 import interface_adapter.search.SearchViewModel;
 import use_case.search.SearchInteractor;
 import view.MainFrame;
