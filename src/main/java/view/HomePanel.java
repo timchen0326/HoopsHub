@@ -1,44 +1,57 @@
 package view;
 
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import app.Session;
 
-import javax.swing.*;
-import java.awt.*;
-
+/**
+ * The HomePanel class represents the main navigation panel of the application,
+ * allowing the user to switch between different sections such as "Play", "Search",
+ * and "Settings".
+ */
 public class HomePanel extends JPanel {
+
+    private static final int GRID_COLUMNS = 5;
     private final ThemeManager themeManager = ThemeManager.getInstance();
 
+    /**
+     * Constructs a HomePanel with navigation buttons and a welcome label.
+     *
+     * @param frame the main application frame, must not be null
+     */
     public HomePanel(MainFrame frame) {
-        setLayout(new GridLayout(1, 5)); // Adjusted layout to fit the new Search History button
+        setLayout(new GridLayout(1, GRID_COLUMNS));
 
         // Play Game Button
-        JButton playButton = new JButton("Play Game");
-        playButton.addActionListener(e -> frame.switchTo("Play")); // Switch to PlayGame panel
+        final JButton playButton = new JButton("Play Game");
+        playButton.addActionListener(event -> frame.switchTo("Play"));
         add(playButton);
 
         // Search Button
-        JButton searchButton = new JButton("Search");
-        searchButton.addActionListener(e -> frame.switchTo("Search")); // Switch to Search panel
+        final JButton searchButton = new JButton("Search");
+        searchButton.addActionListener(event -> frame.switchTo("Search"));
         add(searchButton);
 
         // Search History Button (New Feature)
-        JButton searchHistoryButton = new JButton("Search History");
-        searchHistoryButton.addActionListener(e -> frame.switchTo("SearchHistory")); // Switch to SearchHistory panel
+        final JButton searchHistoryButton = new JButton("Search History");
+        searchHistoryButton.addActionListener(event -> frame.switchTo("SearchHistory"));
         add(searchHistoryButton);
 
         // Welcome Label
         add(new JLabel("Welcome to the Game App"));
 
         // Settings Button
-        JButton settingsButton = new JButton("Settings");
-        settingsButton.addActionListener(e -> frame.switchTo("Settings"));
+        final JButton settingsButton = new JButton("Settings");
+        settingsButton.addActionListener(event -> frame.switchTo("Settings"));
         add(settingsButton);
 
-        updateTheme();
-
         // Logout Button
-        JButton logoutButton = new JButton("Logout");
-        logoutButton.addActionListener(e -> {
+        final JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(event -> {
             // Clear session data
             Session.getInstance().clear();
 
@@ -46,8 +59,13 @@ public class HomePanel extends JPanel {
             frame.switchTo("Login");
         });
         add(logoutButton);
+
+        updateTheme();
     }
 
+    /**
+     * Updates the panel's theme colors based on the ThemeManager settings.
+     */
     private void updateTheme() {
         setBackground(themeManager.getBackgroundColor());
         setForeground(themeManager.getTextColor());
