@@ -1,10 +1,11 @@
 package data_access;
 
+import entity.PlayerStatistic;
+import entity.PlayerStatisticFactory;
 import interface_adapter.PlayGameAspects.PlayerStatisticsRepository;
-import org.json.JSONArray;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlayerStatisticsRepositoryImpl implements PlayerStatisticsRepository {
     private final PlayerStatisticsAPI api;
@@ -14,26 +15,23 @@ public class PlayerStatisticsRepositoryImpl implements PlayerStatisticsRepositor
     }
 
     @Override
-    public String fetchAllStatisticsForPlayer(String playerName) {
+    public List<PlayerStatistic> fetchAllStatisticsForPlayer(String playerName) {
         try {
-            return api.fetchPlayerData(playerName); // Fetch all stats
+            String rawData = api.fetchPlayerData(playerName);
+            return PlayerStatisticFactory.fromJson(rawData);
         } catch (Exception e) {
             throw new RuntimeException("Error fetching all statistics for player: " + playerName, e);
         }
     }
 
     @Override
-    public String fetchStatsForPlayerByYear(String playerName, int year) {
+    public PlayerStatistic fetchStatsForPlayerByYear(String playerName, int year) {
         try {
-            String data = api.fetchPlayerData(playerName);
-            JSONArray jsonArray = new JSONArray(data);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                if (jsonArray.getJSONObject(i).getInt("season") == year) {
-                    return jsonArray.getJSONObject(i).toString();
-                }
-            }
-            return "{}"; // Return empty JSON if not found
+            List<PlayerStatistic> stats = fetchAllStatisticsForPlayer(playerName);
+            return stats.stream()
+                    .filter(stat -> stat.getSeason() == year)
+                    .findFirst()
+                    .orElse(null); // Return null if no matching year
         } catch (Exception e) {
             throw new RuntimeException("Error fetching statistics for player by year: " + playerName + ", year: " + year, e);
         }
@@ -42,16 +40,10 @@ public class PlayerStatisticsRepositoryImpl implements PlayerStatisticsRepositor
     @Override
     public List<Integer> fetchAvailableYearsForPlayer(String playerName) {
         try {
-            String data = api.fetchPlayerData(playerName);
-            JSONArray jsonArray = new JSONArray(data);
-            List<Integer> years = new ArrayList<>();
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                int season = jsonArray.getJSONObject(i).getInt("season");
-                years.add(season);
-            }
-
-            return years;
+            List<PlayerStatistic> stats = fetchAllStatisticsForPlayer(playerName);
+            return stats.stream()
+                    .map(PlayerStatistic::getSeason)
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new RuntimeException("Error fetching available years for player: " + playerName, e);
         }

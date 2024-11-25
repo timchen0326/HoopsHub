@@ -1,6 +1,6 @@
 package interface_adapter.PlayGameAspects;
 
-import use_case.playgame.FetchPlayerStatisticsInputBoundary;
+import entity.PlayerStatistic;
 import use_case.playgame.FetchPlayerYearsUseCase;
 import use_case.playgame.FetchPlayerStatsUseCase;
 import use_case.playgame.GetAverageStatUseCase;
@@ -12,11 +12,9 @@ public class PlayGameController {
     private final FetchPlayerStatsController fetchPlayerStatsController;
     private final GetAverageStatController getAverageStatController;
 
-    public PlayGameController(FetchPlayerStatisticsInputBoundary interactor) {
-        FetchPlayerYearsUseCase fetchPlayerYearsUseCase = new FetchPlayerYearsUseCase(interactor);
-        FetchPlayerStatsUseCase fetchPlayerStatsUseCase = new FetchPlayerStatsUseCase(interactor);
-        GetAverageStatUseCase getAverageStatUseCase = new GetAverageStatUseCase(interactor);
-
+    public PlayGameController(FetchPlayerYearsUseCase fetchPlayerYearsUseCase,
+                              FetchPlayerStatsUseCase fetchPlayerStatsUseCase,
+                              GetAverageStatUseCase getAverageStatUseCase) {
         this.fetchPlayerYearsController = new FetchPlayerYearsController(fetchPlayerYearsUseCase);
         this.fetchPlayerStatsController = new FetchPlayerStatsController(fetchPlayerStatsUseCase);
         this.getAverageStatController = new GetAverageStatController(getAverageStatUseCase);
@@ -26,7 +24,7 @@ public class PlayGameController {
         return fetchPlayerYearsController.getAvailableYears(playerName);
     }
 
-    public String fetchPlayerStatisticsByYear(String playerName, String year) {
+    public PlayerStatistic fetchPlayerStatisticsByYear(String playerName, String year) {
         return fetchPlayerStatsController.fetchPlayerStatisticsByYear(playerName, year);
     }
 

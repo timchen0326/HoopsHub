@@ -1,5 +1,7 @@
 package use_case.playgame;
 
+import entity.PlayerStatistic;
+
 public class FetchPlayerStatsUseCase {
     private final FetchPlayerStatisticsInputBoundary interactor;
 
@@ -7,7 +9,7 @@ public class FetchPlayerStatsUseCase {
         this.interactor = interactor;
     }
 
-    public String execute(String playerName, String year) {
+    public PlayerStatistic execute(String playerName, String year) {
         return interactor.fetchPlayerStatisticsByYear(playerName, Integer.parseInt(year));
     }
 }

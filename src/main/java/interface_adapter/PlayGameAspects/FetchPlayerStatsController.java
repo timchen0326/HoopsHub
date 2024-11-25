@@ -1,15 +1,16 @@
 package interface_adapter.PlayGameAspects;
 
 import use_case.playgame.FetchPlayerStatsUseCase;
+import entity.PlayerStatistic;
 
 public class FetchPlayerStatsController {
-    private final FetchPlayerStatsUseCase useCase;
+    private final FetchPlayerStatsUseCase fetchPlayerStatsUseCase;
 
-    public FetchPlayerStatsController(FetchPlayerStatsUseCase useCase) {
-        this.useCase = useCase;
+    public FetchPlayerStatsController(FetchPlayerStatsUseCase fetchPlayerStatsUseCase) {
+        this.fetchPlayerStatsUseCase = fetchPlayerStatsUseCase;
     }
 
-    public String fetchPlayerStatisticsByYear(String playerName, String year) {
-        return useCase.execute(playerName, year);
+    public PlayerStatistic fetchPlayerStatisticsByYear(String playerName, String year) {
+        return fetchPlayerStatsUseCase.execute(playerName, year);
     }
 }
