@@ -2,13 +2,14 @@ package view;
 
 import data_access.AccountDataAccessObject;
 import data_access.SearchHistoryDataAccessObject;
-import interface_adapter.PlayGameController;
+import interface_adapter.PlayGameAspects.PlayGameController;
 import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
 import interface_adapter.search.SearchHistoryController;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchInteractor;
 import use_case.search.SearchHistoryInteractor;
+import view.Play.PlayGamePanel;
 
 import javax.swing.*;
 import java.awt.*;
