@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends JPanel {
+    private final ThemeManager themeManager = ThemeManager.getInstance();
+
     public HomePanel(MainFrame frame) {
         setLayout(new GridLayout(1, 5)); // Adjusted layout to fit the new Search History button
 
@@ -27,6 +29,13 @@ public class HomePanel extends JPanel {
         // Welcome Label
         add(new JLabel("Welcome to the Game App"));
 
+        // Settings Button
+        JButton settingsButton = new JButton("Settings");
+        settingsButton.addActionListener(e -> frame.switchTo("Settings"));
+        add(settingsButton);
+
+        updateTheme();
+
         // Logout Button
         JButton logoutButton = new JButton("Logout");
         logoutButton.addActionListener(e -> {
@@ -37,5 +46,10 @@ public class HomePanel extends JPanel {
             frame.switchTo("Login");
         });
         add(logoutButton);
+    }
+
+    private void updateTheme() {
+        setBackground(themeManager.getBackgroundColor());
+        setForeground(themeManager.getTextColor());
     }
 }
