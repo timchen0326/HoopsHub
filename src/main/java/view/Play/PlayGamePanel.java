@@ -7,6 +7,7 @@ import interface_adapter.PlayGameAspects.PlayGameController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import view.MainFrame;
+import view.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,11 +20,13 @@ public class PlayGamePanel extends JPanel {
     private final YearSelectionPanel yearPanel = new YearSelectionPanel();
     private final StatsAreaPanel statsAreaPanel = new StatsAreaPanel();
     private final GuessPanel guessPanel = new GuessPanel();
+    private final ThemeManager themeManager = ThemeManager.getInstance();
 
     private double currentTrueAverage; // Store the true average of the current stat
 
     public PlayGamePanel(MainFrame frame, PlayGameController controller) {
         setLayout(new BorderLayout(20, 20));
+        updateTheme();
 
         // Back Button
         JButton backButton = new JButton("Back");
@@ -166,5 +169,19 @@ public class PlayGamePanel extends JPanel {
         statsAreaPanel.getStatsArea().setText("");
         guessPanel.getGuessComboBox().setSelectedIndex(0);
         guessPanel.getRandomGuessLabel().setText("Generated Value: --");
+    }
+
+    private void updateTheme() {
+        setBackground(themeManager.getBackgroundColor());
+        setForeground(themeManager.getTextColor());
+
+        for (Component comp : getComponents()) {
+            if (comp instanceof JLabel) {
+                comp.setForeground(themeManager.getTextColor());
+            } else if (comp instanceof JTextArea) {
+                comp.setBackground(themeManager.getBackgroundColor());
+                comp.setForeground(themeManager.getTextColor());
+            }
+        }
     }
 }

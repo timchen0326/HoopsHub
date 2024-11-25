@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/PlayerStatistic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/PlayerStatisticFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/PlayGameUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/PlayGameUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/PlayerStatisticsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/PlayerStatisticsAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/PlayerStatisticsRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/PlayerStatisticsRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/PlayerStatistics.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/FetchPlayerStatsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/FetchPlayerStatsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/FetchPlayerYearsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/FetchPlayerYearsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/PlayGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/PlayGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/PlayerStatisticsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/PlayerStatisticsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/PlayGameAspects/PlayerStatsFormatter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/playgame/FetchPlayerStatisticsInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/playgame/FetchPlayerStatisticsInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/playgame/FetchPlayerStatisticsInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/playgame/FetchPlayerStatisticsInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/playgame/FetchPlayerStatsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/playgame/FetchPlayerStatsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +20,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -92,12 +80,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.GameApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.MainSearchApplication.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.All in note-application.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;playerstatistic&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;mohit&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -107,7 +96,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.MainApplication">
+  <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
@@ -131,6 +120,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in note-application" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
         <item itemvalue="Application.MainApplication" />
