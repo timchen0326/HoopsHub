@@ -194,4 +194,12 @@
     <MESSAGE value="add search button and back button" />
     <option name="LAST_COMMIT_MESSAGE" value="add search button and back button" />
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Branch$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732562524146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732557367130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/_10$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732560939600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/_10$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732592399654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
 </project>
