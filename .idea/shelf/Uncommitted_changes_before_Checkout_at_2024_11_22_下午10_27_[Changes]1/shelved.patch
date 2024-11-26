@@ -1,0 +1,19 @@
+Index: src/main/java/app/MainApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/app/MainApplication.java b/src/main/java/app/GameHistoryApplication.java
+rename from src/main/java/app/MainApplication.java
+rename to src/main/java/app/GameHistoryApplication.java
+--- a/src/main/java/app/MainApplication.java	(revision 986dc1e649a66cf40e02a34082779f63ee7d25e6)
++++ b/src/main/java/app/GameHistoryApplication.java	(date 1732332345248)
+@@ -6,7 +6,7 @@
+ import use_case.game_history.GameHistoryInteractor;
+ import view.MainFrame;
+ 
+-public class MainApplication {
++public class GameHistoryApplication {
+     public static void main(String[] args) {
+         // Initialize GameHistory components
+         GameHistoryDataAccessObject dataAccess = new GameHistoryDataAccessObject();
