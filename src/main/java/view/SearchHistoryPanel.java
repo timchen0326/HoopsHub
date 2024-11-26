@@ -15,6 +15,10 @@ public class SearchHistoryPanel extends JPanel {
         // Search History Display
         JTextArea historyArea = new JTextArea(15, 40);
         historyArea.setEditable(false);
+
+        // Set Comic Sans MS font for JTextArea to make the text bigger
+        historyArea.setFont(new Font("Comic Sans MS", Font.PLAIN, 17));  // Change font to Comic Sans MS
+
         JScrollPane scrollPane = new JScrollPane(historyArea);
 
         // Top Panel: Back Button and Show History Button
