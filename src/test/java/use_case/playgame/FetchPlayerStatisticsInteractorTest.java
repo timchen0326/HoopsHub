@@ -1,7 +1,7 @@
 package use_case.playgame;
 
 import entity.PlayerStatistic;
-import interface_adapter.PlayGameAspects.PlayerStatisticsRepository;
+import interface_adapter.play_game_aspects.PlayerStatisticsRepository;
 import org.junit.Test;
 
 import java.util.Arrays;

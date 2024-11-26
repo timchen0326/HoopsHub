@@ -1,11 +1,10 @@
 package app;
 
 import data_access.DBSearchDataAccessObject;
-import interface_adapter.PlayGameAspects.PlayGameController;
+import interface_adapter.play_game_aspects.PlayGameController;
 import interface_adapter.search.SearchViewModel;
 import use_case.search.SearchInteractor;
 import view.MainFrame;
-import view.SearchPanel;
 
 public class GameApplication {
     public static void main(String[] args) {
