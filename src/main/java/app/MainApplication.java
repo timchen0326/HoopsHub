@@ -1,6 +1,7 @@
 package app;
 
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 
 import data_access.AccountDataAccessObject;
@@ -42,12 +43,12 @@ public class MainApplication {
 
         // Step 4: Initialize MainFrame with PlayGameController and SearchInteractor
         final MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
-        mainFrame.setVisible(false); // Initially hidden until login is successful
+        mainFrame.setVisible(false);
 
         // Step 5: Setup the login frame
         final JFrame loginFrame = new JFrame("User Authentication");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.setSize(400, 200); // Replaced magic numbers with constants
+        loginFrame.setSize(400, 200);
 
         // Step 6: Initialize account-related components
         final AccountDataAccessInterface accountDataAccess = new AccountDataAccessObject();
