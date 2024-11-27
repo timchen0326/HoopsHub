@@ -1,6 +1,7 @@
 package view;
 
 import app.Session;
+import view.ThemeManager.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;

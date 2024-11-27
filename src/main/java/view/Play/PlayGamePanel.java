@@ -7,7 +7,7 @@ import interface_adapter.PlayGameAspects.PlayGameController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import view.MainFrame;
-import view.ThemeManager;
+import view.ThemeManager.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;

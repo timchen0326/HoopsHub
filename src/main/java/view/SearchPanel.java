@@ -1,6 +1,7 @@
 package view;
 
 import use_case.search.SearchInteractor;
+import view.ThemeManager.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;

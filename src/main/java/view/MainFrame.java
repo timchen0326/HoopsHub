@@ -9,7 +9,10 @@ import interface_adapter.search.SearchHistoryController;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchInteractor;
 import use_case.search.SearchHistoryInteractor;
+import view.MusicManager.*;
 import view.Play.PlayGamePanel;
+import view.ThemeManager.ThemeController;
+import view.ThemeManager.ThemeManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,13 +28,14 @@ public class MainFrame extends JFrame {
         setSize(800, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         util.MusicManager.getInstance().playMusic("/Users/mohitbendale/HoopsHub/src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav");
-
+        AudioController audioController = util.MusicManager.getInstance();
+        ThemeController themeController = ThemeManager.getInstance();
 
         // Add panels to the CardLayout
         mainPanel.add(new HomePanel(this), "Home");                        // Home panel
         mainPanel.add(new PlayGamePanel(this, controller), "Play");        // PlayGame panel
         mainPanel.add(new SearchPanel(this, searchInteractor), "Search"); // Search panel
-        mainPanel.add(new SettingsPanel(this), "Settings");
+        mainPanel.add(new SettingsPanel(this, audioController, themeController), "Settings");
 
         SearchHistoryController searchHistoryController = initializeSearchHistoryController();
         mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), "SearchHistory"); // Pass both arguments

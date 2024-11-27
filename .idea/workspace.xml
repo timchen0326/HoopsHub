@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager/AudioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager/MusicManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager/ThemeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager/ThemeManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/SettingsPanelTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MusicManager.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ThemeManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,12 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -78,24 +87,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GameApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainSearchApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.All in note-application.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;mohit&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApplication.executor": "Run",
+    "Application.MainSearchApplication.executor": "Run",
+    "JUnit.All in note-application.executor": "Run",
+    "JUnit.MusicManagerTest.executor": "Run",
+    "JUnit.SettingsPanelTest.executor": "Run",
+    "JUnit.view in note-application.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "mohit",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
@@ -118,13 +129,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MusicManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MusicManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="view in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/view" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="JUnit.view in note-application" />
+        <item itemvalue="JUnit.MusicManagerTest" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.All in note-application" />
         <item itemvalue="Application.MainApplication" />
-        <item itemvalue="JUnit.All in note-application" />
       </list>
     </recent_temporary>
   </component>
