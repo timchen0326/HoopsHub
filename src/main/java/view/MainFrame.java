@@ -15,6 +15,7 @@ import interface_adapter.play_game_aspects.PlayGameController;
 import interface_adapter.search.SearchHistoryController;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchHistoryInteractor;
+import use_case.search.SearchInteractor;
 import view.playgame.PlayGamePanel;
 import view.MusicManager.*;
 import view.ThemeManager.ThemeController;
