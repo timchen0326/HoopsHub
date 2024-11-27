@@ -1,32 +1,85 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import use_case.search.SearchInteractor;
 import view.ThemeManager.ThemeManager;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+/**
+ * Panel for searching user data and displaying results.
+ */
 public class SearchPanel extends JPanel {
-    private final SearchInteractor interactor;
-    private final ThemeManager themeManager = ThemeManager.getInstance();
 
+    private static final int TITLE_FONT_SIZE = 24;
+    private static final int LABEL_FONT_SIZE = 18;
+    private static final int TEXT_FIELD_COLUMNS = 20;
+    private static final int PADDING = 10;
+    private static final int RESULT_PADDING = 5;
+
+    private final SearchInteractor interactor;
+
+    private final JLabel winsValue = new JLabel("--");
+    private final JLabel lossesValue = new JLabel("--");
+    private final JLabel ratioValue = new JLabel("--");
+
+    /**
+     * Constructs a SearchPanel with the given frame and search interactor.
+     *
+     * @param frame      the main application frame
+     * @param interactor the interactor responsible for executing searches
+     */
     public SearchPanel(MainFrame frame, SearchInteractor interactor) {
         this.interactor = interactor;
 
         // Set layout for SearchPanel
-        setLayout(new BorderLayout());
-        updateTheme();
+        setLayout(new BorderLayout(PADDING, PADDING));
+        setBackground(Color.WHITE);
 
-        // Create Input Section
-        JPanel inputPanel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        // Title Label
+        final JLabel titleLabel = new JLabel("Search User");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, TITLE_FONT_SIZE));
+        titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
 
-        JLabel label = new JLabel("Enter username:");
-        JTextField textField = new JTextField(20);
-        JButton searchButton = new JButton("Search");
+        // Input Section
+        final JPanel inputPanel = createInputPanel();
+        add(inputPanel, BorderLayout.NORTH);
+
+        // Results Section
+        final JPanel resultsPanel = createResultsPanel();
+        add(resultsPanel, BorderLayout.CENTER);
+
+        // Back Button
+        final JPanel bottomPanel = createBottomPanel(frame);
+        add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    private JPanel createInputPanel() {
+        final JPanel inputPanel = new JPanel(new GridBagLayout());
+        inputPanel.setBackground(Color.WHITE);
+        final GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(PADDING, PADDING, PADDING, PADDING);
+
+        final JLabel label = new JLabel("Enter Username:");
+        label.setFont(new Font("Arial", Font.PLAIN, LABEL_FONT_SIZE));
+
+        final JTextField textField = new JTextField(TEXT_FIELD_COLUMNS);
+        textField.setFont(new Font("Arial", Font.PLAIN, LABEL_FONT_SIZE));
+
+        final JButton searchButton = new JButton("Search");
+        searchButton.setFont(new Font("Arial", Font.PLAIN, LABEL_FONT_SIZE));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -41,67 +94,106 @@ public class SearchPanel extends JPanel {
         gbc.fill = GridBagConstraints.NONE;
         inputPanel.add(searchButton, gbc);
 
-        // Results Section
-        JTextArea resultsArea = new JTextArea(10, 30);
-        resultsArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(resultsArea);
+        // Action Listener for Search Button
+        searchButton.addActionListener(event -> handleSearch(textField));
 
-        // Back Button
-        JButton backButton = new JButton("Back");
-        backButton.addActionListener(e -> frame.switchTo("Home")); // Switch back to HomePanel
-
-        // Add Components to the Panel
-        add(inputPanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
-        add(backButton, BorderLayout.SOUTH);
-
-        // Action Listener for Search
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = textField.getText().trim();
-                if (username.isEmpty()) {
-                    resultsArea.setText("Please enter a username to search.");
-                    return;
-                }
-
-                // Call interactor to fetch results
-                String result = interactor.executeSearch(username);
-
-                // Parse results to extract wins, losses, and calculate win/loss ratio
-                int wins = extractValue(result, "Wins:");
-                int losses = extractValue(result, "Losses:");
-                double winLossRatio = calculateWinLossRatio(wins, losses);
-
-                // Display the results
-                resultsArea.setText(String.format("Wins: %d\nLosses: %d\nWin Ratio: %.2f%%",
-                        wins, losses, winLossRatio));
-            }
-        });
+        return inputPanel;
     }
 
-    private void updateTheme() {
-        setBackground(themeManager.getBackgroundColor());
-        setForeground(themeManager.getTextColor());
+    private JPanel createResultsPanel() {
+        final JPanel resultsPanel = new JPanel(new GridBagLayout());
+        resultsPanel.setBackground(Color.WHITE);
+        final GridBagConstraints resultsGbc = new GridBagConstraints();
+        resultsGbc.insets = new Insets(RESULT_PADDING, RESULT_PADDING, RESULT_PADDING, RESULT_PADDING);
+        resultsGbc.anchor = GridBagConstraints.WEST;
 
-        for (Component comp : getComponents()) {
-            if (comp instanceof JLabel) {
-                comp.setForeground(themeManager.getTextColor());
-            } else if (comp instanceof JTextArea) {
-                comp.setBackground(themeManager.getBackgroundColor());
-                comp.setForeground(themeManager.getTextColor());
-            }
+        // Results Labels
+        addResultRow(resultsPanel, resultsGbc, 0, "Wins: ", winsValue);
+        addResultRow(resultsPanel, resultsGbc, 1, "Losses: ", lossesValue);
+        addResultRow(resultsPanel, resultsGbc, 2, "Win Ratio: ", ratioValue);
+
+        return resultsPanel;
+    }
+
+    private void addResultRow(JPanel panel, GridBagConstraints gbc, int row, String labelText, JLabel valueLabel) {
+        gbc.gridx = 0;
+        gbc.gridy = row;
+
+        final JLabel label = new JLabel(labelText);
+        label.setFont(new Font("Arial", Font.PLAIN, LABEL_FONT_SIZE));
+        panel.add(label, gbc);
+
+        gbc.gridx = 1;
+
+        valueLabel.setFont(new Font("Arial", Font.PLAIN, LABEL_FONT_SIZE));
+        panel.add(valueLabel, gbc);
+    }
+
+    private JPanel createBottomPanel(MainFrame frame) {
+        final JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        bottomPanel.setBackground(Color.WHITE);
+
+        final JButton backButton = new JButton("Back");
+        backButton.setFont(new Font("Arial", Font.PLAIN, LABEL_FONT_SIZE));
+
+        // Back Button Action Listener
+        backButton.addActionListener(event -> {
+            clearResults();
+            frame.switchTo("Home");
+        });
+
+        bottomPanel.add(backButton);
+        return bottomPanel;
+    }
+
+    private void handleSearch(JTextField textField) {
+        final String username = textField.getText().trim();
+
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a username to search.", "Input Error",
+                    JOptionPane.ERROR_MESSAGE);
+            clearResults();
+            return;
+        }
+
+        final String result = interactor.executeSearch(username);
+
+        if (result == null || result.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No results found for the username: " + username, "No Results",
+                    JOptionPane.INFORMATION_MESSAGE);
+            clearResults();
+        }
+        else {
+            updateResults(result);
         }
     }
 
+    private void clearResults() {
+        winsValue.setText("--");
+        lossesValue.setText("--");
+        ratioValue.setText("--");
+    }
+
+    private void updateResults(String result) {
+        // Parse and display results
+        final int wins = extractValue(result, "Wins:");
+        final int losses = extractValue(result, "Losses:");
+        final double winRatio = calculateWinLossRatio(wins, losses);
+
+        winsValue.setText(String.valueOf(wins));
+        lossesValue.setText(String.valueOf(losses));
+        ratioValue.setText(String.format("%.2f%%", winRatio));
+    }
+
     private int extractValue(String result, String key) {
-        String[] lines = result.split("\\n");
+        final String[] lines = result.split("\\n");
         for (String line : lines) {
             if (line.startsWith(key)) {
                 try {
                     return Integer.parseInt(line.replaceAll("[^0-9]", ""));
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
+                }
+                catch (NumberFormatException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
@@ -109,7 +201,7 @@ public class SearchPanel extends JPanel {
     }
 
     private double calculateWinLossRatio(int wins, int losses) {
-        int totalGames = wins + losses;
+        final int totalGames = wins + losses;
         if (totalGames == 0) {
             return 0.0;
         }

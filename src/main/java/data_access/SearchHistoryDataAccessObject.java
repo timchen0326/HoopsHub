@@ -1,9 +1,9 @@
 package data_access;
 
-import entity.SearchHistoryRecord;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import entity.SearchHistoryRecord;
 
 /**
  * Handles storing and retrieving search history records.
@@ -13,15 +13,19 @@ public class SearchHistoryDataAccessObject {
 
     /**
      * Saves a search history record.
+     *
+     * @param searchRecord the search history record to save; must not be null
      */
-    public void saveSearchHistory(SearchHistoryRecord record) {
-        history.add(record);
+    public void saveSearchHistory(SearchHistoryRecord searchRecord) {
+        history.add(searchRecord);
     }
 
     /**
      * Retrieves all search history records.
+     *
+     * @return a list of all search history records
      */
     public List<SearchHistoryRecord> getSearchHistory() {
-        return new ArrayList<>(history); // Return a copy to prevent external modification
+        return new ArrayList<>(history);
     }
 }
