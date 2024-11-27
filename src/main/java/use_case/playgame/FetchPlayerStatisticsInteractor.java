@@ -6,58 +6,83 @@ import java.util.stream.Collectors;
 import entity.PlayerStatistic;
 import interface_adapter.play_game_aspects.PlayerStatisticsRepository;
 
-/**
- * Interactor for fetching player statistics.
- * Implements the input boundary interface to handle the use case logic.
- */
 public class FetchPlayerStatisticsInteractor implements FetchPlayerStatisticsInputBoundary {
     private final PlayerStatisticsRepository repository;
+    private final FetchPlayerStatisticsOutputBoundary outputBoundary;
 
-    public FetchPlayerStatisticsInteractor(PlayerStatisticsRepository repository) {
+    public FetchPlayerStatisticsInteractor(PlayerStatisticsRepository repository, FetchPlayerStatisticsOutputBoundary outputBoundary) {
         this.repository = repository;
+        this.outputBoundary = outputBoundary;
     }
 
     @Override
     public List<PlayerStatistic> fetchPlayerStatistics(String playerName) {
-        return repository.fetchAllStatisticsForPlayer(playerName);
+        try {
+            List<PlayerStatistic> statistics = repository.fetchAllStatisticsForPlayer(playerName);
+            FetchPlayerStatisticsResponseModel responseModel = new FetchPlayerStatisticsResponseModel(playerName, statistics);
+            outputBoundary.presentPlayerStatistics(responseModel);
+            return statistics;
+        } catch (Exception e) {
+            outputBoundary.presentError(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public PlayerStatistic fetchPlayerStatisticsByYear(String playerName, int year) {
-        return repository.fetchStatsForPlayerByYear(playerName, year);
+        try {
+            PlayerStatistic statistic = repository.fetchStatsForPlayerByYear(playerName, year);
+            if (statistic == null) {
+                outputBoundary.presentError("No data available for year " + year);
+                return null;
+            }
+            return statistic;
+        } catch (Exception e) {
+            outputBoundary.presentError(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<String> getAvailableYears(String playerName) {
-        final List<Integer> years = repository.fetchAvailableYearsForPlayer(playerName);
-        return years.stream().map(String::valueOf).collect(Collectors.toList());
+        try {
+            List<Integer> years = repository.fetchAvailableYearsForPlayer(playerName);
+            List<String> yearStrings = years.stream().map(String::valueOf).collect(Collectors.toList());
+            outputBoundary.presentAvailableYears(yearStrings);
+            return yearStrings;
+        } catch (Exception e) {
+            outputBoundary.presentError(e.getMessage());
+            return null;
+        }
     }
 
     @Override
     public double getAverageStat(String playerName, String year, String statType) {
-        final PlayerStatistic stat = repository.fetchStatsForPlayerByYear(playerName, Integer.parseInt(year));
-        if (stat == null) {
-            throw new IllegalArgumentException("No data available for year " + year);
-        }
+        try {
+            PlayerStatistic stat = repository.fetchStatsForPlayerByYear(playerName, Integer.parseInt(year));
+            if (stat == null) {
+                throw new IllegalArgumentException("No data available for year " + year);
+            }
 
-        return calculateAverage(stat, statType);
+            double average = calculateAverage(stat, statType);
+            outputBoundary.presentAverageStat(average, playerName, year, statType);
+            return average;
+        } catch (Exception e) {
+            outputBoundary.presentError(e.getMessage());
+            return -1;
+        }
     }
 
     private double calculateAverage(PlayerStatistic stat, String statType) {
-        final double result;
         switch (statType) {
             case "Average Rebounds":
-                result = (double) stat.getTotalRebounds() / stat.getGamesPlayed();
-                break;
+                return (double) stat.getTotalRebounds() / stat.getGamesPlayed();
             case "Average Points":
-                result = (double) stat.getPoints() / stat.getGamesPlayed();
-                break;
+                return (double) stat.getPoints() / stat.getGamesPlayed();
             case "Average Assists":
-                result = (double) stat.getAssists() / stat.getGamesPlayed();
-                break;
+                return (double) stat.getAssists() / stat.getGamesPlayed();
             default:
                 throw new IllegalArgumentException("Invalid statistic type.");
         }
-        return result;
     }
 }

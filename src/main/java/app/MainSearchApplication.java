@@ -3,6 +3,7 @@ package app;
 import data_access.DBSearchDataAccessObject;
 import data_access.PlayerStatisticsRepositoryImpl;
 import interface_adapter.play_game_aspects.PlayGameController;
+import interface_adapter.play_game_aspects.FetchPlayerStatisticsPresenter;
 import interface_adapter.search.SearchViewModel;
 import use_case.playgame.FetchPlayerStatisticsInteractor;
 import use_case.playgame.FetchPlayerStatsUseCase;
@@ -25,30 +26,32 @@ public class MainSearchApplication {
     public static void main(String[] args) {
         // Step 1: Initialize dependencies for SearchInteractor
         final DBSearchDataAccessObject dataAccess = new DBSearchDataAccessObject();
-        final SearchViewModel viewModel = new SearchViewModel();
-        final SearchInteractor searchInteractor = new SearchInteractor(dataAccess, viewModel);
+        final SearchViewModel searchViewModel = new SearchViewModel();
+        final SearchInteractor searchInteractor = new SearchInteractor(dataAccess, searchViewModel);
 
-        // Step 2: Initialize Player Statistics Repository and Interactor
-        final PlayerStatisticsRepositoryImpl playerStatisticsRepository = new PlayerStatisticsRepositoryImpl();
-        final FetchPlayerStatisticsInteractor interactor =
-                new FetchPlayerStatisticsInteractor(playerStatisticsRepository);
+        // Step 2: Initialize Player Statistics Repository and OutputBoundary
+        final PlayerStatisticsRepositoryImpl repository = new PlayerStatisticsRepositoryImpl();
+        final FetchPlayerStatisticsPresenter presenter = new FetchPlayerStatisticsPresenter();
 
-        // Step 3: Initialize Use Cases for PlayGameController
+        // Step 3: Initialize FetchPlayerStatisticsInteractor
+        final FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(repository, presenter);
+
+        // Step 4: Initialize Use Cases for PlayGameController
         final FetchPlayerYearsUseCase fetchPlayerYearsUseCase = new FetchPlayerYearsUseCase(interactor);
         final FetchPlayerStatsUseCase fetchPlayerStatsUseCase = new FetchPlayerStatsUseCase(interactor);
         final GetAverageStatUseCase getAverageStatUseCase = new GetAverageStatUseCase(interactor);
 
-        // Step 4: Initialize PlayGameController with the use cases
+        // Step 5: Initialize PlayGameController with the use cases
         final PlayGameController playGameController = new PlayGameController(
                 fetchPlayerYearsUseCase,
                 fetchPlayerStatsUseCase,
                 getAverageStatUseCase
         );
 
-        // Step 5: Initialize MainFrame
+        // Step 6: Initialize MainFrame
         final MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
 
-        // Step 6: Start the MainFrame
+        // Step 7: Start the MainFrame
         mainFrame.start();
     }
 }
