@@ -1,8 +1,8 @@
 package app;
 
 import data_access.PlayerStatisticsRepositoryImpl;
-import interface_adapter.play_game_aspects.PlayGameController;
 import interface_adapter.play_game_aspects.FetchPlayerStatisticsPresenter;
+import interface_adapter.play_game_aspects.PlayGameController;
 import use_case.playgame.FetchPlayerStatisticsInputBoundary;
 import use_case.playgame.FetchPlayerStatisticsInteractor;
 import use_case.playgame.FetchPlayerStatsUseCase;
@@ -27,7 +27,8 @@ public class PlayGameUseCaseFactory {
         final FetchPlayerStatisticsPresenter presenter = new FetchPlayerStatisticsPresenter();
 
         // Step 3: Initialize the interactor (FetchPlayerStatisticsInputBoundary)
-        final FetchPlayerStatisticsInputBoundary interactor = new FetchPlayerStatisticsInteractor(repository, presenter);
+        final FetchPlayerStatisticsInputBoundary interactor = new FetchPlayerStatisticsInteractor(
+                repository, presenter);
 
         // Step 4: Create use cases
         final FetchPlayerYearsUseCase fetchPlayerYearsUseCase = new FetchPlayerYearsUseCase(interactor);
