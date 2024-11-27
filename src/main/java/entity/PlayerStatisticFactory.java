@@ -1,20 +1,30 @@
 package entity;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+/**
+ * Factory class for creating PlayerStatistic objects from JSON data.
+ */
 public class PlayerStatisticFactory {
 
+    /**
+     * Creates a list of PlayerStatistic objects from a JSON string.
+     *
+     * @param json the JSON string containing player statistics data
+     * @return a list of PlayerStatistic objects
+     */
     public static List<PlayerStatistic> fromJson(String json) {
-        JSONArray jsonArray = new JSONArray(json);
-        List<PlayerStatistic> statistics = new ArrayList<>();
+        final JSONArray jsonArray = new JSONArray(json);
+        final List<PlayerStatistic> statistics = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            PlayerStatistic statistic = new PlayerStatistic(
+            final PlayerStatistic statistic = new PlayerStatistic(
                     jsonObject.getInt("age"),
                     jsonObject.getInt("assists"),
                     jsonObject.getInt("blocks"),

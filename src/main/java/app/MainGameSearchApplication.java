@@ -3,7 +3,7 @@ package app;
 import data_access.DBSearchDataAccessObject;
 import data_access.SearchHistoryDataAccessObject;
 import data_access.PlayerStatisticsRepositoryImpl;
-import interface_adapter.PlayGameAspects.PlayGameController;
+import interface_adapter.play_game_aspects.PlayGameController;
 import interface_adapter.search.SearchHistoryController;
 import interface_adapter.search.SearchViewModel;
 import use_case.playgame.FetchPlayerStatisticsInteractor;
