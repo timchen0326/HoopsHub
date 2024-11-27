@@ -1,35 +1,35 @@
 package view;
 
-import util.MusicManager;
+import view.MusicManager.AudioController;
+import view.ThemeManager.ThemeController;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class SettingsPanel extends JPanel {
-    private final ThemeManager themeManager = ThemeManager.getInstance();
-    private final MusicManager musicManager = MusicManager.getInstance();
+    private final ThemeController themeController;
+    private final AudioController audioController;
 
-    public SettingsPanel(MainFrame frame) {
+    public SettingsPanel(MainFrame frame, AudioController audioController, ThemeController themeController) {
+        this.audioController = audioController;
+        this.themeController = themeController;
         setLayout(new BorderLayout());
 
-        JButton toggleButton = new JButton("Switch to Dark Mode");
-        updateButtonLabel(toggleButton);
-
+        JButton toggleButton = new JButton(themeController.isDarkMode() ? "Switch to Light Mode" : "Switch to Dark Mode");
         toggleButton.addActionListener(e -> {
-            themeManager.setDarkMode(!themeManager.isDarkMode());
-            updateTheme();
-            updateButtonLabel(toggleButton);
+            themeController.toggleDarkMode();
+            updateTheme(); // Update the panel's theme
+            toggleButton.setText(themeController.isDarkMode() ? "Switch to Light Mode" : "Switch to Dark Mode");
         });
 
-        JButton muteButton = new JButton("Mute Music");
-        updateMuteButton(muteButton);
-
+        JButton muteButton = new JButton(audioController.isMuted() ? "Unmute Music" : "Mute Music");
         muteButton.addActionListener(e -> {
-            if (musicManager.isMuted()) {
-                musicManager.unmuteMusic();
+            if (audioController.isMuted()) {
+                audioController.unmute();
             } else {
-                musicManager.muteMusic();
+                audioController.mute();
             }
-            updateMuteButton(muteButton);
+            muteButton.setText(audioController.isMuted() ? "Unmute Music" : "Mute Music");
         });
 
         JButton backButton = new JButton("Back");
@@ -41,15 +41,8 @@ public class SettingsPanel extends JPanel {
     }
 
     private void updateTheme() {
-        setBackground(themeManager.getBackgroundColor());
-        setForeground(themeManager.getTextColor());
-    }
-
-    private void updateButtonLabel(JButton button) {
-        button.setText(themeManager.isDarkMode() ? "Switch to Light Mode" : "Switch to Dark Mode");
-    }
-
-    private void updateMuteButton(JButton button) {
-        button.setText(musicManager.isMuted() ? "Unmute Music" : "Mute Music");
+        setBackground(themeController.getBackgroundColor());
+        setForeground(themeController.getTextColor());
+        repaint();
     }
 }

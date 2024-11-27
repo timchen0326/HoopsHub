@@ -1,0 +1,429 @@
+Index: src/main/java/view/MainFrame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport java.awt.CardLayout;\nimport java.awt.Component;\nimport java.awt.event.ActionListener;\n\nimport javax.swing.JFrame;\nimport javax.swing.JPanel;\n\nimport data_access.AccountDataAccessObject;\nimport data_access.SearchHistoryDataAccessObject;\nimport interface_adapter.PlayGameAspects.PlayGameController;\nimport interface_adapter.account.AccountController;\nimport interface_adapter.account.AccountPresenter;\nimport interface_adapter.play_game_aspects.PlayGameController;\nimport interface_adapter.search.SearchHistoryController;\nimport use_case.account.AccountInteractor;\nimport use_case.search.SearchInteractor;\nimport use_case.search.SearchHistoryInteractor;\nimport view.MusicManager.*;\nimport view.Play.PlayGamePanel;\nimport view.ThemeManager.ThemeController;\nimport view.ThemeManager.ThemeManager;\nimport use_case.search.SearchInteractor;\nimport view.playgame.PlayGamePanel;\n\n/**\n * MainFrame class represents the main application frame with various panels.\n */\npublic class MainFrame extends JFrame {\n    private static final int FRAME_WIDTH = 800;\n    private static final int FRAME_HEIGHT = 400;\n    private static final String MUSIC_PATH =\n            \"/Users/mohitbendale/HoopsHub/src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav\";\n\n    private final CardLayout cardLayout = new CardLayout();\n    private final JPanel mainPanel = new JPanel(cardLayout);\n    private final ThemeManager themeManager = ThemeManager.getInstance();\n\n    /**\n     * Constructs the MainFrame with the necessary controllers and interactors.\n     *\n     * @param controller        the PlayGameController instance\n     * @param searchInteractor  the SearchInteractor instance\n     */\n    public MainFrame(PlayGameController controller, SearchInteractor searchInteractor) {\n        setTitle(\"Game App\");\n        setSize(FRAME_WIDTH, FRAME_HEIGHT);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n        AudioController audioController = util.MusicManager.getInstance();\n        ThemeController themeController = ThemeManager.getInstance();\n        util.MusicManager.getInstance().playMusic(MUSIC_PATH);\n\n        // Add panels to the CardLayout\n        mainPanel.add(new HomePanel(this), \"Home\");                        // Home panel\n        mainPanel.add(new PlayGamePanel(this, controller), \"Play\");        // PlayGame panel\n        mainPanel.add(new SearchPanel(this, searchInteractor), \"Search\"); // Search panel\n        mainPanel.add(new SettingsPanel(this, audioController, themeController), \"Settings\");\n\n        final SearchHistoryController searchHistoryController = initializeSearchHistoryController();\n        mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), \"SearchHistory\");\n\n        // Add LoginView\n        final AccountController accountController = initializeAccountController();\n        final ActionListener switchToSignUp = event -> switchTo(\"SignUp\");\n        final LoginView loginView = new LoginView(accountController, switchToSignUp);\n        mainPanel.add(loginView, \"Login\");\n\n        add(mainPanel);\n    }\n\n    /**\n     * Switches to a specific panel by name.\n     *\n     * @param panelName the name of the panel to switch to\n     */\n    public void switchTo(String panelName) {\n        cardLayout.show(mainPanel, panelName);\n        applyTheme();\n    }\n\n    /**\n     * Applies the current theme to all components.\n     */\n    private void applyTheme() {\n        for (Component comp : mainPanel.getComponents()) {\n            if (comp instanceof JPanel) {\n                comp.setBackground(themeManager.getBackgroundColor());\n                comp.setForeground(themeManager.getTextColor());\n            }\n        }\n    }\n\n    /**\n     * Starts the MainFrame with the Login panel visible.\n     */\n    public void start() {\n        setVisible(true);\n        switchTo(\"Login\");\n    }\n\n    /**\n     * Initializes the AccountController for managing login and account creation.\n     *\n     * @return an AccountController instance\n     */\n    private AccountController initializeAccountController() {\n        final AccountDataAccessObject accountDataAccess = new AccountDataAccessObject();\n        final AccountPresenter accountPresenter = new AccountPresenter(this, new JFrame(\"Login\"));\n        final AccountInteractor accountInteractor = new AccountInteractor(accountDataAccess, accountPresenter);\n        return new AccountController(accountInteractor);\n    }\n\n    /**\n     * Initializes the SearchHistoryController for managing the search history feature.\n     *\n     * @return a SearchHistoryController instance\n     */\n    private SearchHistoryController initializeSearchHistoryController() {\n        final SearchHistoryDataAccessObject searchHistoryDataAccess = new SearchHistoryDataAccessObject();\n        final SearchHistoryInteractor searchHistoryInteractor = new SearchHistoryInteractor(searchHistoryDataAccess);\n        return new SearchHistoryController(searchHistoryInteractor);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/view/MainFrame.java b/src/main/java/view/MainFrame.java
+--- a/src/main/java/view/MainFrame.java	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
++++ b/src/main/java/view/MainFrame.java	(date 1732722861522)
+@@ -9,7 +9,7 @@
+ 
+ import data_access.AccountDataAccessObject;
+ import data_access.SearchHistoryDataAccessObject;
+-import interface_adapter.PlayGameAspects.PlayGameController;
++import interface_adapter.play_game_aspects.PlayGameController;
+ import interface_adapter.account.AccountController;
+ import interface_adapter.account.AccountPresenter;
+ import interface_adapter.play_game_aspects.PlayGameController;
+@@ -18,7 +18,7 @@
+ import use_case.search.SearchInteractor;
+ import use_case.search.SearchHistoryInteractor;
+ import view.MusicManager.*;
+-import view.Play.PlayGamePanel;
++import view.playgame.PlayGamePanel;
+ import view.ThemeManager.ThemeController;
+ import view.ThemeManager.ThemeManager;
+ import use_case.search.SearchInteractor;
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+deleted file mode 100644
+--- a/.idea/workspace.xml	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
++++ /dev/null	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
+@@ -1,393 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="AutoImportSettings">
+-    <option name="autoReloadType" value="SELECTIVE" />
+-  </component>
+-  <component name="ChangeListManager">
+-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="clean up">
+-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager/AudioController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager/MusicManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager/ThemeController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager/ThemeManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/view/SettingsPanelTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MusicManager.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ThemeManager.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" afterDir="false" />
+-    </list>
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Interface" />
+-        <option value="Class" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_BRANCH_BY_REPOSITORY">
+-      <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
+-      </map>
+-    </option>
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+-  </component>
+-  <component name="GitHubPullRequestSearchHistory">{
+-  &quot;lastFilter&quot;: {
+-    &quot;state&quot;: &quot;OPEN&quot;,
+-    &quot;assignee&quot;: &quot;rjlee224&quot;
+-  }
+-}</component>
+-  <component name="GitToolBoxStore">
+-    <option name="recentBranches">
+-      <RecentBranches>
+-        <option name="branchesForRepo">
+-          <list>
+-            <RecentBranchesForRepo>
+-              <option name="branches">
+-                <list>
+-                  <RecentBranch>
+-                    <option name="branchName" value="model-update" />
+-                    <option name="lastUsedInstant" value="1731947528" />
+-                  </RecentBranch>
+-                  <RecentBranch>
+-                    <option name="branchName" value="main" />
+-                    <option name="lastUsedInstant" value="1731947527" />
+-                  </RecentBranch>
+-                </list>
+-              </option>
+-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+-            </RecentBranchesForRepo>
+-          </list>
+-        </option>
+-      </RecentBranches>
+-    </option>
+-  </component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/timchen0326/HoopsHub.git",
+-    "accountId": "3ec1ab34-ecf2-4d6b-8aee-aa0ae8346736"
+-  }
+-}]]></component>
+-  <component name="ProjectColorInfo">{
+-  &quot;associatedIndex&quot;: 5
+-}</component>
+-  <component name="ProjectId" id="2owl3RKtehtcblmMrK11SEfNMZM" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-  </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.GameApplication.executor": "Run",
+-    "Application.MainApplication.executor": "Run",
+-    "Application.MainGameSearchApplication.executor": "Run",
+-    "Application.MainSearchApplication.executor": "Run",
+-    "JUnit.All in note-application.executor": "Coverage",
+-    "JUnit.SearchHistoryInteractorTest (1).executor": "Coverage",
+-    "JUnit.SearchHistoryInteractorTest.executor": "Coverage",
+-    "JUnit.SearchHistoryRecordTest.executor": "Coverage",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "clean-up-for-search-and-gamehistory",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+-    "vue.rearranger.settings.migration": "true"
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.MainApplication.executor": "Run",
+-    "Application.MainSearchApplication.executor": "Run",
+-    "JUnit.All in note-application.executor": "Run",
+-    "JUnit.MusicManagerTest.executor": "Run",
+-    "JUnit.SettingsPanelTest.executor": "Run",
+-    "JUnit.view in note-application.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+-    "git-widget-placeholder": "mohit",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+-    "vue.rearranger.settings.migration": "true"
+-  }
+-}]]></component>
+-  <component name="RunManager" selected="Application.MainApplication">
+-}]]></component>
+-  <component name="RunManager">
+-    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
+-      <module name="note-application" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="app.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="All in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="TEST_OBJECT" value="package" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="MusicManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="MusicManagerTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="view in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="TEST_OBJECT" value="directory" />
+-      <dir value="$PROJECT_DIR$/src/test/java/view" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="SearchHistoryInteractorTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="use_case.search.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="use_case.search" />
+-      <option name="MAIN_CLASS_NAME" value="use_case.search.SearchHistoryInteractorTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="SearchHistoryInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="SearchHistoryInteractorTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="SearchHistoryRecordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="SearchHistoryRecordTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <recent_temporary>
+-      <list>
+-        <item itemvalue="JUnit.view in note-application" />
+-        <item itemvalue="JUnit.MusicManagerTest" />
+-        <item itemvalue="Application.MainApplication" />
+-        <item itemvalue="JUnit.All in note-application" />
+-        <item itemvalue="Application.MainApplication" />
+-        <item itemvalue="JUnit.SearchHistoryRecordTest" />
+-        <item itemvalue="JUnit.SearchHistoryInteractorTest (1)" />
+-        <item itemvalue="JUnit.SearchHistoryInteractorTest" />
+-        <item itemvalue="JUnit.All in note-application" />
+-      </list>
+-    </recent_temporary>
+-  </component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+-      </set>
+-    </attachedChunks>
+-  </component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button" />
+-      <created>1725200606304</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1725200606304</updated>
+-      <workItem from="1731788321326" duration="6950000" />
+-      <workItem from="1731946685436" duration="6724000" />
+-      <workItem from="1732159120624" duration="6025000" />
+-      <workItem from="1732671091439" duration="5113000" />
+-    </task>
+-    <task id="LOCAL-00001" summary="add search button and back button">
+-      <option name="closed" value="true" />
+-      <created>1731396633141</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1731396633141</updated>
+-    </task>
+-    <task id="LOCAL-00002" summary="fix game history fonts and add test cases">
+-      <option name="closed" value="true" />
+-      <created>1732557144665</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732557144665</updated>
+-    </task>
+-    <task id="LOCAL-00003" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732671714758</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732671714758</updated>
+-    </task>
+-    <task id="LOCAL-00004" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732672411906</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732672411906</updated>
+-    </task>
+-    <task id="LOCAL-00005" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732672756365</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732672756365</updated>
+-    </task>
+-    <task id="LOCAL-00006" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732672953042</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732672953042</updated>
+-    </task>
+-    <task id="LOCAL-00007" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673223319</created>
+-      <option name="number" value="00007" />
+-      <option name="presentableId" value="LOCAL-00007" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673223319</updated>
+-    </task>
+-    <task id="LOCAL-00008" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673463910</created>
+-      <option name="number" value="00008" />
+-      <option name="presentableId" value="LOCAL-00008" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673463910</updated>
+-    </task>
+-    <task id="LOCAL-00009" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673785370</created>
+-      <option name="number" value="00009" />
+-      <option name="presentableId" value="LOCAL-00009" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673785370</updated>
+-    </task>
+-    <task id="LOCAL-00010" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673905615</created>
+-      <option name="number" value="00010" />
+-      <option name="presentableId" value="LOCAL-00010" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673905615</updated>
+-    </task>
+-    <task id="LOCAL-00011" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732674467120</created>
+-      <option name="number" value="00011" />
+-      <option name="presentableId" value="LOCAL-00011" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732674467120</updated>
+-    </task>
+-    <task id="LOCAL-00012" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732674707254</created>
+-      <option name="number" value="00012" />
+-      <option name="presentableId" value="LOCAL-00012" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732674707254</updated>
+-    </task>
+-    <task id="LOCAL-00013" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732675059365</created>
+-      <option name="number" value="00013" />
+-      <option name="presentableId" value="LOCAL-00013" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732675059365</updated>
+-    </task>
+-    <option name="localTasksCounter" value="14" />
+-    <servers />
+-  </component>
+-  <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="3" />
+-  </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State>
+-              <option name="FILTERS">
+-                <map>
+-                  <entry key="branch">
+-                    <value>
+-                      <list>
+-                        <option value="origin/Ian" />
+-                      </list>
+-                    </value>
+-                  </entry>
+-                </map>
+-              </option>
+-            </State>
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="add search button and back button" />
+-    <MESSAGE value="fix game history fonts and add test cases" />
+-    <MESSAGE value="clean up" />
+-    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
+-  </component>
+-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest.ic" NAME="SearchHistoryInteractorTest Coverage Results" MODIFIED="1732557492905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732557367130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>entity.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/_10$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732563575673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/_10$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732560939600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/Branch$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732562524146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest__1_.ic" NAME="SearchHistoryInteractorTest (1) Coverage Results" MODIFIED="1732557648400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>use_case.search.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/Project$SearchHistoryRecordTest.ic" NAME="SearchHistoryRecordTest Coverage Results" MODIFIED="1732553862414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-  </component>
+-</project>
+\ No newline at end of file

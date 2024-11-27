@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import use_case.search.SearchInteractor;
+import view.ThemeManager.ThemeManager;
 
 /**
  * Panel for searching user data and displaying results.

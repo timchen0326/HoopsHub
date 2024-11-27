@@ -17,6 +17,9 @@ import use_case.account.AccountInteractor;
 import use_case.search.SearchHistoryInteractor;
 import use_case.search.SearchInteractor;
 import view.playgame.PlayGamePanel;
+import view.MusicManager.*;
+import view.ThemeManager.ThemeController;
+import view.ThemeManager.ThemeManager;
 
 /**
  * MainFrame class represents the main application frame with various panels.
@@ -42,12 +45,15 @@ public class MainFrame extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         util.MusicManager.getInstance().playMusic(MUSIC_PATH);
+        AudioController audioController = util.MusicManager.getInstance();
+        ThemeController themeController = ThemeManager.getInstance();
+
 
         // Add panels to the CardLayout
-        mainPanel.add(new HomePanel(this), "Home");
-        mainPanel.add(new PlayGamePanel(this, controller), "Play");
-        mainPanel.add(new SearchPanel(this, searchInteractor), "Search");
-        mainPanel.add(new SettingsPanel(this), "Settings");
+        mainPanel.add(new HomePanel(this), "Home");                        // Home panel
+        mainPanel.add(new PlayGamePanel(this, controller), "Play");        // PlayGame panel
+        mainPanel.add(new SearchPanel(this, searchInteractor), "Search"); // Search panel
+        mainPanel.add(new SettingsPanel(this, audioController, themeController), "Settings");
 
         final SearchHistoryController searchHistoryController = initializeSearchHistoryController();
         mainPanel.add(new SearchHistoryPanel(searchHistoryController, this), "SearchHistory");
