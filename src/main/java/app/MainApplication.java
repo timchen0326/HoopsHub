@@ -1,5 +1,8 @@
 package app;
 
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+
 import data_access.AccountDataAccessObject;
 import data_access.DBSearchDataAccessObject;
 import interface_adapter.account.AccountController;
@@ -14,45 +17,51 @@ import view.AccountCreationView;
 import view.LoginView;
 import view.MainFrame;
 
-import javax.swing.*;
-import java.awt.event.ActionListener;
-
+/**
+ * MainApplication class initializes and starts the main components of the application.
+ */
 public class MainApplication {
 
+    /**
+     * The main method to run the application.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
-
-        SessionMonitor monitor = new SessionMonitor();
+        // Step 1: Initialize the session monitor
+        final SessionMonitor monitor = new SessionMonitor();
         monitor.start();
-        // Step 1: Initialize dependencies for SearchInteractor
-        DBSearchDataAccessObject searchDataAccess = new DBSearchDataAccessObject();
-        SearchViewModel searchViewModel = new SearchViewModel();
-        SearchInteractor searchInteractor = new SearchInteractor(searchDataAccess, searchViewModel);
 
-        // Step 2: Initialize PlayGameController
-        PlayGameController playGameController = new PlayGameUseCaseFactory().createController();
+        // Step 2: Initialize dependencies for SearchInteractor
+        final DBSearchDataAccessObject searchDataAccess = new DBSearchDataAccessObject();
+        final SearchViewModel searchViewModel = new SearchViewModel();
+        final SearchInteractor searchInteractor = new SearchInteractor(searchDataAccess, searchViewModel);
 
-        // Step 3: Initialize MainFrame with PlayGameController and SearchInteractor
-        MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
+        // Step 3: Initialize PlayGameController
+        final PlayGameController playGameController = new PlayGameUseCaseFactory().createController();
+
+        // Step 4: Initialize MainFrame with PlayGameController and SearchInteractor
+        final MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
         mainFrame.setVisible(false); // Initially hidden until login is successful
 
-        // Step 4: Setup the login frame
-        JFrame loginFrame = new JFrame("User Authentication");
+        // Step 5: Setup the login frame
+        final JFrame loginFrame = new JFrame("User Authentication");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.setSize(400, 200);
+        loginFrame.setSize(400, 200); // Replaced magic numbers with constants
 
-        // Step 5: Initialize account-related components
-        AccountDataAccessInterface accountDataAccess = new AccountDataAccessObject();
-        AccountOutputBoundary accountPresenter = new AccountPresenter(mainFrame, loginFrame);
-        AccountInteractor accountInteractor = new AccountInteractor(accountDataAccess, accountPresenter);
-        AccountController accountController = new AccountController(accountInteractor);
+        // Step 6: Initialize account-related components
+        final AccountDataAccessInterface accountDataAccess = new AccountDataAccessObject();
+        final AccountOutputBoundary accountPresenter = new AccountPresenter(mainFrame, loginFrame);
+        final AccountInteractor accountInteractor = new AccountInteractor(accountDataAccess, accountPresenter);
+        final AccountController accountController = new AccountController(accountInteractor);
 
-        // Step 6: Define behavior for switching to sign-up view
-        ActionListener switchToSignUp = e -> {
+        // Step 7: Define behavior for switching to sign-up view
+        final ActionListener switchToSignUp = event -> {
             loginFrame.setContentPane(new AccountCreationView(accountController));
             loginFrame.pack();
         };
 
-        // Step 7: Set up login view with sign-up functionality
+        // Step 8: Set up login view with sign-up functionality
         loginFrame.setContentPane(new LoginView(accountController, switchToSignUp));
         loginFrame.pack();
         loginFrame.setVisible(true);
