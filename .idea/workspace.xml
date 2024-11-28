@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="change" />
+    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="clean up">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/entity/SearchHistoryRecord/SearchHistoryRecordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/entity/SearchHistoryRecord/SearchHistoryRecordTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,9 +87,9 @@
     "JUnit.All in note-application.executor": "Coverage",
     "JUnit.SearchHistoryInteractorTest (1).executor": "Coverage",
     "JUnit.SearchHistoryInteractorTest.executor": "Coverage",
-    "JUnit.SearchHistoryRecordTest.executor": "Coverage",
+    "JUnit.SearchHistoryRecordTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Game-History",
+    "git-widget-placeholder": "clean-up-for-search-and-gamehistory",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -96,7 +99,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MainApplication">
+  <component name="RunManager" selected="JUnit.SearchHistoryRecordTest">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
@@ -286,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732675059365</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="clean up">
+      <option name="closed" value="true" />
+      <created>1732759473485</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732759473485</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,9 +329,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add search button and back button" />
     <MESSAGE value="fix game history fonts and add test cases" />
-    <MESSAGE value="clean up" />
     <MESSAGE value="change" />
-    <option name="LAST_COMMIT_MESSAGE" value="change" />
+    <MESSAGE value="clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
