@@ -16,7 +16,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testFetchPlayerStatistics() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         PlayerStatistic stat1 = new PlayerStatistic(25, 5, 2, 6, 0.56, 15, 8, 0.53,
                 4, 5, 0.8, 82, 82, 1, 2400, 2, 3,
@@ -40,7 +41,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testFetchPlayerStatisticsByYear() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         PlayerStatistic stat = new PlayerStatistic(25, 5, 2, 6, 0.56, 15, 8, 0.53,
                 4, 5, 0.8, 82, 82, 1, 2400, 2, 3,
@@ -59,7 +61,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testFetchPlayerStatisticsByYearNullReturn() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         when(mockRepo.fetchStatsForPlayerByYear("Unknown Player", 2023)).thenReturn(null);
 
@@ -71,7 +74,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testGetAvailableYears() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         when(mockRepo.fetchAvailableYearsForPlayer("LeBron James")).thenReturn(Arrays.asList(2020, 2021, 2022));
 
@@ -86,7 +90,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testGetAvailableYearsEmptyList() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         when(mockRepo.fetchAvailableYearsForPlayer("Unknown Player")).thenReturn(Collections.emptyList());
 
@@ -96,35 +101,11 @@ public class FetchPlayerStatisticsInteractorTest {
         assertTrue(result.isEmpty());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetAverageStatInvalidYear() {
-        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
-
-        when(mockRepo.fetchStatsForPlayerByYear("LeBron James", 2023)).thenReturn(null);
-
-        interactor.getAverageStat("LeBron James", "2023", "Average Points");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetAverageStatInvalidStatType() {
-        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
-
-        PlayerStatistic stat = new PlayerStatistic(25, 5, 2, 6, 0.56, 15, 8, 0.53,
-                4, 5, 0.8, 82, 82, 1, 2400, 2, 3,
-                "123", "LeBron James", 2000, "SF", 2023, 2,
-                "Lakers", 100, 40, 0.4, 600, 30, 200, 100, 0.5);
-
-        when(mockRepo.fetchStatsForPlayerByYear("LeBron James", 2023)).thenReturn(stat);
-
-        interactor.getAverageStat("LeBron James", "2023", "InvalidStatType");
-    }
-
     @Test
     public void testCalculateAveragePoints() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         PlayerStatistic stat = new PlayerStatistic(25, 5, 2, 6, 0.56, 15, 8, 0.53,
                 4, 5, 0.8, 10, 10, 1, 2400, 2, 3,
@@ -141,7 +122,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testCalculateAverageRebounds() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         PlayerStatistic stat = new PlayerStatistic(25, 5, 2, 6, 0.56, 15, 8, 0.53,
                 4, 5, 0.8, 10, 10, 1, 2400, 2, 3,
@@ -158,7 +140,8 @@ public class FetchPlayerStatisticsInteractorTest {
     @Test
     public void testCalculateAverageAssists() {
         PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
-        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
 
         PlayerStatistic stat = new PlayerStatistic(25, 50, 2, 6, 0.56, 15, 8, 0.53,
                 4, 5, 0.8, 10, 10, 1, 2400, 2, 3,
@@ -170,5 +153,75 @@ public class FetchPlayerStatisticsInteractorTest {
         double avgAssists = interactor.getAverageStat("LeBron James", "2023", "Average Assists");
 
         assertEquals(5.0, avgAssists, 0.001);
+    }
+
+    @Test
+    public void testFetchPlayerStatisticsExceptionHandling() {
+        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
+
+        when(mockRepo.fetchAllStatisticsForPlayer("LeBron James")).thenThrow(new RuntimeException("Database error"));
+
+        List<PlayerStatistic> result = interactor.fetchPlayerStatistics("LeBron James");
+
+        assertNull(result);
+        verify(mockOutputBoundary).presentError("Database error");
+    }
+
+    @Test
+    public void testFetchPlayerStatisticsByYearExceptionHandling() {
+        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
+
+        when(mockRepo.fetchStatsForPlayerByYear("LeBron James", 2023)).thenThrow(new RuntimeException("Database error"));
+
+        PlayerStatistic result = interactor.fetchPlayerStatisticsByYear("LeBron James", 2023);
+
+        assertNull(result);
+        verify(mockOutputBoundary).presentError("Database error");
+    }
+
+    @Test
+    public void testGetAvailableYearsExceptionHandling() {
+        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
+
+        when(mockRepo.fetchAvailableYearsForPlayer("LeBron James")).thenThrow(new RuntimeException("Database error"));
+
+        List<String> result = interactor.getAvailableYears("LeBron James");
+
+        assertNull(result);
+        verify(mockOutputBoundary).presentError("Database error");
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testCalculateAverageInvalidStatType() {
+        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
+
+        PlayerStatistic stat = new PlayerStatistic(25, 5, 2, 6, 0.56, 15, 8, 0.53,
+                4, 5, 0.8, 10, 10, 1, 2400, 2, 3,
+                "123", "LeBron James", 2000, "SF", 2023, 2,
+                "Lakers", 100, 40, 0.4, 600, 30, 200, 100, 0.5);
+
+        when(mockRepo.fetchStatsForPlayerByYear("LeBron James", 2023)).thenReturn(stat);
+
+        interactor.getAverageStat("LeBron James", "2023", "InvalidStatType");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetAverageStatInvalidYear() {
+        PlayerStatisticsRepository mockRepo = mock(PlayerStatisticsRepository.class);
+        FetchPlayerStatisticsOutputBoundary mockOutputBoundary = mock(FetchPlayerStatisticsOutputBoundary.class);
+        FetchPlayerStatisticsInteractor interactor = new FetchPlayerStatisticsInteractor(mockRepo, mockOutputBoundary);
+
+        when(mockRepo.fetchStatsForPlayerByYear("LeBron James", 2023)).thenReturn(null);
+
+        interactor.getAverageStat("LeBron James", "2023", "Average Points");
     }
 }
