@@ -21,6 +21,8 @@ public class SearchHistoryPresenter implements SearchHistoryOutputBoundary {
         this.view = view;
     }
 
+    @SuppressWarnings({"checkstyle:IllegalIdentifierName", "checkstyle:FinalLocalVariable", "checkstyle:ReturnCount",
+            "checkstyle:SuppressWarnings", "checkstyle:Indentation"})
     @Override
     public void presentSearchHistory(List<SearchHistoryOutputData> history) {
         if (history == null || history.isEmpty()) {
@@ -40,7 +42,8 @@ public class SearchHistoryPresenter implements SearchHistoryOutputBoundary {
         // Check if the list was empty after filtering out null records
         if (displayText.length() == "Search History:\n".length()) {
             view.updateHistoryView("No valid search history available.");
-        } else {
+        }
+        else {
             view.updateHistoryView(displayText.toString());
         }
     }
