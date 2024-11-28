@@ -1,0 +1,546 @@
+Index: src/test/java/view/SettingsPanelTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Test;\nimport javax.swing.*;\nimport static org.junit.jupiter.api.Assertions.*;\nimport static org.mockito.Mockito.mock;\n\nimport view.MainFrame;\nimport view.SettingsPanel;\nimport interface_adapter.PlayGameAspects.PlayGameController;\nimport use_case.playgame.FetchPlayerYearsUseCase;\nimport use_case.playgame.FetchPlayerStatsUseCase;\nimport use_case.playgame.GetAverageStatUseCase;\nimport use_case.search.SearchInteractor;\nimport data_access.DBSearchDataAccessObject;\nimport interface_adapter.search.SearchViewModel;\n\npublic class SettingsPanelTest {\n\n    private SettingsPanel settingsPanel;\n    private JButton toggleButton;\n    private JButton muteButton;\n\n    @BeforeEach\n    public void setup() {\n        FetchPlayerYearsUseCase yearsUseCase = mock(FetchPlayerYearsUseCase.class);\n        FetchPlayerStatsUseCase statsUseCase = mock(FetchPlayerStatsUseCase.class);\n        GetAverageStatUseCase averageStatUseCase = mock(GetAverageStatUseCase.class);\n\n        PlayGameController playGameController = new PlayGameController(yearsUseCase, statsUseCase, averageStatUseCase);\n\n        DBSearchDataAccessObject dbSearchData = mock(DBSearchDataAccessObject.class);\n        SearchViewModel searchViewModel = mock(SearchViewModel.class);\n\n        SearchInteractor searchInteractor = new SearchInteractor(dbSearchData, searchViewModel);\n\n        MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);\n        settingsPanel = new SettingsPanel(mainFrame);\n    }\n\n\n    @Test\n    public void testToggleTheme() {\n        // Simulate button click for toggling theme\n        toggleButton.doClick();\n\n        // Validate the theme change indirectly\n        assertNotNull(settingsPanel);\n        assertTrue(toggleButton.getText().contains(\"Mode\")); // Should update label to reflect theme change\n    }\n\n    @Test\n    public void testMuteUnmute() {\n        // Simulate button click for toggling mute state\n        muteButton.doClick();\n\n        // Validate mute/unmute state indirectly\n        assertNotNull(settingsPanel);\n        assertTrue(muteButton.getText().contains(\"Music\")); // Should update label to reflect mute state\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/view/SettingsPanelTest.java b/src/test/java/view/SettingsPanelTest.java
+--- a/src/test/java/view/SettingsPanelTest.java	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
++++ b/src/test/java/view/SettingsPanelTest.java	(date 1732762664457)
+@@ -1,60 +1,76 @@
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
++import view.MusicManager.AudioController;
++import view.SettingsPanel;
++import view.MainFrame;
++import view.ThemeManager.ThemeController;
+ import javax.swing.*;
++import static org.mockito.Mockito.*;
+ import static org.junit.jupiter.api.Assertions.*;
+-import static org.mockito.Mockito.mock;
+-
+-import view.MainFrame;
+-import view.SettingsPanel;
+-import interface_adapter.PlayGameAspects.PlayGameController;
+-import use_case.playgame.FetchPlayerYearsUseCase;
+-import use_case.playgame.FetchPlayerStatsUseCase;
+-import use_case.playgame.GetAverageStatUseCase;
+-import use_case.search.SearchInteractor;
+-import data_access.DBSearchDataAccessObject;
+-import interface_adapter.search.SearchViewModel;
+ 
+ public class SettingsPanelTest {
+ 
+     private SettingsPanel settingsPanel;
+-    private JButton toggleButton;
+     private JButton muteButton;
++    private JButton themeButton;
++    private AudioController mockAudioController;
++    private ThemeController mockThemeController;
+ 
+     @BeforeEach
+     public void setup() {
+-        FetchPlayerYearsUseCase yearsUseCase = mock(FetchPlayerYearsUseCase.class);
+-        FetchPlayerStatsUseCase statsUseCase = mock(FetchPlayerStatsUseCase.class);
+-        GetAverageStatUseCase averageStatUseCase = mock(GetAverageStatUseCase.class);
+-
+-        PlayGameController playGameController = new PlayGameController(yearsUseCase, statsUseCase, averageStatUseCase);
++        // Create mock dependencies
++        mockAudioController = mock(AudioController.class);
++        mockThemeController = mock(ThemeController.class);
+ 
+-        DBSearchDataAccessObject dbSearchData = mock(DBSearchDataAccessObject.class);
+-        SearchViewModel searchViewModel = mock(SearchViewModel.class);
++        // Set default behavior for mocks
++        when(mockAudioController.isMuted()).thenReturn(false);
++        when(mockThemeController.isDarkMode()).thenReturn(false);
+ 
+-        SearchInteractor searchInteractor = new SearchInteractor(dbSearchData, searchViewModel);
++        // Initialize MainFrame and SettingsPanel
++        MainFrame mockFrame = mock(MainFrame.class);
++        settingsPanel = new SettingsPanel(mockFrame, mockAudioController, mockThemeController);
+ 
+-        MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
+-        settingsPanel = new SettingsPanel(mainFrame);
++        // Access buttons via the UI components
++        muteButton = new JButton(mockAudioController.isMuted() ? "Unmute Music" : "Mute Music");
++        themeButton = new JButton(mockThemeController.isDarkMode() ? "Switch to Light Mode" : "Switch to Dark Mode");
+     }
+-
+ 
+     @Test
+-    public void testToggleTheme() {
+-        // Simulate button click for toggling theme
+-        toggleButton.doClick();
++    public void testMuteButtonTogglesAudioController() {
++        // Extract the real mute button from SettingsPanel
++        JButton muteButton = (JButton) settingsPanel.getComponent(1); // Adjust index based on layout
+ 
+-        // Validate the theme change indirectly
+-        assertNotNull(settingsPanel);
+-        assertTrue(toggleButton.getText().contains("Mode")); // Should update label to reflect theme change
+-    }
++        // Simulate a click to mute
++        when(mockAudioController.isMuted()).thenReturn(false);
++        muteButton.doClick();
++        verify(mockAudioController, times(1)).mute();
+ 
+-    @Test
+-    public void testMuteUnmute() {
+-        // Simulate button click for toggling mute state
++        // Simulate a click to unmute
++        when(mockAudioController.isMuted()).thenReturn(true);
+         muteButton.doClick();
++        verify(mockAudioController, times(1)).unmute();
++    }
++
++    @Test
++    public void testThemeButtonTogglesThemeController() {
++        JButton themeButton = (JButton) settingsPanel.getComponent(0); // Adjust index based on layout
+ 
+-        // Validate mute/unmute state indirectly
++        // Simulate a click to toggle theme
++        themeButton.doClick();
++        verify(mockThemeController, times(1)).toggleDarkMode();
++
++        // Simulate another click
++        themeButton.doClick();
++        verify(mockThemeController, times(2)).toggleDarkMode();
++    }
++
++    @Test
++    public void testPanelInitialization() {
++        // Verify that the SettingsPanel is not null
+         assertNotNull(settingsPanel);
+-        assertTrue(muteButton.getText().contains("Music")); // Should update label to reflect mute state
++
++        // Verify the buttons have correct initial text
++        assertEquals("Mute Music", muteButton.getText());
++        assertEquals("Switch to Dark Mode", themeButton.getText());
+     }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+deleted file mode 100644
+--- a/.idea/workspace.xml	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
++++ /dev/null	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
+@@ -1,393 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="AutoImportSettings">
+-    <option name="autoReloadType" value="SELECTIVE" />
+-  </component>
+-  <component name="ChangeListManager">
+-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="clean up">
+-    <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager/AudioController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MusicManager/MusicManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager/ThemeController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/view/ThemeManager/ThemeManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/view/SettingsPanelTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/HomePanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFrame.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MusicManager.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Play/PlayGamePanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SettingsPanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ThemeManager.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/MainNoteApplicationTest.java" afterDir="false" />
+-    </list>
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Interface" />
+-        <option value="Class" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_BRANCH_BY_REPOSITORY">
+-      <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
+-      </map>
+-    </option>
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+-  </component>
+-  <component name="GitHubPullRequestSearchHistory">{
+-  &quot;lastFilter&quot;: {
+-    &quot;state&quot;: &quot;OPEN&quot;,
+-    &quot;assignee&quot;: &quot;rjlee224&quot;
+-  }
+-}</component>
+-  <component name="GitToolBoxStore">
+-    <option name="recentBranches">
+-      <RecentBranches>
+-        <option name="branchesForRepo">
+-          <list>
+-            <RecentBranchesForRepo>
+-              <option name="branches">
+-                <list>
+-                  <RecentBranch>
+-                    <option name="branchName" value="model-update" />
+-                    <option name="lastUsedInstant" value="1731947528" />
+-                  </RecentBranch>
+-                  <RecentBranch>
+-                    <option name="branchName" value="main" />
+-                    <option name="lastUsedInstant" value="1731947527" />
+-                  </RecentBranch>
+-                </list>
+-              </option>
+-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+-            </RecentBranchesForRepo>
+-          </list>
+-        </option>
+-      </RecentBranches>
+-    </option>
+-  </component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/timchen0326/HoopsHub.git",
+-    "accountId": "3ec1ab34-ecf2-4d6b-8aee-aa0ae8346736"
+-  }
+-}]]></component>
+-  <component name="ProjectColorInfo">{
+-  &quot;associatedIndex&quot;: 5
+-}</component>
+-  <component name="ProjectId" id="2owl3RKtehtcblmMrK11SEfNMZM" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-  </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.GameApplication.executor": "Run",
+-    "Application.MainApplication.executor": "Run",
+-    "Application.MainGameSearchApplication.executor": "Run",
+-    "Application.MainSearchApplication.executor": "Run",
+-    "JUnit.All in note-application.executor": "Coverage",
+-    "JUnit.SearchHistoryInteractorTest (1).executor": "Coverage",
+-    "JUnit.SearchHistoryInteractorTest.executor": "Coverage",
+-    "JUnit.SearchHistoryRecordTest.executor": "Coverage",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "clean-up-for-search-and-gamehistory",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+-    "vue.rearranger.settings.migration": "true"
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.MainApplication.executor": "Run",
+-    "Application.MainSearchApplication.executor": "Run",
+-    "JUnit.All in note-application.executor": "Run",
+-    "JUnit.MusicManagerTest.executor": "Run",
+-    "JUnit.SettingsPanelTest.executor": "Run",
+-    "JUnit.view in note-application.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+-    "git-widget-placeholder": "mohit",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+-    "vue.rearranger.settings.migration": "true"
+-  }
+-}]]></component>
+-  <component name="RunManager" selected="Application.MainApplication">
+-}]]></component>
+-  <component name="RunManager">
+-    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
+-      <module name="note-application" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="app.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="All in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="TEST_OBJECT" value="package" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="MusicManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="MusicManagerTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="view in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="TEST_OBJECT" value="directory" />
+-      <dir value="$PROJECT_DIR$/src/test/java/view" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="SearchHistoryInteractorTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="use_case.search.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="use_case.search" />
+-      <option name="MAIN_CLASS_NAME" value="use_case.search.SearchHistoryInteractorTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="SearchHistoryInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="SearchHistoryInteractorTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="SearchHistoryRecordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="note-application" />
+-      <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="SearchHistoryRecordTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <recent_temporary>
+-      <list>
+-        <item itemvalue="JUnit.view in note-application" />
+-        <item itemvalue="JUnit.MusicManagerTest" />
+-        <item itemvalue="Application.MainApplication" />
+-        <item itemvalue="JUnit.All in note-application" />
+-        <item itemvalue="Application.MainApplication" />
+-        <item itemvalue="JUnit.SearchHistoryRecordTest" />
+-        <item itemvalue="JUnit.SearchHistoryInteractorTest (1)" />
+-        <item itemvalue="JUnit.SearchHistoryInteractorTest" />
+-        <item itemvalue="JUnit.All in note-application" />
+-      </list>
+-    </recent_temporary>
+-  </component>
+-  <component name="SharedIndexes">
+-    <attachedChunks>
+-      <set>
+-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+-      </set>
+-    </attachedChunks>
+-  </component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="add search button and back button" />
+-      <created>1725200606304</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1725200606304</updated>
+-      <workItem from="1731788321326" duration="6950000" />
+-      <workItem from="1731946685436" duration="6724000" />
+-      <workItem from="1732159120624" duration="6025000" />
+-      <workItem from="1732671091439" duration="5113000" />
+-    </task>
+-    <task id="LOCAL-00001" summary="add search button and back button">
+-      <option name="closed" value="true" />
+-      <created>1731396633141</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1731396633141</updated>
+-    </task>
+-    <task id="LOCAL-00002" summary="fix game history fonts and add test cases">
+-      <option name="closed" value="true" />
+-      <created>1732557144665</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732557144665</updated>
+-    </task>
+-    <task id="LOCAL-00003" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732671714758</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732671714758</updated>
+-    </task>
+-    <task id="LOCAL-00004" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732672411906</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732672411906</updated>
+-    </task>
+-    <task id="LOCAL-00005" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732672756365</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732672756365</updated>
+-    </task>
+-    <task id="LOCAL-00006" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732672953042</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732672953042</updated>
+-    </task>
+-    <task id="LOCAL-00007" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673223319</created>
+-      <option name="number" value="00007" />
+-      <option name="presentableId" value="LOCAL-00007" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673223319</updated>
+-    </task>
+-    <task id="LOCAL-00008" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673463910</created>
+-      <option name="number" value="00008" />
+-      <option name="presentableId" value="LOCAL-00008" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673463910</updated>
+-    </task>
+-    <task id="LOCAL-00009" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673785370</created>
+-      <option name="number" value="00009" />
+-      <option name="presentableId" value="LOCAL-00009" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673785370</updated>
+-    </task>
+-    <task id="LOCAL-00010" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732673905615</created>
+-      <option name="number" value="00010" />
+-      <option name="presentableId" value="LOCAL-00010" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732673905615</updated>
+-    </task>
+-    <task id="LOCAL-00011" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732674467120</created>
+-      <option name="number" value="00011" />
+-      <option name="presentableId" value="LOCAL-00011" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732674467120</updated>
+-    </task>
+-    <task id="LOCAL-00012" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732674707254</created>
+-      <option name="number" value="00012" />
+-      <option name="presentableId" value="LOCAL-00012" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732674707254</updated>
+-    </task>
+-    <task id="LOCAL-00013" summary="clean up">
+-      <option name="closed" value="true" />
+-      <created>1732675059365</created>
+-      <option name="number" value="00013" />
+-      <option name="presentableId" value="LOCAL-00013" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1732675059365</updated>
+-    </task>
+-    <option name="localTasksCounter" value="14" />
+-    <servers />
+-  </component>
+-  <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="3" />
+-  </component>
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State>
+-              <option name="FILTERS">
+-                <map>
+-                  <entry key="branch">
+-                    <value>
+-                      <list>
+-                        <option value="origin/Ian" />
+-                      </list>
+-                    </value>
+-                  </entry>
+-                </map>
+-              </option>
+-            </State>
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="add search button and back button" />
+-    <MESSAGE value="fix game history fonts and add test cases" />
+-    <MESSAGE value="clean up" />
+-    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
+-  </component>
+-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+-    <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest.ic" NAME="SearchHistoryInteractorTest Coverage Results" MODIFIED="1732557492905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732557367130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>entity.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/_10$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732563575673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/_10$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732560939600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/Branch$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732562524146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest__1_.ic" NAME="SearchHistoryInteractorTest (1) Coverage Results" MODIFIED="1732557648400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+-      <FILTER>use_case.search.*</FILTER>
+-    </SUITE>
+-    <SUITE FILE_PATH="coverage/Project$SearchHistoryRecordTest.ic" NAME="SearchHistoryRecordTest Coverage Results" MODIFIED="1732553862414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"MavenProjectsManager\">\n    <option name=\"originalFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"corretto-17\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 370c13426ea82bfdd2962b1463048c6fc165e4bf)
++++ b/.idea/misc.xml	(date 1732762722490)
+@@ -8,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
