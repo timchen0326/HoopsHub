@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="clean-up-for-search-and-gamehistory" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,7 +86,7 @@
     "JUnit.SearchHistoryInteractorTest.executor": "Coverage",
     "JUnit.SearchHistoryRecordTest.executor": "Coverage",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "mohit",
+    "git-widget-placeholder": "Game-History",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -153,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainApplication" />
         <item itemvalue="JUnit.SearchHistoryRecordTest" />
         <item itemvalue="JUnit.SearchHistoryInteractorTest (1)" />
         <item itemvalue="JUnit.SearchHistoryInteractorTest" />
         <item itemvalue="JUnit.All in note-application" />
+        <item itemvalue="Application.MainApplication" />
       </list>
     </recent_temporary>
   </component>
