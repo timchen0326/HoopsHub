@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6849a4b1-8de9-4a54-a3f8-cd71bb8b6279" name="Changes" comment="checkstyle" />
+    <list default="true" id="6849a4b1-8de9-4a54-a3f8-cd71bb8b6279" name="Changes" comment="I update SearchGameHistory clean architecture files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchHistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchHistoryPanel.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +19,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/Ian-clean-architecture" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -77,14 +83,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732781350204</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="I update SearchGameHistory clean architecture files">
+      <option name="closed" value="true" />
+      <created>1732781576244</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732781576244</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change" />
     <MESSAGE value="update clean architecture" />
     <MESSAGE value="checkstyle" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkstyle" />
+    <MESSAGE value="I update SearchGameHistory clean architecture files" />
+    <option name="LAST_COMMIT_MESSAGE" value="I update SearchGameHistory clean architecture files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Branch$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732562524146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
