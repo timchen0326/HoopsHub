@@ -1,8 +1,8 @@
+package view;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import view.MusicManager.AudioController;
-import view.SettingsPanel;
-import view.MainFrame;
 import view.ThemeManager.ThemeController;
 import javax.swing.*;
 import static org.mockito.Mockito.*;
