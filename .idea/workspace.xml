@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6849a4b1-8de9-4a54-a3f8-cd71bb8b6279" name="Changes" comment="I update SearchGameHistory clean architecture files">
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchInputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchOutputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchOutputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchRequestModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
-    </list>
+    <list default="true" id="6849a4b1-8de9-4a54-a3f8-cd71bb8b6279" name="Changes" comment="I update search clean architecture files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +90,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732781576244</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="I update search clean architecture files">
+      <option name="closed" value="true" />
+      <created>1732853969664</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732853969664</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -110,7 +106,8 @@
     <MESSAGE value="update clean architecture" />
     <MESSAGE value="checkstyle" />
     <MESSAGE value="I update SearchGameHistory clean architecture files" />
-    <option name="LAST_COMMIT_MESSAGE" value="I update SearchGameHistory clean architecture files" />
+    <MESSAGE value="I update search clean architecture files" />
+    <option name="LAST_COMMIT_MESSAGE" value="I update search clean architecture files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
