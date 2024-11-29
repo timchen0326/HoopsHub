@@ -1,9 +1,13 @@
 package interface_adapter.search;
 
+import use_case.search.SearchInputBoundary;
+import use_case.search.SearchRequestModel;
+
 /**
  * Controller for handling search requests.
  */
 public class SearchController {
+
     private final SearchInputBoundary interactor;
 
     /**
@@ -16,12 +20,12 @@ public class SearchController {
     }
 
     /**
-     * Handles a search request by creating a request model and passing it to the interactor.
+     * Executes a search operation by wrapping the username in a request model.
      *
      * @param username the username to search for
      */
     public void executeSearch(String username) {
         SearchRequestModel requestModel = new SearchRequestModel(username);
-        interactor.executeSearch(String.valueOf(requestModel));
+        interactor.executeSearch(requestModel);
     }
 }

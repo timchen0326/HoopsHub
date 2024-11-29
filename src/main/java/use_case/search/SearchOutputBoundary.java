@@ -1,4 +1,4 @@
-package interface_adapter.search;
+package use_case.search;
 
 /**
  * Output boundary interface for presenting search results.
@@ -12,3 +12,4 @@ public interface SearchOutputBoundary {
      */
     void presentResults(SearchOutputData outputData);
 }
+

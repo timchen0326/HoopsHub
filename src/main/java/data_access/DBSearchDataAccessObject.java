@@ -54,11 +54,13 @@ public class DBSearchDataAccessObject implements SearchDataAccessInterface {
 
                     results.add(new SearchResult(username, userId, wins, losses));
                 }
-            } else {
+            }
+            else {
                 System.out.println("Error: " + connection.getResponseCode() + " - " + connection.getResponseMessage());
             }
             connection.disconnect();
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             ex.printStackTrace();
         }
         return results;

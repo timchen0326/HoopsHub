@@ -1,4 +1,4 @@
-package interface_adapter.search;
+package use_case.search;
 
 import java.util.List;
 
@@ -26,3 +26,4 @@ public class SearchOutputData {
         return results;
     }
 }
+

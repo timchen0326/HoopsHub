@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import entity.SearchResult;
-import interface_adapter.search.SearchOutputBoundary;
-import interface_adapter.search.SearchOutputData;
-import interface_adapter.search.SearchRequestModel;
 
 /**
  * Interactor responsible for executing search operations.
@@ -31,9 +28,10 @@ public class SearchInteractor implements SearchInputBoundary {
      * Executes a search based on the provided request model.
      *
      * @param requestModel the request model containing search parameters
+     * @return
      */
     @Override
-    public void executeSearch(SearchRequestModel requestModel) {
+    public String executeSearch(SearchRequestModel requestModel) {
         // Fetch data from the data access layer
         List<SearchResult> results = dataAccess.fetchData(requestModel.getUsername());
 
@@ -47,19 +45,13 @@ public class SearchInteractor implements SearchInputBoundary {
 
         // Pass results to the output boundary
         outputBoundary.presentResults(outputData);
+        return null;
     }
-
-    @Override
-    public String executeSearch(String username) {
-        List<SearchResult> results = dataAccess.fetchData(username);
-
-        if (results.isEmpty()) {
-            return ""; // Return an empty string if no results are found
-        }
-
-        return results.stream()
-                .map(SearchResult::toString)
-                .collect(Collectors.joining("\n"));
+    /**
+     * Returns the output boundary.
+     * @return the output boundary
+     */
+    public SearchOutputBoundary getOutputBoundary() {
+        return outputBoundary;
     }
-
 }

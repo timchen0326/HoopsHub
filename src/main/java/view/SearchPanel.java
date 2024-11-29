@@ -15,7 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import use_case.search.SearchInteractor;
-import view.ThemeManager.ThemeManager;
+import use_case.search.SearchRequestModel;
+import use_case.search.SearchViewModel;
 
 /**
  * Panel for searching user data and displaying results.
@@ -148,7 +149,6 @@ public class SearchPanel extends JPanel {
 
     private void handleSearch(JTextField textField) {
         final String username = textField.getText().trim();
-        System.out.println("Username entered: " + username); // Debugging line
 
         if (username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a username to search.", "Input Error",
@@ -157,8 +157,13 @@ public class SearchPanel extends JPanel {
             return;
         }
 
-        final String result = interactor.executeSearch(username);
-        System.out.println("Search result: " + result); // Debugging line
+        // Execute the search operation using the interactor
+        final SearchRequestModel requestModel = new SearchRequestModel(username);
+        interactor.executeSearch(requestModel);
+
+        // Get the result from the interactor's output boundary (view model)
+        final SearchViewModel viewModel = (SearchViewModel) interactor.getOutputBoundary();
+        String result = viewModel.getFormattedResults();
 
         if (result == null || result.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No results found for the username: " + username, "No Results",
@@ -192,8 +197,7 @@ public class SearchPanel extends JPanel {
             if (line.startsWith(key)) {
                 try {
                     return Integer.parseInt(line.replaceAll("[^0-9]", ""));
-                }
-                catch (NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
             }

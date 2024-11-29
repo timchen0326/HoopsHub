@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 
 import use_case.search.SearchInteractor;
+import use_case.search.SearchRequestModel;
 
 /**
  * View for searching user data and displaying results via the console.
@@ -27,7 +28,11 @@ public class SearchView {
         final Scanner scanner = new Scanner(System.in);
         System.out.print("Enter username to search: ");
         final String username = scanner.nextLine();
-        final String result = interactor.executeSearch(username);
-        System.out.println(result);
+
+        // Create a SearchRequestModel using the entered username
+        final SearchRequestModel requestModel = new SearchRequestModel(username);
+
+        // Execute the search using the interactor
+        interactor.executeSearch(requestModel);
     }
 }

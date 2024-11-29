@@ -9,7 +9,7 @@ import data_access.DBSearchDataAccessObject;
 import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
 import interface_adapter.play_game_aspects.PlayGameController;
-import interface_adapter.search.SearchViewModel;
+import use_case.search.SearchViewModel;
 import use_case.account.AccountDataAccessInterface;
 import use_case.account.AccountInteractor;
 import use_case.account.AccountOutputBoundary;

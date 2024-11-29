@@ -1,4 +1,4 @@
-package interface_adapter.search;
+package use_case.search;
 
 /**
  * Request model for search operations.
@@ -24,3 +24,4 @@ public class SearchRequestModel {
         return username;
     }
 }
+

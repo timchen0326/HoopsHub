@@ -6,6 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="6849a4b1-8de9-4a54-a3f8-cd71bb8b6279" name="Changes" comment="update search filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainGameSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainGameSearchApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/SearchAppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/SearchAppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/SearchResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/SearchResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchInputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchRequestModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchRequestModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/search/SearchInteractor/SearchInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/search/SearchInteractor/SearchInteractorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,30 +50,33 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "CLOSED",
-      "assignee": "rjlee224"
+      &quot;state&quot;: &quot;CLOSED&quot;,
+      &quot;assignee&quot;: &quot;rjlee224&quot;
     }
   ],
-  "lastFilter": {
-    "state": "CLOSED",
-    "assignee": "rjlee224"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;CLOSED&quot;,
+    &quot;assignee&quot;: &quot;rjlee224&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MainApplication.executor": "Run",
-    "JUnit.java in note-application.executor": "Coverage",
-    "git-widget-placeholder": "clean-arch-search-final",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in note-application.executor&quot;: &quot;Coverage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;clean-arch-search-final&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="interface_adapter.search" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="use_case.search" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MainApplication">

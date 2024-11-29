@@ -1,4 +1,4 @@
-package interface_adapter.search;
+package use_case.search;
 
 import java.util.List;
 
@@ -17,11 +17,12 @@ public class SearchViewModel implements SearchOutputBoundary {
      */
     @Override
     public void presentResults(SearchOutputData outputData) {
-        List<String> results = outputData.getResults();
+        final List<String> results = outputData.getResults();
         if (results.isEmpty()) {
             this.formattedResults = "No results found.";
-        } else {
-            StringBuilder builder = new StringBuilder();
+        }
+        else {
+            final StringBuilder builder = new StringBuilder();
             for (String result : results) {
                 builder.append(result).append("\\n\\n");
             }
