@@ -2,27 +2,39 @@ package interface_adapter.search;
 
 import java.util.List;
 
-import entity.SearchResult;
-
 /**
  * ViewModel for formatting search results into a displayable string.
+ * Implements the SearchOutputBoundary interface.
  */
-public class SearchViewModel {
+public class SearchViewModel implements SearchOutputBoundary {
+
+    private String formattedResults;
 
     /**
-     * Formats the search results into a displayable string.
+     * Processes the output data and formats the results for display.
      *
-     * @param results the list of search results; must not be null
-     * @return a formatted string representation of the search results, or "No results found." if the list is empty
+     * @param outputData the output data containing search results
      */
-    public String formatResults(List<SearchResult> results) {
+    @Override
+    public void presentResults(SearchOutputData outputData) {
+        List<String> results = outputData.getResults();
         if (results.isEmpty()) {
-            return "No results found.";
+            this.formattedResults = "No results found.";
+        } else {
+            StringBuilder builder = new StringBuilder();
+            for (String result : results) {
+                builder.append(result).append("\\n\\n");
+            }
+            this.formattedResults = builder.toString();
         }
-        final StringBuilder builder = new StringBuilder();
-        for (SearchResult result : results) {
-            builder.append(result.toString()).append("\n\n");
-        }
-        return builder.toString();
+    }
+
+    /**
+     * Returns the formatted search results.
+     *
+     * @return the formatted results as a string
+     */
+    public String getFormattedResults() {
+        return formattedResults;
     }
 }

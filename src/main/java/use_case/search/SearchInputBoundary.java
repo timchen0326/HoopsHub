@@ -1,9 +1,13 @@
 package use_case.search;
 
+import interface_adapter.search.SearchRequestModel;
+
 /**
  * Input boundary interface for executing a search operation.
  */
 public interface SearchInputBoundary {
+
+    void executeSearch(SearchRequestModel requestModel);
 
     /**
      * Executes a search based on the provided username.

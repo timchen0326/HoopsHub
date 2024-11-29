@@ -148,6 +148,7 @@ public class SearchPanel extends JPanel {
 
     private void handleSearch(JTextField textField) {
         final String username = textField.getText().trim();
+        System.out.println("Username entered: " + username); // Debugging line
 
         if (username.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a username to search.", "Input Error",
@@ -157,13 +158,13 @@ public class SearchPanel extends JPanel {
         }
 
         final String result = interactor.executeSearch(username);
+        System.out.println("Search result: " + result); // Debugging line
 
         if (result == null || result.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No results found for the username: " + username, "No Results",
                     JOptionPane.INFORMATION_MESSAGE);
             clearResults();
-        }
-        else {
+        } else {
             updateResults(result);
         }
     }
