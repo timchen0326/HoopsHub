@@ -20,17 +20,29 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/main" />
+    <option name="BRANCH" value="origin/Ian-clean-architecture" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Ian-clean-architecture" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "CLOSED",
+      "assignee": "rjlee224"
+    }
+  ],
+  "lastFilter": {
+    "state": "CLOSED",
+    "assignee": "rjlee224"
+  }
+}]]></component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -45,7 +57,7 @@
       <recent name="interface_adapter.search" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in note-application">
+  <component name="RunManager" selected="Application.MainApplication">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
       <module name="note-application" />
@@ -69,8 +81,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.java in note-application" />
         <item itemvalue="Application.MainApplication" />
+        <item itemvalue="JUnit.java in note-application" />
+        <item itemvalue="JUnit.java in note-application" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.MainApplication" />
       </list>
@@ -109,19 +122,16 @@
       <option name="project" value="LOCAL" />
       <updated>1732786534853</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="I update search clean architecture files">
+      <option name="closed" value="true" />
+      <created>1732854504170</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732854504170</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change" />
@@ -129,7 +139,8 @@
     <MESSAGE value="checkstyle" />
     <MESSAGE value="I update SearchGameHistory clean architecture files" />
     <MESSAGE value="update search filter" />
-    <option name="LAST_COMMIT_MESSAGE" value="update search filter" />
+    <MESSAGE value="I update search clean architecture files" />
+    <option name="LAST_COMMIT_MESSAGE" value="I update search clean architecture files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
