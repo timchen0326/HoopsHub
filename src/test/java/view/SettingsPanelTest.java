@@ -1,60 +1,76 @@
+package view;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import view.MusicManager.AudioController;
+import view.ThemeManager.ThemeController;
 import javax.swing.*;
+import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-
-import view.MainFrame;
-import view.SettingsPanel;
-import interface_adapter.PlayGameAspects.PlayGameController;
-import use_case.playgame.FetchPlayerYearsUseCase;
-import use_case.playgame.FetchPlayerStatsUseCase;
-import use_case.playgame.GetAverageStatUseCase;
-import use_case.search.SearchInteractor;
-import data_access.DBSearchDataAccessObject;
-import interface_adapter.search.SearchViewModel;
 
 public class SettingsPanelTest {
 
     private SettingsPanel settingsPanel;
-    private JButton toggleButton;
     private JButton muteButton;
+    private JButton themeButton;
+    private AudioController mockAudioController;
+    private ThemeController mockThemeController;
 
     @BeforeEach
     public void setup() {
-        FetchPlayerYearsUseCase yearsUseCase = mock(FetchPlayerYearsUseCase.class);
-        FetchPlayerStatsUseCase statsUseCase = mock(FetchPlayerStatsUseCase.class);
-        GetAverageStatUseCase averageStatUseCase = mock(GetAverageStatUseCase.class);
+        // Create mock dependencies
+        mockAudioController = mock(AudioController.class);
+        mockThemeController = mock(ThemeController.class);
 
-        PlayGameController playGameController = new PlayGameController(yearsUseCase, statsUseCase, averageStatUseCase);
+        // Set default behavior for mocks
+        when(mockAudioController.isMuted()).thenReturn(false);
+        when(mockThemeController.isDarkMode()).thenReturn(false);
 
-        DBSearchDataAccessObject dbSearchData = mock(DBSearchDataAccessObject.class);
-        SearchViewModel searchViewModel = mock(SearchViewModel.class);
+        // Initialize MainFrame and SettingsPanel
+        MainFrame mockFrame = mock(MainFrame.class);
+        settingsPanel = new SettingsPanel(mockFrame, mockAudioController, mockThemeController);
 
-        SearchInteractor searchInteractor = new SearchInteractor(dbSearchData, searchViewModel);
-
-        MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
-        settingsPanel = new SettingsPanel(mainFrame);
-    }
-
-
-    @Test
-    public void testToggleTheme() {
-        // Simulate button click for toggling theme
-        toggleButton.doClick();
-
-        // Validate the theme change indirectly
-        assertNotNull(settingsPanel);
-        assertTrue(toggleButton.getText().contains("Mode")); // Should update label to reflect theme change
+        // Access buttons via the UI components
+        muteButton = new JButton(mockAudioController.isMuted() ? "Unmute Music" : "Mute Music");
+        themeButton = new JButton(mockThemeController.isDarkMode() ? "Switch to Light Mode" : "Switch to Dark Mode");
     }
 
     @Test
-    public void testMuteUnmute() {
-        // Simulate button click for toggling mute state
+    public void testMuteButtonTogglesAudioController() {
+        // Extract the real mute button from SettingsPanel
+        JButton muteButton = (JButton) settingsPanel.getComponent(1); // Adjust index based on layout
+
+        // Simulate a click to mute
+        when(mockAudioController.isMuted()).thenReturn(false);
         muteButton.doClick();
+        verify(mockAudioController, times(1)).mute();
 
-        // Validate mute/unmute state indirectly
+        // Simulate a click to unmute
+        when(mockAudioController.isMuted()).thenReturn(true);
+        muteButton.doClick();
+        verify(mockAudioController, times(1)).unmute();
+    }
+
+    @Test
+    public void testThemeButtonTogglesThemeController() {
+        JButton themeButton = (JButton) settingsPanel.getComponent(0); // Adjust index based on layout
+
+        // Simulate a click to toggle theme
+        themeButton.doClick();
+        verify(mockThemeController, times(1)).toggleDarkMode();
+
+        // Simulate another click
+        themeButton.doClick();
+        verify(mockThemeController, times(2)).toggleDarkMode();
+    }
+
+    @Test
+    public void testPanelInitialization() {
+        // Verify that the SettingsPanel is not null
         assertNotNull(settingsPanel);
-        assertTrue(muteButton.getText().contains("Music")); // Should update label to reflect mute state
+
+        // Verify the buttons have correct initial text
+        assertEquals("Mute Music", muteButton.getText());
+        assertEquals("Switch to Dark Mode", themeButton.getText());
     }
 }
