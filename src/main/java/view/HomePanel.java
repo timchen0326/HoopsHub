@@ -43,7 +43,7 @@ public class HomePanel extends JPanel {
         add(searchHistoryButton);
 
         // Welcome Label
-        add(new JLabel("Welcome to the Game App"));
+        add(new JLabel("Welcome to Hoops Hub!"));
 
         // Settings Button
         final JButton settingsButton = new JButton("Settings");
