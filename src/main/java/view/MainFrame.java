@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
     private static final int FRAME_WIDTH = 800;
     private static final int FRAME_HEIGHT = 400;
     private static final String MUSIC_PATH =
-            "/Users/mohitbendale/HoopsHub/src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav";
+            "src/main/java/music/369920__mrthenoronha__cartoon-game-theme-loop.wav";
 
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel mainPanel = new JPanel(cardLayout);
