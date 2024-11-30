@@ -4,12 +4,11 @@ package use_case.search;
  * Input boundary interface for executing a search operation.
  */
 public interface SearchInputBoundary {
-
     /**
-     * Executes a search based on the provided username.
+     * Executes a search based on the provided request model.
      *
-     * @param username the username to search for; must not be null
-     * @return the search result as a string; may return an empty string if no results are found
+     * @param requestModel the request model containing search parameters
+     * @return
      */
-    String executeSearch(String username);
+    String executeSearch(SearchRequestModel requestModel);
 }

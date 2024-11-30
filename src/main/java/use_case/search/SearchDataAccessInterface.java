@@ -18,3 +18,4 @@ public interface SearchDataAccessInterface {
      */
     List<SearchResult> fetchData(String username);
 }
+

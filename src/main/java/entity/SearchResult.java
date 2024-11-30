@@ -71,3 +71,4 @@ public class SearchResult {
         return "Username: " + username + "\nUserID: " + userId + "\nWins: " + wins + "\nLosses: " + losses;
     }
 }
+
