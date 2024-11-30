@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6849a4b1-8de9-4a54-a3f8-cd71bb8b6279" name="Changes" comment="update search filter">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/GameApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainGameSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainGameSearchApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/MainSearchApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/SearchAppBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/SearchAppBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DBSearchDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/SearchResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/SearchResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchInputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchOutputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchRequestModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchRequestModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/search/SearchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInputBoundary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/search/SearchInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/search/SearchInteractor/SearchInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/search/SearchInteractor/SearchInteractorTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/Ian-clean-architecture" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;CLOSED&quot;,
+      &quot;assignee&quot;: &quot;rjlee224&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;CLOSED&quot;,
+    &quot;assignee&quot;: &quot;rjlee224&quot;
+  }
+}</component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.java in note-application.executor&quot;: &quot;Coverage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;clean-arch-search-final&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="interface_adapter.search" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="use_case.search" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainApplication">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.MainApplication" />
+      <module name="note-application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in note-application" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="note-application" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApplication" />
+        <item itemvalue="JUnit.java in note-application" />
+        <item itemvalue="JUnit.java in note-application" />
+        <item itemvalue="Application.MainApplication" />
+        <item itemvalue="Application.MainApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="update clean architecture">
+      <option name="closed" value="true" />
+      <created>1732780750186</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732780750186</updated>
+    </task>
+    <task id="LOCAL-00002" summary="checkstyle">
+      <option name="closed" value="true" />
+      <created>1732781350204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732781350204</updated>
+    </task>
+    <task id="LOCAL-00003" summary="I update SearchGameHistory clean architecture files">
+      <option name="closed" value="true" />
+      <created>1732781576244</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732781576244</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update search filter">
+      <option name="closed" value="true" />
+      <created>1732786534853</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732786534853</updated>
+    </task>
+    <task id="LOCAL-00005" summary="I update search clean architecture files">
+      <option name="closed" value="true" />
+      <created>1732854504170</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732854504170</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="change" />
+    <MESSAGE value="update clean architecture" />
+    <MESSAGE value="checkstyle" />
+    <MESSAGE value="I update SearchGameHistory clean architecture files" />
+    <MESSAGE value="update search filter" />
+    <MESSAGE value="I update search clean architecture files" />
+    <option name="LAST_COMMIT_MESSAGE" value="I update search clean architecture files" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Project$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732557669123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest.ic" NAME="SearchHistoryInteractorTest Coverage Results" MODIFIED="1732557492905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/_10$SearchResultTest.ic" NAME="SearchResultTest Coverage Results" MODIFIED="1732557367130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/_10$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732563575673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/_10$All_in_note_application.ic" NAME="All in note-application Coverage Results" MODIFIED="1732560939600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Branch$java_in_note_application.ic" NAME="java in note-application Coverage Results" MODIFIED="1732562524146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Project$SearchHistoryInteractorTest__1_.ic" NAME="SearchHistoryInteractorTest (1) Coverage Results" MODIFIED="1732557648400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>use_case.search.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Project$SearchInteractorTest.ic" NAME="SearchInteractorTest Coverage Results" MODIFIED="1732846323121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Project$SearchHistoryRecordTest.ic" NAME="SearchHistoryRecordTest Coverage Results" MODIFIED="1732553862414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>

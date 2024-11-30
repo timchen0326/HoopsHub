@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import data_access.DBSearchDataAccessObject;
 import entity.SearchResult;
-import interface_adapter.search.SearchViewModel;
+import use_case.search.SearchViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import use_case.search.SearchInteractor;

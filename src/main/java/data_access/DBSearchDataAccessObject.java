@@ -10,11 +10,13 @@ import java.util.List;
 import org.json.JSONObject;
 
 import entity.SearchResult;
+import use_case.search.SearchDataAccessInterface;
 
 /**
- * This class handles data access for searching in the database.
+ * Handles data access for fetching search results.
  */
-public class DBSearchDataAccessObject {
+public class DBSearchDataAccessObject implements SearchDataAccessInterface {
+
     private static final String API_URL = "http://vm003.teach.cs.toronto.edu:20112/user?username=";
     private static final int HTTP_OK = 200;
 
@@ -24,6 +26,7 @@ public class DBSearchDataAccessObject {
      * @param username the username to search for
      * @return a list of search results
      */
+    @Override
     public List<SearchResult> fetchData(String username) {
         final List<SearchResult> results = new ArrayList<>();
         try {
