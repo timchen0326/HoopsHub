@@ -33,15 +33,15 @@ public class SearchInteractor implements SearchInputBoundary {
     @Override
     public String executeSearch(SearchRequestModel requestModel) {
         // Fetch data from the data access layer
-        List<SearchResult> results = dataAccess.fetchData(requestModel.getUsername());
+        final List<SearchResult> results = dataAccess.fetchData(requestModel.getUsername());
 
         // Convert results to a list of strings for output
-        List<String> formattedResults = results.stream()
+        final List<String> formattedResults = results.stream()
                 .map(SearchResult::toString)
                 .collect(Collectors.toList());
 
         // Wrap results in output data
-        SearchOutputData outputData = new SearchOutputData(formattedResults);
+        final SearchOutputData outputData = new SearchOutputData(formattedResults);
 
         // Pass results to the output boundary
         outputBoundary.presentResults(outputData);
@@ -51,6 +51,7 @@ public class SearchInteractor implements SearchInputBoundary {
      * Returns the output boundary.
      * @return the output boundary
      */
+
     public SearchOutputBoundary getOutputBoundary() {
         return outputBoundary;
     }

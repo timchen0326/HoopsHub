@@ -2,14 +2,14 @@ package app;
 
 import data_access.DBSearchDataAccessObject;
 import data_access.PlayerStatisticsRepositoryImpl;
-import interface_adapter.play_game_aspects.PlayGameController;
 import interface_adapter.play_game_aspects.FetchPlayerStatisticsPresenter;
-import use_case.search.SearchViewModel;
+import interface_adapter.play_game_aspects.PlayGameController;
 import use_case.playgame.FetchPlayerStatisticsInteractor;
 import use_case.playgame.FetchPlayerStatsUseCase;
 import use_case.playgame.FetchPlayerYearsUseCase;
 import use_case.playgame.GetAverageStatUseCase;
 import use_case.search.SearchInteractor;
+import use_case.search.SearchViewModel;
 import view.MainFrame;
 
 /**
