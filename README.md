@@ -15,11 +15,6 @@ Alexander Lee, Tim Chen, Ryan Lee, Ian Lin, Mohit Bendale
 
 ---
 
-### **Overview**
-The Hoops Hub is a modular and interactive software designed for managing user accounts, performing player statistics analysis, and offering an engaging guessing game. This project was built to test and compare our knowledge of the NBA. The application integrates a robust search feature, history tracking, and customizable themes, all wrapped in an intuitive graphical user interface (GUI). It solves the problem of comparing NBA knowledge among friends and can also help other NBA enthusiasts test their knowledge.
-
----
-
 ### **Table of Contents**
 1. [Overview](#overview)
 2. [Features](#features)
@@ -36,6 +31,11 @@ The Hoops Hub is a modular and interactive software designed for managing user a
 8. [License](#license)
 9. [Feedbacks](#feedbacks)
 10. [Acknowledgments](#acknowledgments)
+
+---
+
+### **Overview**
+The Hoops Hub is a modular and interactive software designed for managing user accounts, performing player statistics analysis, and offering an engaging guessing game. This project was built to test and compare our knowledge of the NBA. The application integrates a robust search feature, history tracking, and customizable themes, all wrapped in an intuitive graphical user interface (GUI). It solves the problem of comparing NBA knowledge among friends and can also help other NBA enthusiasts test their knowledge.
 
 ---
 
@@ -62,6 +62,9 @@ The Hoops Hub is a modular and interactive software designed for managing user a
 #### **Customizable Themes and Audio**
 - Toggle between light and dark modes.
 - Mute or unmute background music for an enhanced experience.
+
+#### **Demonstration**
+- click [here](https://animoto.com/play/u1s0nBFT3jf912YPRhvi1w) for the demo.
 
 ---
 
