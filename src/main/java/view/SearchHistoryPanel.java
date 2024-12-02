@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -15,12 +16,14 @@ import app.Session;
 import interface_adapter.search.SearchHistoryController;
 
 /**
- * Panel for displaying and managing search history.
+ * Panel for displaying and managing search history with stat filter.
  */
 public class SearchHistoryPanel extends JPanel {
 
     private static final int TEXT_AREA_ROWS = 15;
     private static final int TEXT_AREA_COLUMNS = 40;
+
+    private JComboBox<String> statFilterComboBox;
 
     /**
      * Constructs a SearchHistoryPanel with the given controller and frame.
@@ -46,17 +49,22 @@ public class SearchHistoryPanel extends JPanel {
         showHistoryButton.addActionListener(event -> updateHistory(historyArea));
         topPanel.add(showHistoryButton);
 
+        // ComboBox to select stat filter (e.g., Rebounds, Points, Assists)
+        statFilterComboBox = new JComboBox<>(new String[] {"All", "Points", "Rebounds", "Assists"});
+        topPanel.add(statFilterComboBox);
+
         add(topPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
     }
 
     /**
-     * Updates the history area with all game history data.
+     * Updates the history area with game history data, filtered by the selected stat.
      *
      * @param historyArea the text area to display history data
      */
     private void updateHistory(JTextArea historyArea) {
         final Session session = Session.getInstance();
+        final String selectedStat = (String) statFilterComboBox.getSelectedItem();
 
         // Check if there is any history data
         final List<JSONObject> historyList = session.getHistory();
@@ -66,7 +74,7 @@ public class SearchHistoryPanel extends JPanel {
         }
 
         // Build the history display text
-        final StringBuilder displayText = new StringBuilder("Game History:\n\n");
+        final StringBuilder displayText = new StringBuilder("Game History (" + selectedStat + "):\n\n");
         int gameNumber = 1;
         int winCount = 0, loseCount = 0;
 
@@ -76,20 +84,24 @@ public class SearchHistoryPanel extends JPanel {
             final String year = history.optString("year", "Unknown Year");
             final String result = determineResult(history.optString("result", ""));
 
-            displayText.append(String.format(
-                    "Game %d:\nPlayer: %s | Stats: %s | Year: %s | Result: %s\n\n",
-                    gameNumber++, player, stats, year, result
-            ));
+            // If the selected stat is "All" or the current stat matches the selected filter
+            if ("All".equals(selectedStat) || stats.contains(selectedStat)) {
+                displayText.append(String.format(
+                        "Game %d:\nPlayer: %s | Stats: %s | Year: %s | Result: %s\n\n",
+                        gameNumber++, player, stats, year, result
+                ));
 
-            // Update win/loss summary
-            if ("win".equalsIgnoreCase(result)) {
-                winCount++;
-            } else {
-                loseCount++;
+                // Update win/loss summary based on the filtered results
+                if ("win".equalsIgnoreCase(result)) {
+                    winCount++;
+                }
+                else {
+                    loseCount++;
+                }
             }
         }
 
-        // Append the win/loss summary
+        // Append the filtered win/loss summary
         displayText.append("\nSummary:\n");
         displayText.append(String.format("Wins: %d | Losses: %d\n", winCount, loseCount));
 
