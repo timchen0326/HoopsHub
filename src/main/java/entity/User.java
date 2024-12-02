@@ -7,8 +7,8 @@ public class User {
 
     private final String name;
     private final String password;
-    private int win = 0;  // Added fields for win and lose
-    private int lose = 0;
+    private int win;
+    private int lose;
 
     public User(String name, String password) {
         this.name = name;

@@ -1,22 +1,58 @@
 package use_case.search;
 
-import interface_adapter.search.SearchViewModel;
-import data_access.DBSearchDataAccessObject;
-import entity.SearchResult;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import entity.SearchResult;
+
+/**
+ * Interactor responsible for executing search operations.
+ */
 public class SearchInteractor implements SearchInputBoundary {
-    private final DBSearchDataAccessObject dataAccess;
-    private final SearchViewModel viewModel;
 
-    public SearchInteractor(DBSearchDataAccessObject dataAccess, SearchViewModel viewModel) {
+    private final SearchDataAccessInterface dataAccess;
+    private final SearchOutputBoundary outputBoundary;
+
+    /**
+     * Constructs a SearchInteractor with the specified data access and output boundary.
+     *
+     * @param dataAccess the data access object for retrieving search data
+     * @param outputBoundary the output boundary for presenting results
+     */
+    public SearchInteractor(SearchDataAccessInterface dataAccess, SearchOutputBoundary outputBoundary) {
         this.dataAccess = dataAccess;
-        this.viewModel = viewModel;
+        this.outputBoundary = outputBoundary;
     }
 
+    /**
+     * Executes a search based on the provided request model.
+     *
+     * @param requestModel the request model containing search parameters
+     * @return
+     */
     @Override
-    public String executeSearch(String username) {
-        List<SearchResult> results = dataAccess.fetchData(username);
-        return viewModel.formatResults(results);
+    public String executeSearch(SearchRequestModel requestModel) {
+        // Fetch data from the data access layer
+        final List<SearchResult> results = dataAccess.fetchData(requestModel.getUsername());
+
+        // Convert results to a list of strings for output
+        final List<String> formattedResults = results.stream()
+                .map(SearchResult::toString)
+                .collect(Collectors.toList());
+
+        // Wrap results in output data
+        final SearchOutputData outputData = new SearchOutputData(formattedResults);
+
+        // Pass results to the output boundary
+        outputBoundary.presentResults(outputData);
+        return null;
+    }
+    /**
+     * Returns the output boundary.
+     * @return the output boundary
+     */
+
+    public SearchOutputBoundary getOutputBoundary() {
+        return outputBoundary;
     }
 }

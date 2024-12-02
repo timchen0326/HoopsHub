@@ -11,10 +11,9 @@ import entity.User;
 
 /**
  * The AccountInteractor class handles the core business logic for user account management,
- * including creating new accounts and logging in existing users.
+ * implementing the AccountInputBoundary.
  */
-
-public class AccountInteractor {
+public class AccountInteractor implements AccountInputBoundary {
 
     private static final String INFO = "info";
 
@@ -26,39 +25,26 @@ public class AccountInteractor {
         this.outputBoundary = outputBoundary;
     }
 
-    /**
-     * Creates a new user account and initializes the session with the provided username and password.
-     *
-     * @param name the username of the new account
-     * @param password the password of the new account
-     * @throws Exception if there is an issue saving the user data
-     */
-
+    @Override
     public void createAccount(String name, String password) throws Exception {
         final User newUser = new User(name, password);
         accountDataAccess.saveUser(newUser);
 
-        // Optionally set session for the new user
+        // Initialize session
         Session.getInstance().setUsername(name);
         Session.getInstance().setPassword(password);
 
+        // Notify the presenter
         outputBoundary.prepareSuccessView("Account created successfully.");
     }
 
-    /**
-     * Logs in a user and sets their session data if the login is successful.
-     *
-     * @param username the username of the account
-     * @param password the password of the account
-     * @throws Exception if there is an issue accessing the account data
-     */
-
+    @Override
     public void loginUser(String username, String password) throws Exception {
         final boolean loginSuccess = accountDataAccess.loginUser(username, password);
         if (loginSuccess) {
-            // Retrieve additional user details
             final JSONObject userData = accountDataAccess.loadUserDetails(username);
 
+            // Update session
             final Session session = Session.getInstance();
             session.setUsername(username);
             session.setPassword(password);
@@ -72,12 +58,11 @@ public class AccountInteractor {
             }
             session.setHistory(historyList);
 
+            // Notify the presenter
             outputBoundary.prepareSuccessView("Login successful.");
         }
         else {
             outputBoundary.prepareFailView("Login failed. Invalid username or password.");
         }
     }
-
 }
-

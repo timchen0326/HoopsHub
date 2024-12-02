@@ -12,12 +12,14 @@ public class SessionMonitor extends Thread {
                 System.out.println("Wins: " + session.getWin());
                 System.out.println("Losses: " + session.getLose());
                 System.out.println("History: " + session.getHistory());
-            } else {
+            }
+            else {
                 System.out.println("No user is logged in.");
             }
             try {
-                Thread.sleep(5000); // Check every 5 seconds
-            } catch (InterruptedException e) {
+                Thread.sleep(5000);
+            }
+            catch (InterruptedException e) {
                 System.err.println("Session monitor interrupted: " + e.getMessage());
             }
         }

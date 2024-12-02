@@ -1,35 +1,34 @@
 package app;
 
 import data_access.DBSearchDataAccessObject;
-import data_access.SearchHistoryDataAccessObject;
-import data_access.PlayerStatisticsRepositoryImpl;
 import interface_adapter.play_game_aspects.PlayGameController;
-import interface_adapter.search.SearchHistoryController;
-import interface_adapter.search.SearchViewModel;
-import use_case.playgame.FetchPlayerStatisticsInteractor;
-import use_case.search.SearchHistoryInteractor;
+import use_case.search.SearchViewModel;
 import use_case.search.SearchInteractor;
 import view.MainFrame;
 
+/**
+ * MainGameSearchApplication is the entry point of the application.
+ * It initializes all dependencies and starts the main frame.
+ */
 public class MainGameSearchApplication {
+
+    /**
+     * The main method to start the application.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
-        // Initialize dependencies for FetchPlayerStatisticsInteractor
-        PlayerStatisticsRepositoryImpl playerStatisticsRepository = new PlayerStatisticsRepositoryImpl(); // Replace with actual implementation
-        FetchPlayerStatisticsInteractor fetchStatsBoundary = new FetchPlayerStatisticsInteractor(playerStatisticsRepository);
-        PlayGameController playGameController = PlayGameUseCaseFactory.createController();
 
-        // Initialize dependencies for SearchInteractor
-        DBSearchDataAccessObject dbSearchDataAccess = new DBSearchDataAccessObject(); // Implements SearchDataAccessInterface
-        SearchViewModel searchViewModel = new SearchViewModel(); // Create an instance of SearchViewModel
-        SearchInteractor searchInteractor = new SearchInteractor(dbSearchDataAccess, searchViewModel); // Pass both dependencies
+        // Step 2: Initialize PlayGameController using PlayGameUseCaseFactory
+        final PlayGameController playGameController = PlayGameUseCaseFactory.createController();
 
-        // Initialize dependencies for SearchHistoryController
-        SearchHistoryDataAccessObject searchHistoryDataAccess = new SearchHistoryDataAccessObject();
-        SearchHistoryInteractor searchHistoryInteractor = new SearchHistoryInteractor(searchHistoryDataAccess);
-        SearchHistoryController searchHistoryController = new SearchHistoryController(searchHistoryInteractor);
+        // Step 3: Initialize dependencies for SearchInteractor
+        final DBSearchDataAccessObject dbSearchDataAccess = new DBSearchDataAccessObject();
+        final SearchViewModel searchViewModel = new SearchViewModel();
+        final SearchInteractor searchInteractor = new SearchInteractor(dbSearchDataAccess, searchViewModel);
 
-        // Pass the correct arguments to MainFrame
-        MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
+        // Step 5: Pass the correct arguments to MainFrame and start the application
+        final MainFrame mainFrame = new MainFrame(playGameController, searchInteractor);
         mainFrame.start();
     }
 }

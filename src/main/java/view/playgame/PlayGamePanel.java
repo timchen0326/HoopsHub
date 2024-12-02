@@ -21,7 +21,7 @@ import data_access.AccountDataAccessObject;
 import entity.PlayerStatistic;
 import interface_adapter.play_game_aspects.PlayGameController;
 import view.MainFrame;
-import view.ThemeManager;
+import view.ThemeManager.ThemeManager;
 
 /**
  * Panel for playing the game. Contains input fields for player name and year, a text area for displaying player stats,
@@ -173,19 +173,42 @@ public class PlayGamePanel extends JPanel {
     private void updateSessionInfo(boolean isOver, double randomValue) {
         final Session session = Session.getInstance();
 
-        final JSONObject newHistoryEntry = createHistoryEntry();
+        // Determine if the guess was correct
+        final boolean isCorrect = isGuessCorrect(isOver, randomValue);
+        final String result;
+        if (isCorrect) {
+            result = "Win";
+        }
+        else {
+            result = "Lose";
+        }
+
+        // Create history entry with result
+        final JSONObject newHistoryEntry = createHistoryEntry(result);
         session.addHistoryEntry(newHistoryEntry);
 
+        // Create and push updated info
         final JSONObject updatedInfo = createUpdatedInfo(session);
-
         pushUpdatedInfoToApi(updatedInfo);
     }
 
-    private JSONObject createHistoryEntry() {
+    private boolean isGuessCorrect(boolean isOver, double randomValue) {
+        final boolean result;
+        if (isOver) {
+            result = currentTrueAverage > randomValue;
+        }
+        else {
+            result = currentTrueAverage < randomValue;
+        }
+        return result;
+    }
+
+    private JSONObject createHistoryEntry(String result) {
         final JSONObject historyEntry = new JSONObject();
         historyEntry.put("player", inputPanel.getPlayerNameField().getText());
         historyEntry.put("stats", (String) guessPanel.getGuessComboBox().getSelectedItem());
         historyEntry.put("year", (String) yearPanel.getYearComboBox().getSelectedItem());
+        historyEntry.put("result", result);
         return historyEntry;
     }
 

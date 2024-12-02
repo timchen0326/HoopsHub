@@ -1,88 +1,66 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import data_access.DBSearchDataAccessObject;
 import entity.SearchResult;
-import interface_adapter.search.SearchViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.search.SearchInteractor;
+import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SearchInteractorTest {
-    private SearchInteractor searchInteractor;
-    private StubDBSearchDataAccessObject stubDataAccess;
-    private StubSearchViewModel stubViewModel;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import use_case.search.*;
+
+class SearchInteractorTest {
+
+    private SearchDataAccessInterface mockDataAccess;
+    private SearchOutputBoundary mockOutputBoundary;
+    private SearchInteractor interactor;
 
     @BeforeEach
-    public void setUp() {
-        // Initialize stub implementations
-        stubDataAccess = new StubDBSearchDataAccessObject();
-        stubViewModel = new StubSearchViewModel();
-
-        // Initialize the interactor with the stubs
-        searchInteractor = new SearchInteractor(stubDataAccess, stubViewModel);
+    void setUp() {
+        mockDataAccess = Mockito.mock(SearchDataAccessInterface.class);
+        mockOutputBoundary = Mockito.mock(SearchOutputBoundary.class);
+        interactor = new SearchInteractor(mockDataAccess, mockOutputBoundary);
     }
 
     @Test
-    public void testExecuteSearch_ReturnsFormattedResults() {
-        // Add test data to the stub data access
-        stubDataAccess.addSearchResult(new SearchResult("testUser", "1", 9, 7));
-        stubDataAccess.addSearchResult(new SearchResult("anotherUser", "2", 15, 5));
+    void testExecuteSearch_WithValidSearchResult() {
+        // Arrange
+        String username = "john_doe";
+        SearchRequestModel requestModel = new SearchRequestModel(username);
+        SearchResult validResult = new SearchResult("john_doe", "1234", 10, 2);
+        List<SearchResult> mockResults = List.of(validResult);
+        when(mockDataAccess.fetchData(username)).thenReturn(mockResults);
 
-        // Call the method under test
-        String result = searchInteractor.executeSearch("testUser");
+        // Act
+        interactor.executeSearch(requestModel);
 
-        // Verify the result
-        String expectedResult = "Results:\nUsername: testUser\nUserID: 1\nWins: 9\nLosses: 7\n";
-        assertEquals(expectedResult, result);
+        // Assert
+        verify(mockDataAccess).fetchData(username);
+        verify(mockOutputBoundary).presentResults(argThat(outputData -> {
+            assertNotNull(outputData);
+            assertEquals(1, outputData.getResults().size());
+            assertEquals(validResult.toString(), outputData.getResults().get(0));
+            return true;
+        }));
     }
 
     @Test
-    public void testExecuteSearch_NoResults() {
-        // Ensure no data is added to the stub
+    void testExecuteSearch_NoResults() {
+        // Arrange
+        String username = "unknown_user";
+        SearchRequestModel requestModel = new SearchRequestModel(username);
+        when(mockDataAccess.fetchData(username)).thenReturn(List.of());
 
-        // Call the method under test
-        String result = searchInteractor.executeSearch("nonExistentUser");
+        // Act
+        interactor.executeSearch(requestModel);
 
-        // Verify the result
-        String expectedResult = "No results found.";
-        assertEquals(expectedResult, result);
-    }
-
-    // Stub for DBSearchDataAccessObject
-    private static class StubDBSearchDataAccessObject extends DBSearchDataAccessObject {
-        private final List<SearchResult> database = new ArrayList<>();
-
-        @Override
-        public List<SearchResult> fetchData(String username) {
-            List<SearchResult> results = new ArrayList<>();
-            for (SearchResult result : database) {
-                if (result.getUsername().equals(username)) {
-                    results.add(result);
-                }
-            }
-            return results;
-        }
-
-        public void addSearchResult(SearchResult result) {
-            database.add(result);
-        }
-    }
-
-    // Stub for SearchViewModel
-    private static class StubSearchViewModel extends SearchViewModel {
-        @Override
-        public String formatResults(List<SearchResult> results) {
-            if (results.isEmpty()) {
-                return "No results found.";
-            }
-            StringBuilder sb = new StringBuilder("Results:\n");
-            for (SearchResult result : results) {
-                sb.append(result.toString()).append("\n");
-            }
-            return sb.toString();
-        }
+        // Assert
+        verify(mockDataAccess).fetchData(username);
+        verify(mockOutputBoundary).presentResults(argThat(outputData -> {
+            assertNotNull(outputData);
+            assertTrue(outputData.getResults().isEmpty());
+            return true;
+        }));
     }
 }
