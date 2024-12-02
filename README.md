@@ -1,4 +1,4 @@
-# Project Team Members
+# Hoops Hub Staffs
 
 | Name           | GitHub Username       |
 |----------------|-----------------------|
