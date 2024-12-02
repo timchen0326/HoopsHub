@@ -34,12 +34,12 @@ Alexander Lee, Tim Chen, Ryan Lee, Ian Lin, Mohit Bendale
 
 ---
 
-### **Overview**
+## **Overview**
 The Hoops Hub is a modular and interactive software designed for managing user accounts, performing player statistics analysis, and offering an engaging guessing game. This project was built to test and compare our knowledge of the NBA. The application integrates a robust search feature, history tracking, and customizable themes, all wrapped in an intuitive graphical user interface (GUI). It solves the problem of comparing NBA knowledge among friends and can also help other NBA enthusiasts test their knowledge.
 
 ---
 
-### **Features**
+## **Features**
 #### **Account Management**
 - Securely create new accounts.
 - Login with existing credentials.
@@ -77,7 +77,7 @@ The application follows a clean, modular architecture for scalability and mainta
 
 ---
 
-### **Installation**
+## **Installation**
 #### **Requirements**
 - Java Development Kit (JDK): Version 17 or later.
 - IDE: IntelliJ IDEA or Eclipse recommended.
