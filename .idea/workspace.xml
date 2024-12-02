@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2687973d-8249-4f02-8355-4363ebdade45" name="Changes" comment="update test coverage for search">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732563621310</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update test coverage for search">
+      <option name="closed" value="true" />
+      <created>1733125954998</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733125954998</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,9 +229,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add search button and back button" />
     <MESSAGE value="I cleaned up the files and made use to do clean arichetectur." />
     <MESSAGE value="update layout of search panel" />
+    <MESSAGE value="add search button and back button" />
     <MESSAGE value="update test coverage for search" />
     <option name="LAST_COMMIT_MESSAGE" value="update test coverage for search" />
   </component>
