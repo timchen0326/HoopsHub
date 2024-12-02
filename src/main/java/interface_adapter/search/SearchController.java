@@ -25,7 +25,7 @@ public class SearchController {
      * @param username the username to search for
      */
     public void executeSearch(String username) {
-        SearchRequestModel requestModel = new SearchRequestModel(username);
+        final SearchRequestModel requestModel = new SearchRequestModel(username);
         interactor.executeSearch(requestModel);
     }
 }

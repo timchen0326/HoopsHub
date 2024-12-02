@@ -1,8 +1,8 @@
 package app;
 
 import data_access.DBSearchDataAccessObject;
-import use_case.search.SearchViewModel;
 import use_case.search.SearchInteractor;
+import use_case.search.SearchViewModel;
 
 /**
  * SearchAppBuilder is responsible for constructing and returning a

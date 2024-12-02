@@ -1,7 +1,5 @@
 package use_case.search;
 
-import use_case.search.SearchHistoryInputData;
-
 /**
  * Defines the boundary for processing input data related to search history.
  */

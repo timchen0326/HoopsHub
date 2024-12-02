@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -63,7 +64,7 @@ public class SearchHistoryPanel extends JPanel {
      */
     private void updateHistory(JTextArea historyArea) {
         final Session session = Session.getInstance();
-        String selectedStat = (String) statFilterComboBox.getSelectedItem();
+        final String selectedStat = (String) statFilterComboBox.getSelectedItem();
 
         // Check if there is any history data
         final List<JSONObject> historyList = session.getHistory();
@@ -93,7 +94,8 @@ public class SearchHistoryPanel extends JPanel {
                 // Update win/loss summary based on the filtered results
                 if ("win".equalsIgnoreCase(result)) {
                     winCount++;
-                } else {
+                }
+                else {
                     loseCount++;
                 }
             }
