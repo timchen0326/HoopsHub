@@ -1,20 +1,33 @@
 package util;
 
-import view.MusicManager.AudioController;
-
-import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import javax.sound.sampled.*;
+
+import view.MusicManager.AudioController;
+
+/**
+ * Singleton class for managing background music in the application.
+ * Implements the {@link AudioController} interface to provide mute/unmute functionality.
+ */
 
 public class MusicManager implements AudioController {
     private static MusicManager instance;
     private Clip musicClip;
-    private boolean isMuted = false;
+    private boolean isMuted;
 
-    // Private constructor to enforce singleton pattern
-    private MusicManager() {}
+    /**
+     * Private constructor to enforce the singleton pattern.
+     */
+    private MusicManager() {
 
-    // Static method to get the singleton instance
+    }
+    /**
+     * Gets the singleton instance of the MusicManager.
+     *
+     * @return the singleton instance of MusicManager
+     */
+
     public static MusicManager getInstance() {
         if (instance == null) {
             instance = new MusicManager();
@@ -22,7 +35,10 @@ public class MusicManager implements AudioController {
         return instance;
     }
 
-    // Implementation of AudioController interface methods
+    /**
+     * Mutes the background music.
+     * If music is currently playing, it will be stopped.
+     */
     @Override
     public void mute() {
         isMuted = true;
@@ -31,39 +47,54 @@ public class MusicManager implements AudioController {
         }
         System.out.println("Music muted.");
     }
+    /**
+     * Unmutes the background music.
+     * If music was previously stopped, it will restart playback from the beginning.
+     */
 
     @Override
     public void unmute() {
         isMuted = false;
         if (musicClip != null && !musicClip.isRunning()) {
-            musicClip.setFramePosition(0); // Restart from the beginning
+            musicClip.setFramePosition(0);
             musicClip.start();
         }
         System.out.println("Music unmuted.");
     }
+    /**
+     * Checks whether the background music is muted.
+     *
+     * @return {@code true} if music is muted, {@code false} otherwise
+     */
 
     @Override
     public boolean isMuted() {
         return isMuted;
     }
 
-    // Play music file
+    /**
+     * Plays the specified music file in the background.
+     * If a music file is already playing, it will stop and restart with the new file.
+     *
+     * @param filePath the path to the music file to play
+     */
+
     public void playMusic(String filePath) {
         try {
             if (musicClip != null && musicClip.isOpen()) {
-                musicClip.stop(); // Stop any existing playback
+                musicClip.stop();
                 musicClip.close();
             }
 
-            File musicFile = new File(filePath);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
+            final File musicFile = new File(filePath);
+            final AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
             musicClip = AudioSystem.getClip();
             musicClip.open(audioStream);
 
             // Add a listener to restart the music when it finishes
             musicClip.addLineListener(event -> {
                 if (event.getType() == LineEvent.Type.STOP && !isMuted) {
-                    musicClip.setFramePosition(0); // Restart from the beginning
+                    musicClip.setFramePosition(0);
                     musicClip.start();
                 }
             });
@@ -72,12 +103,15 @@ public class MusicManager implements AudioController {
                 musicClip.start();
                 System.out.println("Playing music: " + filePath);
             }
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        }
+        catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.err.println("Error playing music: " + e.getMessage());
         }
     }
 
-    // Stop music playback
+    /**
+     * Stops the current music playback, if music is playing.
+     */
     public void stopMusic() {
         if (musicClip != null && musicClip.isRunning()) {
             musicClip.stop();
