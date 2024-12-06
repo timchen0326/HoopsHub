@@ -21,7 +21,7 @@ import data_access.AccountDataAccessObject;
 import entity.PlayerStatistic;
 import interface_adapter.play_game_aspects.PlayGameController;
 import view.MainFrame;
-import view.ThemeManager.ThemeManager;
+import use_case.ThemeManager.ThemeManager;
 
 /**
  * Panel for playing the game. Contains input fields for player name and year, a text area for displaying player stats,

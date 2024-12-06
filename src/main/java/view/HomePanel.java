@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import app.Session;
-import view.ThemeManager.ThemeManager;
+import use_case.ThemeManager.ThemeManager;
 
 /**
  * The HomePanel class represents the main navigation panel of the application,

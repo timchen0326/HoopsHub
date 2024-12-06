@@ -1,4 +1,4 @@
-package view.ThemeManager;
+package use_case.ThemeManager;
 
 import java.awt.Color;
 

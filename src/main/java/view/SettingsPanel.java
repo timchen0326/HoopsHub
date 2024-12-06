@@ -1,7 +1,7 @@
 package view;
 
-import view.MusicManager.AudioController;
-import view.ThemeManager.ThemeController;
+import use_case.MusicManager.AudioController;
+import use_case.ThemeManager.ThemeController;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

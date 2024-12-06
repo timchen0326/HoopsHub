@@ -1,4 +1,4 @@
-package view.MusicManager;
+package use_case.MusicManager;
 
 public interface AudioController {
     /**

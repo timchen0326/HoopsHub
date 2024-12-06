@@ -1,10 +1,8 @@
-package util;
+package use_case.MusicManager;
 
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
-
-import view.MusicManager.AudioController;
 
 /**
  * Singleton class for managing background music in the application.

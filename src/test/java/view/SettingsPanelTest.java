@@ -2,8 +2,8 @@ package view;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import view.MusicManager.AudioController;
-import view.ThemeManager.ThemeController;
+import use_case.MusicManager.AudioController;
+import use_case.ThemeManager.ThemeController;
 import javax.swing.*;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;

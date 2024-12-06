@@ -13,13 +13,14 @@ import interface_adapter.account.AccountController;
 import interface_adapter.account.AccountPresenter;
 import interface_adapter.play_game_aspects.PlayGameController;
 import interface_adapter.search.SearchHistoryController;
+import use_case.MusicManager.AudioController;
+import use_case.MusicManager.MusicManager;
 import use_case.account.AccountInteractor;
 import use_case.search.SearchHistoryInteractor;
 import use_case.search.SearchInteractor;
 import view.playgame.PlayGamePanel;
-import view.MusicManager.*;
-import view.ThemeManager.ThemeController;
-import view.ThemeManager.ThemeManager;
+import use_case.ThemeManager.ThemeController;
+import use_case.ThemeManager.ThemeManager;
 
 /**
  * MainFrame class represents the main application frame with various panels.
@@ -44,8 +45,8 @@ public class MainFrame extends JFrame {
         setTitle("Game App");
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        util.MusicManager.getInstance().playMusic(MUSIC_PATH);
-        AudioController audioController = util.MusicManager.getInstance();
+        MusicManager.getInstance().playMusic(MUSIC_PATH);
+        AudioController audioController = MusicManager.getInstance();
         ThemeController themeController = ThemeManager.getInstance();
 
 
